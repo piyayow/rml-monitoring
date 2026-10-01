@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -141,6 +142,7 @@
       padding: 20px;
       margin-bottom: 25px;
       box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      overflow-x: auto;
     }
 
     .section h2 {
@@ -214,6 +216,7 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      z-index: 1000;
     }
 
     .modal-box {
@@ -451,6 +454,7 @@
               <th>Request No.</th>
               <th>Personnel</th>
               <th>Category</th>
+              <th>Service / Item</th>
               <th>PCS</th>
               <th>Amount</th>
               <th>Due</th>
@@ -528,6 +532,7 @@
             <tr>
               <th>Request No.</th>
               <th>Category</th>
+              <th>Service / Item</th>
               <th>PCS</th>
               <th>Amount</th>
               <th>Due</th>
@@ -570,6 +575,7 @@
               <th>Request No.</th>
               <th>Personnel</th>
               <th>Category</th>
+              <th>Service / Item</th>
               <th>PCS</th>
               <th>Amount</th>
               <th>Due</th>
@@ -617,16 +623,24 @@
 
           <div class="form-group">
             <label>Assigned Personnel</label>
-           <select id="assignedPersonnel" required>
-  <option value="">Select personnel</option>
-</select>
+            <select id="assignedPersonnel" required>
+              <option value="">Select personnel</option>
+            </select>
           </div>
 
           <div class="form-group">
             <label>Monitoring Category</label>
-           <select id="category" required>
-  <option value="">Select category</option>
-</select>
+            <select id="category" required>
+              <option value="">Select category</option>
+            </select>
+          </div>
+
+          <!-- NEW SERVICE / ITEM -->
+          <div class="form-group">
+            <label>Service / Item</label>
+            <select id="serviceItem" required>
+              <option value="">Select service/item</option>
+            </select>
           </div>
 
           <div class="form-group">
@@ -704,6 +718,7 @@
   let personnel = [];
   let categories = [];
   let requests = [];
+  let serviceItems = [];
 
 
   // ==========================================
@@ -759,8 +774,12 @@
         "monitoring_categories?select=*&active=eq.true&order=name"
       );
 
+      serviceItems = await supabaseFetch(
+        "service_items?select=*&active=eq.true&order=item_name"
+      );
+
       requests = await supabaseFetch(
-        "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name)&order=created_at.desc"
+        "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name),serviceItem:service_item_id(id,item_name,details,price)&order=created_at.desc"
       );
 
       populateFilters();
@@ -804,13 +823,13 @@
 
       categoryFilter.innerHTML += `
         <option value="${category.id}">
-          ${category.name}
+          ${escapeHTML(category.name)}
         </option>
       `;
 
       categorySelect.innerHTML += `
         <option value="${category.id}">
-          ${category.name}
+          ${escapeHTML(category.name)}
         </option>
       `;
 
@@ -819,19 +838,105 @@
 
     personnel.forEach(person => {
 
-  personnelFilter.innerHTML += `
-    <option value="${person.id}">
-      ${person.code}
-    </option>
-  `;
+      personnelFilter.innerHTML += `
+        <option value="${person.id}">
+          ${escapeHTML(person.code)}
+        </option>
+      `;
 
-  personnelSelect.innerHTML += `
-    <option value="${person.id}">
-      ${person.code}
-    </option>
-  `;
+      personnelSelect.innerHTML += `
+        <option value="${person.id}">
+          ${escapeHTML(person.code)}
+        </option>
+      `;
 
-});
+    });
+
+  }
+
+
+  // ==========================================
+  // SERVICE / ITEM SELECTION
+  // ==========================================
+
+  document.getElementById("category")
+    .addEventListener("change", populateServiceItems);
+
+
+  document.getElementById("serviceItem")
+    .addEventListener("change", updateAmountFromService);
+
+
+  function populateServiceItems() {
+
+    const categoryId =
+      document.getElementById("category").value;
+
+    const serviceSelect =
+      document.getElementById("serviceItem");
+
+    const amountInput =
+      document.getElementById("amount");
+
+
+    serviceSelect.innerHTML = `
+      <option value="">Select service/item</option>
+    `;
+
+    amountInput.value = "0";
+
+
+    if (!categoryId) {
+      return;
+    }
+
+
+    const filteredItems =
+      serviceItems.filter(
+        item =>
+          String(item.category_id) ===
+          String(categoryId)
+      );
+
+
+    filteredItems.forEach(item => {
+
+      const option =
+        document.createElement("option");
+
+      option.value = item.id;
+
+      option.textContent =
+        item.item_name +
+        (item.details
+          ? ` — ${item.details}`
+          : "");
+
+      option.dataset.price =
+        item.price;
+
+      serviceSelect.appendChild(option);
+
+    });
+
+  }
+
+
+  function updateAmountFromService() {
+
+    const serviceId =
+      document.getElementById("serviceItem").value;
+
+    const item =
+      serviceItems.find(
+        x =>
+          String(x.id) ===
+          String(serviceId)
+      );
+
+
+    document.getElementById("amount").value =
+      item ? Number(item.price) : 0;
 
   }
 
@@ -854,18 +959,24 @@
 
     return requests.filter(r => {
 
-      if (category &&
-          String(r.category_id) !== String(category)) {
+      if (
+        category &&
+        String(r.category_id) !== String(category)
+      ) {
         return false;
       }
 
-      if (person &&
-          String(r.assigned_personnel_id) !== String(person)) {
+      if (
+        person &&
+        String(r.assigned_personnel_id) !== String(person)
+      ) {
         return false;
       }
 
-      if (status &&
-          r.status !== status) {
+      if (
+        status &&
+        r.status !== status
+      ) {
         return false;
       }
 
@@ -886,24 +997,31 @@
       getFilteredRequests();
 
 
-    let assigned = filtered.length;
+    const assigned =
+      filtered.length;
 
-    let completed =
-      filtered.filter(r => r.status === "Completed").length;
+    const completed =
+      filtered.filter(
+        r => r.status === "Completed"
+      ).length;
 
-    let ongoing =
-      filtered.filter(r => r.status === "Ongoing").length;
+    const ongoing =
+      filtered.filter(
+        r => r.status === "Ongoing"
+      ).length;
 
-    let pending =
-      filtered.filter(r => r.status === "Pending").length;
+    const pending =
+      filtered.filter(
+        r => r.status === "Pending"
+      ).length;
 
-    let pcs =
+    const pcs =
       filtered.reduce(
         (sum, r) => sum + Number(r.pcs || 0),
         0
       );
 
-    let amount =
+    const amount =
       filtered.reduce(
         (sum, r) => sum + Number(r.amount || 0),
         0
@@ -929,7 +1047,7 @@
       formatMoney(amount);
 
 
-    // Personnel summary
+    // PERSONNEL SUMMARY
 
     const table =
       document.getElementById("personnelTable");
@@ -977,11 +1095,13 @@
 
       table.innerHTML += `
 
-        <tr class="person-row"
-            onclick="openPersonnel(${person.id})">
+        <tr
+          class="person-row"
+          onclick="openPersonnel(${person.id})"
+        >
 
           <td>
-            <strong>${person.code}</strong>
+            <strong>${escapeHTML(person.code)}</strong>
           </td>
 
           <td>${personRequests.length}</td>
@@ -1027,7 +1147,7 @@
 
       table.innerHTML = `
         <tr>
-          <td colspan="7" style="text-align:center">
+          <td colspan="8" style="text-align:center">
             No records found.
           </td>
         </tr>
@@ -1039,29 +1159,45 @@
 
     data.forEach(r => {
 
+      const serviceName =
+        r.serviceItem?.item_name || "-";
+
+
       table.innerHTML += `
 
         <tr>
 
-          <td>${escapeHTML(r.request_no)}</td>
-
           <td>
-            ${r.personnel?.code || ""}
+            ${escapeHTML(r.request_no)}
           </td>
 
           <td>
-            ${r.category?.name || ""}
+            ${escapeHTML(r.personnel?.code || "")}
           </td>
 
-          <td>${r.pcs}</td>
+          <td>
+            ${escapeHTML(r.category?.name || "")}
+          </td>
 
-          <td>${formatMoney(r.amount)}</td>
+          <td>
+            ${escapeHTML(serviceName)}
+          </td>
 
-          <td>${r.due_date || "-"}</td>
+          <td>
+            ${r.pcs}
+          </td>
+
+          <td>
+            ${formatMoney(r.amount)}
+          </td>
+
+          <td>
+            ${r.due_date || "-"}
+          </td>
 
           <td>
             <span class="status ${r.status}">
-              ${r.status}
+              ${escapeHTML(r.status)}
             </span>
           </td>
 
@@ -1115,11 +1251,13 @@
       .textContent =
       personRequests.length;
 
+
     document.getElementById("detailCompleted")
       .textContent =
       personRequests.filter(
         r => r.status === "Completed"
       ).length;
+
 
     document.getElementById("detailOngoing")
       .textContent =
@@ -1127,11 +1265,13 @@
         r => r.status === "Ongoing"
       ).length;
 
+
     document.getElementById("detailPending")
       .textContent =
       personRequests.filter(
         r => r.status === "Pending"
       ).length;
+
 
     document.getElementById("detailPCS")
       .textContent =
@@ -1139,6 +1279,7 @@
         (sum, r) => sum + Number(r.pcs || 0),
         0
       );
+
 
     document.getElementById("detailAmount")
       .textContent =
@@ -1167,6 +1308,9 @@
     document.getElementById("requestModal")
       .classList.remove("hidden");
 
+    document.getElementById("formMessage")
+      .className = "message";
+
   }
 
 
@@ -1182,94 +1326,143 @@
 
 
   document.getElementById("requestForm")
-    .addEventListener("submit", async function(event) {
+    .addEventListener(
+      "submit",
+      async function(event) {
 
-      event.preventDefault();
-
-
-      const data = {
-
-        request_no:
-          document.getElementById("requestNo").value.trim(),
-
-        category_id:
-          Number(
-            document.getElementById("category").value
-          ),
-
-        assigned_personnel_id:
-          Number(
-            document.getElementById("assignedPersonnel").value
-          ),
-
-        pcs:
-          Number(
-            document.getElementById("pcs").value
-          ),
-
-        amount:
-          Number(
-            document.getElementById("amount").value
-          ),
-
-        due_date:
-          document.getElementById("dueDate").value || null,
-
-        status:
-          document.getElementById("status").value,
-
-        serial_number:
-          document.getElementById("serialNumber").value.trim(),
-
-        description:
-          document.getElementById("description").value.trim(),
-
-        remarks:
-          document.getElementById("remarks").value.trim()
-
-      };
+        event.preventDefault();
 
 
-      try {
-
-        await supabaseFetch(
-          "requests",
-          {
-            method: "POST",
-            body: JSON.stringify(data)
-          }
-        );
+        const serviceItemId =
+          document.getElementById("serviceItem").value;
 
 
-        showFormMessage(
-          "Request successfully added.",
-          "success"
-        );
+        if (!serviceItemId) {
+
+          showFormMessage(
+            "Please select a service/item.",
+            "error"
+          );
+
+          return;
+
+        }
 
 
-        document.getElementById("requestForm").reset();
+        const data = {
+
+          request_no:
+            document.getElementById("requestNo")
+              .value
+              .trim(),
+
+          category_id:
+            Number(
+              document.getElementById("category")
+                .value
+            ),
+
+          service_item_id:
+            Number(serviceItemId),
+
+          assigned_personnel_id:
+            Number(
+              document.getElementById("assignedPersonnel")
+                .value
+            ),
+
+          pcs:
+            Number(
+              document.getElementById("pcs")
+                .value
+            ),
+
+          amount:
+            Number(
+              document.getElementById("amount")
+                .value
+            ),
+
+          due_date:
+            document.getElementById("dueDate")
+              .value || null,
+
+          status:
+            document.getElementById("status")
+              .value,
+
+          serial_number:
+            document.getElementById("serialNumber")
+              .value
+              .trim(),
+
+          description:
+            document.getElementById("description")
+              .value
+              .trim(),
+
+          remarks:
+            document.getElementById("remarks")
+              .value
+              .trim()
+
+        };
 
 
-        await reloadRequests();
+        try {
+
+          // SAVE REQUEST
+
+          await supabaseFetch(
+            "requests",
+            {
+              method: "POST",
+              body: JSON.stringify(data)
+            }
+          );
 
 
-        setTimeout(() => {
+          // RESET FORM
+
+          document.getElementById("requestForm")
+            .reset();
+
+          document.getElementById("serviceItem")
+            .innerHTML = `
+              <option value="">
+                Select service/item
+              </option>
+            `;
+
+          document.getElementById("amount")
+            .value = "0";
+
+
+          // CLOSE POPUP IMMEDIATELY
+          // AFTER SUCCESSFUL SAVE
+
           closeAddRequest();
-        }, 800);
 
 
-      } catch (error) {
+          // REFRESH DASHBOARD
 
-        console.error(error);
+          await reloadRequests();
 
-        showFormMessage(
-          "Error saving request: " + error.message,
-          "error"
-        );
+
+        } catch (error) {
+
+          console.error(error);
+
+          showFormMessage(
+            "Error saving request: " +
+            error.message,
+            "error"
+          );
+
+        }
 
       }
-
-    });
+    );
 
 
   // ==========================================
@@ -1279,7 +1472,7 @@
   async function reloadRequests() {
 
     requests = await supabaseFetch(
-      "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name)&order=created_at.desc"
+      "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name),serviceItem:service_item_id(id,item_name,details,price)&order=created_at.desc"
     );
 
     loadDashboard();
@@ -1318,6 +1511,7 @@
     document.getElementById("requestsPage")
       .classList.remove("hidden");
 
+
     renderRequests(
       requests,
       "allRequestsTable"
@@ -1332,11 +1526,14 @@
 
   function clearFilters() {
 
-    document.getElementById("categoryFilter").value = "";
+    document.getElementById("categoryFilter")
+      .value = "";
 
-    document.getElementById("personnelFilter").value = "";
+    document.getElementById("personnelFilter")
+      .value = "";
 
-    document.getElementById("statusFilter").value = "";
+    document.getElementById("statusFilter")
+      .value = "";
 
     loadDashboard();
 
@@ -1362,9 +1559,13 @@
 
   function escapeHTML(value) {
 
-    if (value === null || value === undefined) {
+    if (
+      value === null ||
+      value === undefined
+    ) {
       return "";
     }
+
 
     return String(value)
       .replace(/&/g, "&amp;")
@@ -1399,3 +1600,4 @@
 
 </body>
 </html>
+```
