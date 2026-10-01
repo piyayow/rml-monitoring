@@ -1316,14 +1316,15 @@
 
   function closeAddRequest() {
 
-    document.getElementById("requestModal")
-      .classList.add("hidden");
+  const modal = document.getElementById("requestModal");
 
-    document.getElementById("formMessage")
-      .className = "message";
+  modal.classList.add("hidden");
+  modal.style.display = "none";
 
-  }
+  document.getElementById("formMessage")
+    .className = "message";
 
+}
 
   document.getElementById("requestForm")
     .addEventListener(
