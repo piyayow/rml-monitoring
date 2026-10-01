@@ -1151,7 +1151,7 @@
 
       table.innerHTML = `
         <tr>
-          <td colspan="8" style="text-align:center">
+          <td colspan="9" style="text-align:center">
             No records found.
           </td>
         </tr>
@@ -1204,7 +1204,14 @@
               ${escapeHTML(r.status)}
             </span>
           </td>
-
+<button
+    type="button"
+    class="primary"
+    onclick="editRequest(${r.id})"
+  >
+    Edit
+  </button>
+</td>
         </tr>
 
       `;
