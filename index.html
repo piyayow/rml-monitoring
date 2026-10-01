@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RML Monitoring</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #1f2937;
+    }
+
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 230px;
+      height: 100vh;
+      background: #17365d;
+      color: white;
+      padding: 25px 15px;
+    }
+
+    .sidebar h2 {
+      margin: 0 10px 5px;
+      font-size: 22px;
+    }
+
+    .sidebar p {
+      margin: 0 10px 25px;
+      font-size: 12px;
+      opacity: .75;
+    }
+
+    .nav-btn {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: white;
+      text-align: left;
+      padding: 13px 12px;
+      margin-bottom: 4px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: rgba(255,255,255,.15);
+    }
+
+    .main {
+      margin-left: 230px;
+      padding: 30px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .header small {
+      color: #6b7280;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .card-label {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .card-value {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .filters {
+      background: white;
+      padding: 18px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    select,
+    input {
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      background: white;
+      font-size: 14px;
+    }
+
+    button.primary {
+      background: #17365d;
+      color: white;
+      border: 0;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button.primary:hover {
+      background: #0f2948;
+    }
+
+    .section {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    }
+
+    .section h2 {
+      margin-top: 0;
+      font-size: 19px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+    }
+
+    tr.person-row {
+      cursor: pointer;
+    }
+
+    tr.person-row:hover {
+      background: #f8fafc;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status.Completed {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status.Ongoing {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .status.Pending {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status.Cancelled {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: white;
+      width: 100%;
+      max-width: 850px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 12px;
+      padding: 25px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close {
+      border: 0;
+      background: transparent;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      padding: 12px;
+      border-radius: 7px;
+      display: none;
+    }
+
+    .message.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .message.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    @media (max-width: 1100px) {
+      .cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 750px) {
+      .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+      }
+
+      .main {
+        margin-left: 0;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>RML Monitoring</h2>
+    <p>Regional Metrology Laboratory</p>
+
+    <button class="nav-btn active" onclick="showDashboard()">
+      📊 Dashboard
+    </button>
+
+    <button class="nav-btn" onclick="showRequests()">
+      📋 Requests
+    </button>
+
+    <button class="nav-btn" onclick="openAddRequest()">
+      ➕ Add Request
+    </button>
+  </aside>
+
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- DASHBOARD -->
+    <div id="dashboardPage">
+
+      <div class="header">
+        <div>
+          <h1>Personnel Monitoring</h1>
+          <small>RML calibration workload and accomplishment</small>
+        </div>
+
+        <button class="primary" onclick="openAddRequest()">
+          + Add Request
+        </button>
+      </div>
+
+
+      <!-- SUMMARY CARDS -->
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-label">Total Assigned</div>
+          <div class="card-value" id="totalAssigned">0</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Completed</div>
+          <div class="card-value" id="totalCompleted">0</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Ongoing</div>
+          <div class="card-value" id="totalOngoing">0</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Pending</div>
+          <div class="card-value" id="totalPending">0</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Total PCS</div>
+          <div class="card-value" id="totalPCS">0</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Total Amount</div>
+          <div class="card-value" id="totalAmount">₱0.00</div>
+        </div>
+
+      </div>
+
+
+      <!-- FILTERS -->
+      <div class="filters">
+
+        <select id="categoryFilter" onchange="loadDashboard()">
+          <option value="">All Categories</option>
+        </select>
+
+        <select id="personnelFilter" onchange="loadDashboard()">
+          <option value="">All Personnel</option>
+        </select>
+
+        <select id="statusFilter" onchange="loadDashboard()">
+          <option value="">All Status</option>
+          <option value="Completed">Completed</option>
+          <option value="Ongoing">Ongoing</option>
+          <option value="Pending">Pending</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+
+        <button class="primary" onclick="clearFilters()">
+          Clear Filters
+        </button>
+
+      </div>
+
+
+      <!-- PERSONNEL SUMMARY -->
+      <div class="section">
+
+        <h2>Personnel Summary</h2>
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Personnel</th>
+              <th>Assigned</th>
+              <th>Completed</th>
+              <th>Ongoing</th>
+              <th>Pending</th>
+              <th>PCS</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+
+          <tbody id="personnelTable">
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <!-- RECENT REQUESTS -->
+      <div class="section">
+
+        <h2>Requests</h2>
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Request No.</th>
+              <th>Personnel</th>
+              <th>Category</th>
+              <th>PCS</th>
+              <th>Amount</th>
+              <th>Due</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="requestsTable">
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+
+    <!-- PERSONNEL DETAIL -->
+    <div id="personnelPage" class="hidden">
+
+      <div class="header">
+
+        <div>
+          <h1 id="personnelTitle">Personnel</h1>
+          <small>Assigned calibration requests</small>
+        </div>
+
+        <button class="primary" onclick="showDashboard()">
+          ← Back
+        </button>
+
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-label">Assigned</div>
+          <div class="card-value" id="detailAssigned">0</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Completed</div>
+          <div class="card-value" id="detailCompleted">0</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Ongoing</div>
+          <div class="card-value" id="detailOngoing">0</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Pending</div>
+          <div class="card-value" id="detailPending">0</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">PCS</div>
+          <div class="card-value" id="detailPCS">0</div>
+        </div>
+
+        <div class="card">
+          <div class="card-label">Amount</div>
+          <div class="card-value" id="detailAmount">₱0.00</div>
+        </div>
+
+      </div>
+
+      <div class="section">
+
+        <h2>Assigned Requests</h2>
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Request No.</th>
+              <th>Category</th>
+              <th>PCS</th>
+              <th>Amount</th>
+              <th>Due</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="detailRequestsTable">
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+
+    <!-- ALL REQUESTS -->
+    <div id="requestsPage" class="hidden">
+
+      <div class="header">
+
+        <div>
+          <h1>All Requests</h1>
+          <small>RML monitoring records</small>
+        </div>
+
+        <button class="primary" onclick="openAddRequest()">
+          + Add Request
+        </button>
+
+      </div>
+
+      <div class="section">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Request No.</th>
+              <th>Personnel</th>
+              <th>Category</th>
+              <th>PCS</th>
+              <th>Amount</th>
+              <th>Due</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="allRequestsTable">
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ADD REQUEST MODAL -->
+  <div id="requestModal" class="modal hidden">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+
+        <h2>Add Calibration Request</h2>
+
+        <button class="close" onclick="closeAddRequest()">
+          ×
+        </button>
+
+      </div>
+
+      <div id="formMessage" class="message"></div>
+
+      <form id="requestForm">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+            <label>Request No.</label>
+            <input id="requestNo" required>
+          </div>
+
+          <div class="form-group">
+            <label>Assigned Personnel</label>
+            <select id="assignedPersonnel" required>
+              <option value="">Select personnel</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Monitoring Category</label>
+            <select id="category" required>
+              <option value="">Select category</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>PCS</label>
+            <input id="pcs" type="number" min="0" step="0.01" value="1" required>
+          </div>
+
+          <div class="form-group">
+            <label>Total Amount (₱)</label>
+            <input id="amount" type="number" min="0" step="0.01" value="0" required>
+          </div>
+
+          <div class="form-group">
+            <label>Due Date</label>
+            <input id="dueDate" type="date">
+          </div>
+
+          <div class="form-group">
+            <label>Status</label>
+            <select id="status">
+              <option value="Pending">Pending</option>
+              <option value="Ongoing">Ongoing</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Serial Number</label>
+            <input id="serialNumber">
+          </div>
+
+          <div class="form-group full">
+            <label>Description</label>
+            <input id="description">
+          </div>
+
+          <div class="form-group full">
+            <label>Remarks</label>
+            <input id="remarks">
+          </div>
+
+        </div>
+
+        <br>
+
+        <button type="submit" class="primary">
+          Save Request
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+<script>
+
+  // ==========================================
+  // SUPABASE CONNECTION
+  // ==========================================
+
+  const SUPABASE_URL =
+    "https://ciibzyfkgiakarohyxka.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_616pyky7S6t2xj_qB_I6wA_x2q8EDZi";
+
+
+  // ==========================================
+  // GLOBAL DATA
+  // ==========================================
+
+  let personnel = [];
+  let categories = [];
+  let requests = [];
+
+
+  // ==========================================
+  // SUPABASE API
+  // ==========================================
+
+  async function supabaseFetch(table, options = {}) {
+
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/${table}`,
+      {
+        ...options,
+
+        headers: {
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`,
+          "Content-Type": "application/json",
+          "Prefer": options.method === "POST"
+            ? "return=representation"
+            : ""
+        }
+      }
+    );
+
+    if (!response.ok) {
+
+      const errorText = await response.text();
+
+      throw new Error(errorText);
+    }
+
+    if (response.status === 204) {
+      return [];
+    }
+
+    return response.json();
+  }
+
+
+  // ==========================================
+  // LOAD INITIAL DATA
+  // ==========================================
+
+  async function loadData() {
+
+    try {
+
+      personnel = await supabaseFetch(
+        "personnel?select=*&active=eq.true&order=code"
+      );
+
+      categories = await supabaseFetch(
+        "monitoring_categories?select=*&active=eq.true&order=name"
+      );
+
+      requests = await supabaseFetch(
+        "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name)&order=created_at.desc"
+      );
+
+      populateFilters();
+
+      loadDashboard();
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert(
+        "Unable to connect to the RML database.\n\n" +
+        error.message
+      );
+
+    }
+
+  }
+
+
+  // ==========================================
+  // POPULATE SELECTS
+  // ==========================================
+
+  function populateFilters() {
+
+    const categoryFilter =
+      document.getElementById("categoryFilter");
+
+    const personnelFilter =
+      document.getElementById("personnelFilter");
+
+    const categorySelect =
+      document.getElementById("category");
+
+    const personnelSelect =
+      document.getElementById("assignedPersonnel");
+
+
+    categories.forEach(category => {
+
+      categoryFilter.innerHTML += `
+        <option value="${category.id}">
+          ${category.name}
+        </option>
+      `;
+
+      categorySelect.innerHTML += `
+        <option value="${category.id}">
+          ${category.name}
+        </option>
+      `;
+
+    });
+
+
+    personnel.forEach(person => {
+
+      personnelFilter.innerHTML += `
+        <option value="${person.id}">
+          ${person.code}
+        </option>
+      `;
+
+      personnelSelect.innerHTML += `
+        <option value="${person.id}">
+          ${person.code} — ${person.name}
+        </option>
+      `;
+
+    });
+
+  }
+
+
+  // ==========================================
+  // FILTER REQUESTS
+  // ==========================================
+
+  function getFilteredRequests() {
+
+    const category =
+      document.getElementById("categoryFilter").value;
+
+    const person =
+      document.getElementById("personnelFilter").value;
+
+    const status =
+      document.getElementById("statusFilter").value;
+
+
+    return requests.filter(r => {
+
+      if (category &&
+          String(r.category_id) !== String(category)) {
+        return false;
+      }
+
+      if (person &&
+          String(r.assigned_personnel_id) !== String(person)) {
+        return false;
+      }
+
+      if (status &&
+          r.status !== status) {
+        return false;
+      }
+
+      return true;
+
+    });
+
+  }
+
+
+  // ==========================================
+  // DASHBOARD
+  // ==========================================
+
+  function loadDashboard() {
+
+    const filtered =
+      getFilteredRequests();
+
+
+    let assigned = filtered.length;
+
+    let completed =
+      filtered.filter(r => r.status === "Completed").length;
+
+    let ongoing =
+      filtered.filter(r => r.status === "Ongoing").length;
+
+    let pending =
+      filtered.filter(r => r.status === "Pending").length;
+
+    let pcs =
+      filtered.reduce(
+        (sum, r) => sum + Number(r.pcs || 0),
+        0
+      );
+
+    let amount =
+      filtered.reduce(
+        (sum, r) => sum + Number(r.amount || 0),
+        0
+      );
+
+
+    document.getElementById("totalAssigned").textContent =
+      assigned;
+
+    document.getElementById("totalCompleted").textContent =
+      completed;
+
+    document.getElementById("totalOngoing").textContent =
+      ongoing;
+
+    document.getElementById("totalPending").textContent =
+      pending;
+
+    document.getElementById("totalPCS").textContent =
+      pcs.toLocaleString();
+
+    document.getElementById("totalAmount").textContent =
+      formatMoney(amount);
+
+
+    // Personnel summary
+
+    const table =
+      document.getElementById("personnelTable");
+
+    table.innerHTML = "";
+
+
+    personnel.forEach(person => {
+
+      const personRequests =
+        filtered.filter(
+          r =>
+            String(r.assigned_personnel_id) ===
+            String(person.id)
+        );
+
+
+      const completed =
+        personRequests.filter(
+          r => r.status === "Completed"
+        ).length;
+
+      const ongoing =
+        personRequests.filter(
+          r => r.status === "Ongoing"
+        ).length;
+
+      const pending =
+        personRequests.filter(
+          r => r.status === "Pending"
+        ).length;
+
+      const totalPCS =
+        personRequests.reduce(
+          (sum, r) => sum + Number(r.pcs || 0),
+          0
+        );
+
+      const totalAmount =
+        personRequests.reduce(
+          (sum, r) => sum + Number(r.amount || 0),
+          0
+        );
+
+
+      table.innerHTML += `
+
+        <tr class="person-row"
+            onclick="openPersonnel(${person.id})">
+
+          <td>
+            <strong>${person.code}</strong>
+          </td>
+
+          <td>${personRequests.length}</td>
+
+          <td>${completed}</td>
+
+          <td>${ongoing}</td>
+
+          <td>${pending}</td>
+
+          <td>${totalPCS}</td>
+
+          <td>${formatMoney(totalAmount)}</td>
+
+        </tr>
+
+      `;
+
+    });
+
+
+    renderRequests(
+      filtered,
+      "requestsTable"
+    );
+
+  }
+
+
+  // ==========================================
+  // REQUEST TABLE
+  // ==========================================
+
+  function renderRequests(data, elementId) {
+
+    const table =
+      document.getElementById(elementId);
+
+    table.innerHTML = "";
+
+
+    if (!data.length) {
+
+      table.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align:center">
+            No records found.
+          </td>
+        </tr>
+      `;
+
+      return;
+    }
+
+
+    data.forEach(r => {
+
+      table.innerHTML += `
+
+        <tr>
+
+          <td>${escapeHTML(r.request_no)}</td>
+
+          <td>
+            ${r.personnel?.code || ""}
+          </td>
+
+          <td>
+            ${r.category?.name || ""}
+          </td>
+
+          <td>${r.pcs}</td>
+
+          <td>${formatMoney(r.amount)}</td>
+
+          <td>${r.due_date || "-"}</td>
+
+          <td>
+            <span class="status ${r.status}">
+              ${r.status}
+            </span>
+          </td>
+
+        </tr>
+
+      `;
+
+    });
+
+  }
+
+
+  // ==========================================
+  // PERSONNEL DETAIL
+  // ==========================================
+
+  function openPersonnel(personId) {
+
+    const person =
+      personnel.find(
+        p => String(p.id) === String(personId)
+      );
+
+    if (!person) return;
+
+
+    const personRequests =
+      requests.filter(
+        r =>
+          String(r.assigned_personnel_id) ===
+          String(personId)
+      );
+
+
+    document.getElementById("dashboardPage")
+      .classList.add("hidden");
+
+    document.getElementById("requestsPage")
+      .classList.add("hidden");
+
+    document.getElementById("personnelPage")
+      .classList.remove("hidden");
+
+
+    document.getElementById("personnelTitle")
+      .textContent =
+      `${person.code} — ${person.name}`;
+
+
+    document.getElementById("detailAssigned")
+      .textContent =
+      personRequests.length;
+
+    document.getElementById("detailCompleted")
+      .textContent =
+      personRequests.filter(
+        r => r.status === "Completed"
+      ).length;
+
+    document.getElementById("detailOngoing")
+      .textContent =
+      personRequests.filter(
+        r => r.status === "Ongoing"
+      ).length;
+
+    document.getElementById("detailPending")
+      .textContent =
+      personRequests.filter(
+        r => r.status === "Pending"
+      ).length;
+
+    document.getElementById("detailPCS")
+      .textContent =
+      personRequests.reduce(
+        (sum, r) => sum + Number(r.pcs || 0),
+        0
+      );
+
+    document.getElementById("detailAmount")
+      .textContent =
+      formatMoney(
+        personRequests.reduce(
+          (sum, r) => sum + Number(r.amount || 0),
+          0
+        )
+      );
+
+
+    renderRequests(
+      personRequests,
+      "detailRequestsTable"
+    );
+
+  }
+
+
+  // ==========================================
+  // ADD REQUEST
+  // ==========================================
+
+  function openAddRequest() {
+
+    document.getElementById("requestModal")
+      .classList.remove("hidden");
+
+  }
+
+
+  function closeAddRequest() {
+
+    document.getElementById("requestModal")
+      .classList.add("hidden");
+
+    document.getElementById("formMessage")
+      .className = "message";
+
+  }
+
+
+  document.getElementById("requestForm")
+    .addEventListener("submit", async function(event) {
+
+      event.preventDefault();
+
+
+      const data = {
+
+        request_no:
+          document.getElementById("requestNo").value.trim(),
+
+        category_id:
+          Number(
+            document.getElementById("category").value
+          ),
+
+        assigned_personnel_id:
+          Number(
+            document.getElementById("assignedPersonnel").value
+          ),
+
+        pcs:
+          Number(
+            document.getElementById("pcs").value
+          ),
+
+        amount:
+          Number(
+            document.getElementById("amount").value
+          ),
+
+        due_date:
+          document.getElementById("dueDate").value || null,
+
+        status:
+          document.getElementById("status").value,
+
+        serial_number:
+          document.getElementById("serialNumber").value.trim(),
+
+        description:
+          document.getElementById("description").value.trim(),
+
+        remarks:
+          document.getElementById("remarks").value.trim()
+
+      };
+
+
+      try {
+
+        await supabaseFetch(
+          "requests",
+          {
+            method: "POST",
+            body: JSON.stringify(data)
+          }
+        );
+
+
+        showFormMessage(
+          "Request successfully added.",
+          "success"
+        );
+
+
+        document.getElementById("requestForm").reset();
+
+
+        await reloadRequests();
+
+
+        setTimeout(() => {
+          closeAddRequest();
+        }, 800);
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showFormMessage(
+          "Error saving request: " + error.message,
+          "error"
+        );
+
+      }
+
+    });
+
+
+  // ==========================================
+  // RELOAD REQUESTS
+  // ==========================================
+
+  async function reloadRequests() {
+
+    requests = await supabaseFetch(
+      "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name)&order=created_at.desc"
+    );
+
+    loadDashboard();
+
+  }
+
+
+  // ==========================================
+  // PAGES
+  // ==========================================
+
+  function showDashboard() {
+
+    document.getElementById("dashboardPage")
+      .classList.remove("hidden");
+
+    document.getElementById("personnelPage")
+      .classList.add("hidden");
+
+    document.getElementById("requestsPage")
+      .classList.add("hidden");
+
+    loadDashboard();
+
+  }
+
+
+  function showRequests() {
+
+    document.getElementById("dashboardPage")
+      .classList.add("hidden");
+
+    document.getElementById("personnelPage")
+      .classList.add("hidden");
+
+    document.getElementById("requestsPage")
+      .classList.remove("hidden");
+
+    renderRequests(
+      requests,
+      "allRequestsTable"
+    );
+
+  }
+
+
+  // ==========================================
+  // FILTER RESET
+  // ==========================================
+
+  function clearFilters() {
+
+    document.getElementById("categoryFilter").value = "";
+
+    document.getElementById("personnelFilter").value = "";
+
+    document.getElementById("statusFilter").value = "";
+
+    loadDashboard();
+
+  }
+
+
+  // ==========================================
+  // HELPERS
+  // ==========================================
+
+  function formatMoney(value) {
+
+    return Number(value || 0).toLocaleString(
+      "en-PH",
+      {
+        style: "currency",
+        currency: "PHP"
+      }
+    );
+
+  }
+
+
+  function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+      return "";
+    }
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  function showFormMessage(text, type) {
+
+    const message =
+      document.getElementById("formMessage");
+
+    message.textContent = text;
+
+    message.className =
+      `message ${type}`;
+
+  }
+
+
+  // ==========================================
+  // START APPLICATION
+  // ==========================================
+
+  loadData();
+
+</script>
+
+</body>
+</html>
