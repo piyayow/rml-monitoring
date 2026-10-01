@@ -1305,13 +1305,15 @@
 
   function openAddRequest() {
 
-    document.getElementById("requestModal")
-      .classList.remove("hidden");
+  const modal = document.getElementById("requestModal");
 
-    document.getElementById("formMessage")
-      .className = "message";
+  modal.classList.remove("hidden");
+  modal.style.display = "flex";
 
-  }
+  document.getElementById("formMessage")
+    .className = "message";
+
+}
 
 
   function closeAddRequest() {
