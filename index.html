@@ -1213,7 +1213,7 @@ function getFilteredRequests() {
 
       table.innerHTML = `
         <tr>
-          <td colspan="9" style="text-align:center">
+          <td colspan="10" style="text-align:center">
             No records found.
           </td>
         </tr>
@@ -1265,12 +1265,14 @@ function getFilteredRequests() {
             ${r.due_date || "-"}
           </td>
 
-          <td>
-            <span class="status ${r.status}">
-              ${escapeHTML(r.status)}
-            </span>
-          </td>
-<button
+         <td>
+  <span class="status ${r.status}">
+    ${escapeHTML(r.status)}
+  </span>
+</td>
+
+<td>
+  <button
     type="button"
     class="primary"
     onclick="editRequest(${r.id})"
