@@ -476,6 +476,7 @@
 <th>Personnel</th>
 <th>Category</th>
 <th>Service / Item</th>
+<th>Serial Number</th>
 <th>PCS</th>
 <th>Amount</th>
 <th>Due</th>
@@ -1244,13 +1245,17 @@ function getFilteredRequests() {
             ${escapeHTML(r.category?.name || "")}
           </td>
 
-          <td>
-            ${escapeHTML(serviceName)}
-          </td>
+<td>
+  ${escapeHTML(serviceName)}
+</td>
 
-          <td>
-            ${r.pcs}
-          </td>
+<td>
+  ${escapeHTML(r.serial_number || "-")}
+</td>
+
+<td>
+  ${r.pcs}
+</td>
 
           <td>
             ${formatMoney(r.amount)}
