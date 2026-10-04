@@ -719,12 +719,12 @@
   // GLOBAL DATA
   // ==========================================
 
-  let personnel = [];
-  let categories = [];
-  let requests = [];
-  let serviceItems = [];
+ let personnel = [];
+let categories = [];
+let requests = [];
+let serviceItems = [];
 
-
+let editingRequestId = null;
   // ==========================================
   // SUPABASE API
   // ==========================================
@@ -1344,10 +1344,13 @@ function editRequest(requestId) {
     r => String(r.id) === String(requestId)
   );
 
+  
   if (!request) {
     alert("Request not found.");
     return;
   }
+  
+editingRequestId = requestId;
 
   document.getElementById("requestNo").value =
     request.request_no || "";
