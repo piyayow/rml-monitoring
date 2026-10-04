@@ -1224,7 +1224,6 @@ if (
   // ==========================================
   // REQUEST TABLE
   // ==========================================
-
 function renderRequests(data, elementId) {
 
   const table =
@@ -1232,11 +1231,14 @@ function renderRequests(data, elementId) {
 
   table.innerHTML = "";
 
+  const isAllRequests =
+    elementId === "allRequestsTable";
+
   if (!data.length) {
 
     table.innerHTML = `
       <tr>
-        <td colspan="11" style="text-align:center">
+        <td colspan="${isAllRequests ? 11 : 10}" style="text-align:center">
           No records found.
         </td>
       </tr>
@@ -1274,9 +1276,11 @@ function renderRequests(data, elementId) {
           ${escapeHTML(r.serial_number || "-")}
         </td>
 
+        ${isAllRequests ? `
         <td>
           ${r.request_date || "-"}
         </td>
+        ` : ""}
 
         <td>
           ${r.pcs}
@@ -1311,6 +1315,8 @@ function renderRequests(data, elementId) {
     `;
 
   });
+
+}
 
 }
 
