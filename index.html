@@ -400,31 +400,35 @@
 
 
       <!-- FILTERS -->
-      <div class="filters">
+     <div class="filters">
 
-        <select id="categoryFilter" onchange="loadDashboard()">
-          <option value="">All Categories</option>
-        </select>
+  <select id="categoryFilter" onchange="loadDashboard()">
+    <option value="">All Categories</option>
+  </select>
 
-        <select id="personnelFilter" onchange="loadDashboard()">
-          <option value="">All Personnel</option>
-        </select>
+  <select id="personnelFilter" onchange="loadDashboard()">
+    <option value="">All Personnel</option>
+  </select>
 
-        <select id="statusFilter" onchange="loadDashboard()">
-          <option value="">All Status</option>
-          <option value="Completed">Completed</option>
-          <option value="Ongoing">Ongoing</option>
-          <option value="Pending">Pending</option>
-          <option value="Cancelled">Cancelled</option>
-        </select>
+  <select id="statusFilter" onchange="loadDashboard()">
+    <option value="">All Status</option>
+    <option value="Completed">Completed</option>
+    <option value="Ongoing">Ongoing</option>
+    <option value="Pending">Pending</option>
+    <option value="Cancelled">Cancelled</option>
+  </select>
 
-        <button class="primary" onclick="clearFilters()">
-          Clear Filters
-        </button>
+  <input
+    type="month"
+    id="monthFilter"
+    onchange="loadDashboard()"
+  >
 
-      </div>
+  <button class="primary" onclick="clearFilters()">
+    Clear Filters
+  </button>
 
-
+</div>
       <!-- PERSONNEL SUMMARY -->
       <div class="section">
 
