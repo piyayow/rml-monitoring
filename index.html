@@ -458,14 +458,14 @@
 
   <h2 style="margin:0;">Requests</h2>
 
-  <input
-    id="requestSearch"
-    type="text"
-    placeholder="Search requests..."
-    autocomplete="off"
-    style="width:280px;"
-  >
-
+ <input
+  id="requestSearch"
+  type="text"
+  placeholder="Search requests..."
+  autocomplete="off"
+  style="width:280px;"
+  oninput="loadDashboard()"
+>
 </div>
 
 </div>
@@ -970,7 +970,6 @@ let editingRequestId = null;
   // ==========================================
   // FILTER REQUESTS
   // ==========================================
-
 function getFilteredRequests() {
 
   const category =
@@ -1011,8 +1010,6 @@ function getFilteredRequests() {
       return false;
     }
 
-
-    // SEARCH
 
     if (search) {
 
