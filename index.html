@@ -444,20 +444,19 @@
 
       <!-- RECENT REQUESTS -->
 <div class="section">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:15px; margin-bottom:15px;">
 
-  <div style="display:flex; justify-content:space-between; align-items:center; gap:15px; margin-bottom:15px;">
+  <h2 style="margin:0;">Requests</h2>
 
-    <h2 style="margin:0;">Requests</h2>
+  <input
+    id="requestSearch"
+    type="text"
+    placeholder="Search requests..."
+    oninput="loadDashboard()"
+    style="width:280px;"
+  >
 
-    <input
-      id="requestSearch"
-      type="text"
-      placeholder="Search requests..."
-      oninput="loadDashboard()"
-      style="width:280px;"
-    >
-
-  </div>
+</div>
 
   <table>
           <thead>
