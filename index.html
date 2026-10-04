@@ -989,13 +989,16 @@ function getFilteredRequests() {
   const person =
     document.getElementById("personnelFilter").value;
 
-  const status =
-    document.getElementById("statusFilter").value;
+ const status =
+  document.getElementById("statusFilter").value;
 
-  const search =
-    document.getElementById("requestSearch")?.value
-      .trim()
-      .toLowerCase();
+const month =
+  document.getElementById("monthFilter")?.value;
+
+const search =
+  document.getElementById("requestSearch")?.value
+    .trim()
+    .toLowerCase();
 
 
   return requests.filter(r => {
@@ -1020,7 +1023,12 @@ function getFilteredRequests() {
     ) {
       return false;
     }
-
+if (
+  month &&
+  !r.due_date?.startsWith(month)
+) {
+  return false;
+}
 
     if (search) {
 
