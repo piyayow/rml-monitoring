@@ -1338,7 +1338,56 @@
     .className = "message";
 
 }
+function editRequest(requestId) {
 
+  const request = requests.find(
+    r => String(r.id) === String(requestId)
+  );
+
+  if (!request) {
+    alert("Request not found.");
+    return;
+  }
+
+  document.getElementById("requestNo").value =
+    request.request_no || "";
+
+  document.getElementById("assignedPersonnel").value =
+    request.assigned_personnel_id || "";
+
+  document.getElementById("category").value =
+    request.category_id || "";
+
+  // Load services/items for the selected category
+  populateServiceItems();
+
+  document.getElementById("serviceItem").value =
+    request.service_item_id || "";
+
+  document.getElementById("pcs").value =
+    request.pcs || 1;
+
+  document.getElementById("amount").value =
+    request.amount || 0;
+
+  document.getElementById("dueDate").value =
+    request.due_date || "";
+
+  document.getElementById("status").value =
+    request.status || "Pending";
+
+  document.getElementById("serialNumber").value =
+    request.serial_number || "";
+
+  document.getElementById("description").value =
+    request.description || "";
+
+  document.getElementById("remarks").value =
+    request.remarks || "";
+
+  openAddRequest();
+
+}
   document.getElementById("requestForm")
     .addEventListener(
       "submit",
