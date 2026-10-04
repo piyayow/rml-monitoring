@@ -400,7 +400,7 @@
 
 
       <!-- FILTERS -->
-    <div class="filters">
+<div class="filters">
 
   <select id="categoryFilter" onchange="loadDashboard()">
     <option value="">All Categories</option>
@@ -417,6 +417,12 @@
     <option value="Pending">Pending</option>
     <option value="Cancelled">Cancelled</option>
   </select>
+
+  <input
+    type="month"
+    id="monthFilter"
+    onchange="loadDashboard()"
+  >
 
   <button class="primary" onclick="clearFilters()">
     Clear Filters
