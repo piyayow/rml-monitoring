@@ -1687,21 +1687,15 @@ editingRequestId = null;
   // FILTER RESET
   // ==========================================
 
-  function clearFilters() {
+function clearFilters() {
+  document.getElementById("categoryFilter").value = "";
+  document.getElementById("personnelFilter").value = "";
+  document.getElementById("statusFilter").value = "";
+  document.getElementById("requestSearch").value = "";
+  document.getElementById("monthFilter").value = "";
 
-    document.getElementById("categoryFilter")
-      .value = "";
-
-    document.getElementById("personnelFilter")
-      .value = "";
-
-    document.getElementById("statusFilter")
-      .value = "";
-document.getElementById("requestSearch").value = "";
-    document.getElementById("monthFilter").value = "";
-    loadDashboard();
-
-  }
+  loadDashboard();
+}
 
 
   // ==========================================
