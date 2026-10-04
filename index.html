@@ -1217,97 +1217,99 @@ if (
   }
 
 
+
   // ==========================================
   // REQUEST TABLE
   // ==========================================
 
-  function renderRequests(data, elementId) {
+function renderRequests(data, elementId) {
 
-    const table =
-      document.getElementById(elementId);
+  const table =
+    document.getElementById(elementId);
 
-    table.innerHTML = "";
+  table.innerHTML = "";
 
+  if (!data.length) {
 
-    if (!data.length) {
+    table.innerHTML = `
+      <tr>
+        <td colspan="11" style="text-align:center">
+          No records found.
+        </td>
+      </tr>
+    `;
 
-      table.innerHTML = `
-        <tr>
-          <td colspan="10" style="text-align:center">
-            No records found.
-          </td>
-        </tr>
-      `;
-
-      return;
-    }
-
-
-    data.forEach(r => {
-
-      const serviceName =
-        r.serviceItem?.item_name || "-";
-
-
-      table.innerHTML += `
-
-        <tr>
-
-          <td>
-            ${escapeHTML(r.request_no)}
-          </td>
-
-          <td>
-            ${escapeHTML(r.personnel?.code || "")}
-          </td>
-
-          <td>
-            ${escapeHTML(r.category?.name || "")}
-          </td>
-
-<td>
-  ${escapeHTML(serviceName)}
-</td>
-
-<td>
-  ${escapeHTML(r.serial_number || "-")}
-</td>
-
-<td>
-  ${r.pcs}
-</td>
-
-          <td>
-            ${formatMoney(r.amount)}
-          </td>
-
-          <td>
-            ${r.due_date || "-"}
-          </td>
-
-         <td>
-  <span class="status ${r.status}">
-    ${escapeHTML(r.status)}
-  </span>
-</td>
-
-<td>
-  <button
-    type="button"
-    class="primary"
-    onclick="editRequest(${r.id})"
-  >
-    Edit
-  </button>
-</td>
-        </tr>
-
-      `;
-
-    });
-
+    return;
   }
 
+  data.forEach(r => {
+
+    const serviceName =
+      r.serviceItem?.item_name || "-";
+
+    table.innerHTML += `
+
+      <tr>
+
+        <td>
+          ${escapeHTML(r.request_no)}
+        </td>
+
+        <td>
+          ${escapeHTML(r.personnel?.code || "")}
+        </td>
+
+        <td>
+          ${escapeHTML(r.category?.name || "")}
+        </td>
+
+        <td>
+          ${escapeHTML(serviceName)}
+        </td>
+
+        <td>
+          ${escapeHTML(r.serial_number || "-")}
+        </td>
+
+        <td>
+          ${r.request_date || "-"}
+        </td>
+
+        <td>
+          ${r.pcs}
+        </td>
+
+        <td>
+          ${formatMoney(r.amount)}
+        </td>
+
+        <td>
+          ${r.due_date || "-"}
+        </td>
+
+        <td>
+          <span class="status ${r.status}">
+            ${escapeHTML(r.status)}
+          </span>
+        </td>
+
+        <td>
+          <button
+            type="button"
+            class="primary"
+            onclick="editRequest(${r.id})"
+          >
+            Edit
+          </button>
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
+}
 
   // ==========================================
   // PERSONNEL DETAIL
