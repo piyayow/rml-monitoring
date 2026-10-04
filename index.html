@@ -150,6 +150,16 @@
       font-size: 19px;
     }
 
+    .search-box {
+  position: relative;
+  z-index: 100;
+}
+
+.search-box input {
+  pointer-events: auto;
+  cursor: text;
+}
+    
     table {
       width: 100%;
       border-collapse: collapse;
@@ -444,7 +454,7 @@
 
       <!-- RECENT REQUESTS -->
 <div class="section">
-<div style="display:flex; justify-content:space-between; align-items:center; gap:15px; margin-bottom:15px;">
+<div class="search-box" style="display:flex; justify-content:space-between; align-items:center; gap:15px; margin-bottom:15px;">
 
   <h2 style="margin:0;">Requests</h2>
 
@@ -452,9 +462,11 @@
     id="requestSearch"
     type="text"
     placeholder="Search requests..."
-    oninput="loadDashboard()"
+    autocomplete="off"
     style="width:280px;"
   >
+
+</div>
 
 </div>
 
