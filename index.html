@@ -443,12 +443,23 @@
 
 
       <!-- RECENT REQUESTS -->
-      <div class="section">
+<div class="section">
 
-        <h2>Requests</h2>
+  <div style="display:flex; justify-content:space-between; align-items:center; gap:15px; margin-bottom:15px;">
 
-        <table>
+    <h2 style="margin:0;">Requests</h2>
 
+    <input
+      id="requestSearch"
+      type="text"
+      placeholder="Search requests..."
+      oninput="loadDashboard()"
+      style="width:280px;"
+    >
+
+  </div>
+
+  <table>
           <thead>
             <tr>
               <th>Request No.</th>
