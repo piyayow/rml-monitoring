@@ -959,46 +959,89 @@ let editingRequestId = null;
   // FILTER REQUESTS
   // ==========================================
 
-  function getFilteredRequests() {
+function getFilteredRequests() {
 
-    const category =
-      document.getElementById("categoryFilter").value;
+  const category =
+    document.getElementById("categoryFilter").value;
 
-    const person =
-      document.getElementById("personnelFilter").value;
+  const person =
+    document.getElementById("personnelFilter").value;
 
-    const status =
-      document.getElementById("statusFilter").value;
+  const status =
+    document.getElementById("statusFilter").value;
+
+  const search =
+    document.getElementById("requestSearch")?.value
+      .trim()
+      .toLowerCase();
 
 
-    return requests.filter(r => {
+  return requests.filter(r => {
 
-      if (
-        category &&
-        String(r.category_id) !== String(category)
-      ) {
+    if (
+      category &&
+      String(r.category_id) !== String(category)
+    ) {
+      return false;
+    }
+
+    if (
+      person &&
+      String(r.assigned_personnel_id) !== String(person)
+    ) {
+      return false;
+    }
+
+    if (
+      status &&
+      r.status !== status
+    ) {
+      return false;
+    }
+
+
+    // SEARCH
+
+    if (search) {
+
+      const searchableText = [
+
+        r.request_no,
+
+        r.personnel?.code,
+
+        r.personnel?.name,
+
+        r.category?.name,
+
+        r.serviceItem?.item_name,
+
+        r.serviceItem?.details,
+
+        r.serial_number,
+
+        r.description,
+
+        r.remarks
+
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+
+      if (!searchableText.includes(search)) {
         return false;
       }
 
-      if (
-        person &&
-        String(r.assigned_personnel_id) !== String(person)
-      ) {
-        return false;
-      }
+    }
 
-      if (
-        status &&
-        r.status !== status
-      ) {
-        return false;
-      }
 
-      return true;
+    return true;
 
-    });
+  });
 
-  }
+}
 
 
   // ==========================================
@@ -1624,7 +1667,8 @@ editingRequestId = null;
 
     document.getElementById("statusFilter")
       .value = "";
-
+document.getElementById("requestSearch").value = "";
+    
     loadDashboard();
 
   }
