@@ -1479,15 +1479,29 @@ editingRequestId = requestId;
 
           // SAVE REQUEST
 
-          await supabaseFetch(
-            "requests",
-            {
-              method: "POST",
-              body: JSON.stringify(data)
-            }
-          );
+if (editingRequestId) {
 
+  await supabaseFetch(
+    `requests?id=eq.${editingRequestId}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify(data)
+    }
+  );
 
+} else {
+
+  await supabaseFetch(
+    "requests",
+    {
+      method: "POST",
+      body: JSON.stringify(data)
+    }
+  );
+
+}
+
+editingRequestId = null;
           // RESET FORM
 
           document.getElementById("requestForm")
