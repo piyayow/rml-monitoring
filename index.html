@@ -458,13 +458,12 @@
 
   <h2 style="margin:0;">Requests</h2>
 
- <input
+<input
   id="requestSearch"
   type="text"
   placeholder="Search requests..."
   autocomplete="off"
   style="width:280px;"
-  oninput="loadDashboard()"
 >
 </div>
 
@@ -1738,7 +1737,22 @@ document.getElementById("requestSearch").value = "";
   // ==========================================
 
   loadData();
+document.addEventListener("DOMContentLoaded", function () {
 
+  const searchBox =
+    document.getElementById("requestSearch");
+
+  if (searchBox) {
+
+    searchBox.addEventListener("input", function () {
+
+      loadDashboard();
+
+    });
+
+  }
+
+});
 </script>
 
 </body>
