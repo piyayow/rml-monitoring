@@ -277,6 +277,7 @@
       padding: 6px 10px;
       cursor: pointer;
       font-size: 12px;
+      white-space: nowrap;
     }
 
     .edit-btn:hover {
@@ -991,6 +992,10 @@
                 <th>Amount</th>
                 <th>Due</th>
                 <th>Status</th>
+
+                <!-- ADMIN ONLY -->
+                <th class="admin-edit-col">Edit</th>
+
               </tr>
 
             </thead>
@@ -1059,6 +1064,10 @@
                 <th>Due</th>
                 <th>Status</th>
                 <th>Date Completed</th>
+
+                <!-- ADMIN ONLY -->
+                <th class="admin-edit-col">Edit</th>
+
               </tr>
 
             </thead>
@@ -1565,6 +1574,7 @@
 
       let data = {};
 
+
       try {
 
         data =
@@ -1751,6 +1761,27 @@
       document
         .querySelectorAll(
           ".admin-only"
+        )
+        .forEach(
+          element => {
+
+            element.style.display =
+              isAdmin
+                ? ""
+                : "none";
+
+          }
+        );
+
+
+      /*
+        Admin Edit column headers are also
+        hidden for non-admin users.
+      */
+
+      document
+        .querySelectorAll(
+          ".admin-edit-col"
         )
         .forEach(
           element => {
@@ -2876,12 +2907,8 @@
 
 
       /*
-        At this time, the analyst's
-        meaningful completion action is
-        selecting Completed.
-
-        Pending/Ongoing remain controlled
-        by the current record/admin.
+        Selecting Completed calls the
+        secure Supabase RPC.
       */
 
       if (
@@ -3008,6 +3035,39 @@
 
 
     /* =========================================================
+       ADMIN EDIT BUTTON
+    ========================================================= */
+
+    function renderEditButton(
+      request
+    ) {
+
+      if (
+        currentProfile?.role !==
+        "admin"
+      ) {
+
+        return "";
+
+      }
+
+
+      return `
+        <td class="admin-edit-cell">
+          <button
+            type="button"
+            class="edit-btn"
+            onclick="editRequest(${request.id})"
+          >
+            Edit
+          </button>
+        </td>
+      `;
+
+    }
+
+
+    /* =========================================================
        RENDER REQUESTS
     ========================================================= */
 
@@ -3056,6 +3116,37 @@
         }
 
 
+        /*
+          Add one column for Admin Edit.
+        */
+
+        if (
+          currentProfile?.role ===
+          "admin"
+        ) {
+
+          if (
+            elementId ===
+            "requestsTable"
+          ) {
+
+            colspan = 10;
+
+          }
+
+
+          else if (
+            elementId ===
+            "allRequestsTable"
+          ) {
+
+            colspan = 12;
+
+          }
+
+        }
+
+
         tbody.innerHTML = `
           <tr>
             <td
@@ -3094,11 +3185,6 @@
           const categoryName =
             r.category?.name ||
             "—";
-
-
-          const status =
-            r.status ||
-            "Pending";
 
 
           /*
@@ -3165,6 +3251,8 @@
               <td>
                 ${renderStatus(r)}
               </td>
+
+              ${renderEditButton(r)}
 
             `;
 
@@ -3248,6 +3336,8 @@
                 )}
               </td>
 
+              ${renderEditButton(r)}
+
             `;
 
           }
@@ -3322,6 +3412,14 @@
 
         }
       );
+
+
+      /*
+        Make sure Admin Edit columns are
+        visible only to Admin.
+      */
+
+      applyPermissions();
 
     }
 
@@ -4248,9 +4346,7 @@
 
 
             saveButton.textContent =
-              editingRequestId
-                ? "Update Request"
-                : "Save Request";
+              "Save Request";
 
           }
 
