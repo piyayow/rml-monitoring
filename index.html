@@ -2639,11 +2639,10 @@ async function signInWithGoogle() {
           "monitoring_categories?select=*&order=name.asc"
         );
 
-
-      serviceItems =
-        await supabaseFetch(
-          "service_items?select=*&order=name.asc"
-        );
+serviceItems =
+  await supabaseFetch(
+    "service_items?select=*&order=item_name.asc"
+  );
 
 
       await reloadRequests();
