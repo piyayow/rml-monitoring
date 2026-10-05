@@ -283,23 +283,24 @@
       background: #e5e7eb;
     }
 
-    .complete-btn {
-      background: #dcfce7;
-      color: #166534;
-      border: 1px solid #bbf7d0;
-      border-radius: 5px;
-      padding: 6px 10px;
+    /* =========================
+       STATUS SELECT
+    ========================= */
+
+    .status-select {
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      border: 1px solid #d1d5db;
       cursor: pointer;
-      font-size: 12px;
+      font-family: inherit;
+      background: white;
     }
 
-    .complete-btn:hover {
-      background: #bbf7d0;
-    }
-
-    .complete-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+    .status-select:disabled {
+      cursor: default;
+      opacity: 1;
     }
 
     /* =========================
@@ -465,6 +466,11 @@
     .status-Cancelled {
       background: #fee2e2;
       color: #991b1b;
+    }
+
+    .status-Replaced {
+      background: #f3e8ff;
+      color: #6b21a8;
     }
 
     /* =========================
@@ -823,98 +829,33 @@
       <div class="cards">
 
         <div class="card">
-
-          <div class="card-title">
-            Assigned
-          </div>
-
-          <div
-            class="card-value"
-            id="totalAssigned"
-          >
-            0
-          </div>
-
+          <div class="card-title">Assigned</div>
+          <div class="card-value" id="totalAssigned">0</div>
         </div>
 
-
         <div class="card">
-
-          <div class="card-title">
-            Completed
-          </div>
-
-          <div
-            class="card-value"
-            id="totalCompleted"
-          >
-            0
-          </div>
-
+          <div class="card-title">Completed</div>
+          <div class="card-value" id="totalCompleted">0</div>
         </div>
 
-
         <div class="card">
-
-          <div class="card-title">
-            Ongoing
-          </div>
-
-          <div
-            class="card-value"
-            id="totalOngoing"
-          >
-            0
-          </div>
-
+          <div class="card-title">Ongoing</div>
+          <div class="card-value" id="totalOngoing">0</div>
         </div>
 
-
         <div class="card">
-
-          <div class="card-title">
-            Pending
-          </div>
-
-          <div
-            class="card-value"
-            id="totalPending"
-          >
-            0
-          </div>
-
+          <div class="card-title">Pending</div>
+          <div class="card-value" id="totalPending">0</div>
         </div>
 
-
         <div class="card">
-
-          <div class="card-title">
-            PCS
-          </div>
-
-          <div
-            class="card-value"
-            id="totalPCS"
-          >
-            0
-          </div>
-
+          <div class="card-title">PCS</div>
+          <div class="card-value" id="totalPCS">0</div>
         </div>
 
-
         <div class="card">
-
-          <div class="card-title">
-            Amount
-          </div>
-
-          <div
-            class="card-value"
-            id="totalAmount"
-          >
-            ₱0.00
-          </div>
-
+          <div class="card-title">Amount</div>
+          <div class="card-value" id="totalAmount">₱0.00</div>
         </div>
 
       </div>
@@ -928,30 +869,21 @@
           id="categoryFilter"
           onchange="loadDashboard()"
         >
-          <option value="">
-            All Categories
-          </option>
+          <option value="">All Categories</option>
         </select>
-
 
         <select
           id="personnelFilter"
           onchange="loadDashboard()"
         >
-          <option value="">
-            All Personnel
-          </option>
+          <option value="">All Personnel</option>
         </select>
-
 
         <select
           id="statusFilter"
           onchange="loadDashboard()"
         >
-
-          <option value="">
-            All Status
-          </option>
+          <option value="">All Status</option>
 
           <option value="Completed">
             Completed
@@ -969,15 +901,16 @@
             Cancelled
           </option>
 
+          <option value="Replaced">
+            Replaced
+          </option>
         </select>
-
 
         <input
           type="month"
           id="monthFilter"
           onchange="loadDashboard()"
         >
-
 
         <button
           class="primary"
@@ -1004,43 +937,18 @@
             <thead>
 
               <tr>
-
-                <th>
-                  Personnel
-                </th>
-
-                <th>
-                  Assigned
-                </th>
-
-                <th>
-                  Completed
-                </th>
-
-                <th>
-                  Ongoing
-                </th>
-
-                <th>
-                  Pending
-                </th>
-
-                <th>
-                  PCS
-                </th>
-
-                <th>
-                  Amount
-                </th>
-
+                <th>Personnel</th>
+                <th>Assigned</th>
+                <th>Completed</th>
+                <th>Ongoing</th>
+                <th>Pending</th>
+                <th>PCS</th>
+                <th>Amount</th>
               </tr>
 
             </thead>
 
-            <tbody
-              id="personnelTable"
-            >
-            </tbody>
+            <tbody id="personnelTable"></tbody>
 
           </table>
 
@@ -1057,7 +965,6 @@
           Requests
         </h2>
 
-
         <div class="search-box">
 
           <input
@@ -1068,7 +975,6 @@
 
         </div>
 
-
         <div class="table-wrapper">
 
           <table>
@@ -1076,55 +982,20 @@
             <thead>
 
               <tr>
-
-                <th>
-                  Request No.
-                </th>
-
-                <th>
-                  Personnel
-                </th>
-
-                <th>
-                  Category
-                </th>
-
-                <th>
-                  Service / Item
-                </th>
-
-                <th>
-                  Serial Number
-                </th>
-
-                <th>
-                  PCS
-                </th>
-
-                <th>
-                  Amount
-                </th>
-
-                <th>
-                  Due
-                </th>
-
-                <th>
-                  Status
-                </th>
-
-                <th>
-                  Action
-                </th>
-
+                <th>Request No.</th>
+                <th>Personnel</th>
+                <th>Category</th>
+                <th>Service / Item</th>
+                <th>Serial Number</th>
+                <th>PCS</th>
+                <th>Amount</th>
+                <th>Due</th>
+                <th>Status</th>
               </tr>
 
             </thead>
 
-            <tbody
-              id="requestsTable"
-            >
-            </tbody>
+            <tbody id="requestsTable"></tbody>
 
           </table>
 
@@ -1158,7 +1029,6 @@
 
         </div>
 
-
         <button
           class="primary admin-only"
           onclick="openAddRequest()"
@@ -1178,63 +1048,22 @@
             <thead>
 
               <tr>
-
-                <th>
-                  Request No.
-                </th>
-
-                <th>
-                  Personnel
-                </th>
-
-                <th>
-                  Category
-                </th>
-
-                <th>
-                  Service / Item
-                </th>
-
-                <th>
-                  Serial Number
-                </th>
-
-                <th>
-                  Request Date
-                </th>
-
-                <th>
-                  PCS
-                </th>
-
-                <th>
-                  Amount
-                </th>
-
-                <th>
-                  Due
-                </th>
-
-                <th>
-                  Status
-                </th>
-
-                <th>
-                  Date Completed
-                </th>
-
-                <th>
-                  Action
-                </th>
-
+                <th>Request No.</th>
+                <th>Personnel</th>
+                <th>Category</th>
+                <th>Service / Item</th>
+                <th>Serial Number</th>
+                <th>Request Date</th>
+                <th>PCS</th>
+                <th>Amount</th>
+                <th>Due</th>
+                <th>Status</th>
+                <th>Date Completed</th>
               </tr>
 
             </thead>
 
-            <tbody
-              id="allRequestsTable"
-            >
-            </tbody>
+            <tbody id="allRequestsTable"></tbody>
 
           </table>
 
@@ -1284,51 +1113,19 @@
             <thead>
 
               <tr>
-
-                <th>
-                  Request No.
-                </th>
-
-                <th>
-                  Personnel
-                </th>
-
-                <th>
-                  Category
-                </th>
-
-                <th>
-                  Service / Item
-                </th>
-
-                <th>
-                  PCS
-                </th>
-
-                <th>
-                  Amount
-                </th>
-
-                <th>
-                  Due
-                </th>
-
-                <th>
-                  Status
-                </th>
-
-                <th>
-                  Action
-                </th>
-
+                <th>Request No.</th>
+                <th>Personnel</th>
+                <th>Category</th>
+                <th>Service / Item</th>
+                <th>PCS</th>
+                <th>Amount</th>
+                <th>Due</th>
+                <th>Status</th>
               </tr>
 
             </thead>
 
-            <tbody
-              id="detailRequestsTable"
-            >
-            </tbody>
+            <tbody id="detailRequestsTable"></tbody>
 
           </table>
 
@@ -1372,8 +1169,7 @@
       <div
         id="formMessage"
         class="message"
-      >
-      </div>
+      ></div>
 
 
       <form id="requestForm">
@@ -1403,11 +1199,9 @@
             id="assignedPersonnel"
             required
           >
-
             <option value="">
               Select personnel
             </option>
-
           </select>
 
         </div>
@@ -1424,11 +1218,9 @@
             required
             onchange="populateServiceItems()"
           >
-
             <option value="">
               Select category
             </option>
-
           </select>
 
         </div>
@@ -1445,11 +1237,9 @@
             required
             onchange="updateAmount()"
           >
-
             <option value="">
               Select service/item
             </option>
-
           </select>
 
         </div>
@@ -1568,6 +1358,10 @@
 
             <option value="Cancelled">
               Cancelled
+            </option>
+
+            <option value="Replaced">
+              Replaced
             </option>
 
           </select>
@@ -1772,13 +1566,18 @@
       let data = {};
 
       try {
-        data = text
-          ? JSON.parse(text)
-          : {};
+
+        data =
+          text
+            ? JSON.parse(text)
+            : {};
+
       }
 
       catch {
+
         data = {};
+
       }
 
 
@@ -1840,9 +1639,7 @@
         );
 
 
-      if (
-        !profiles.length
-      ) {
+      if (!profiles.length) {
 
         throw new Error(
           "Your account does not have an RML Monitoring profile."
@@ -1918,7 +1715,6 @@
         }
 
       }
-
 
       else {
 
@@ -2054,6 +1850,7 @@
       categories = [];
 
       serviceItems = [];
+
 
       localStorage.removeItem(
         "rml_session"
@@ -2231,6 +2028,7 @@
             loginError.textContent =
               error.message ||
               "Unable to log in.";
+
 
             loginError.classList.add(
               "show"
@@ -2598,7 +2396,9 @@
             String(r.category_id) !==
               String(category)
           ) {
+
             return false;
+
           }
 
 
@@ -2609,7 +2409,9 @@
             ) !==
               String(person)
           ) {
+
             return false;
+
           }
 
 
@@ -2617,7 +2419,9 @@
             status &&
             r.status !== status
           ) {
+
             return false;
+
           }
 
 
@@ -2631,7 +2435,9 @@
               month
             )
           ) {
+
             return false;
+
           }
 
 
@@ -2668,7 +2474,9 @@
                 search
               )
             ) {
+
               return false;
+
             }
 
           }
@@ -2935,22 +2743,14 @@
 
 
     /* =========================================================
-       ACTION BUTTONS
+       CHECK IF CURRENT USER OWNS REQUEST
     ========================================================= */
 
-    function getActionButtons(
+    function isAssignedToCurrentUser(
       request
     ) {
 
-      const buttons = [];
-
-
-      const isAdmin =
-        currentProfile?.role ===
-        "admin";
-
-
-      const isAssignedPersonnel =
+      return (
         currentProfile?.role ===
           "viewer" &&
         currentProfile?.personnel_id &&
@@ -2959,60 +2759,250 @@
         ) ===
           String(
             request.assigned_personnel_id
+          )
+      );
+
+    }
+
+
+    /* =========================================================
+       STATUS DISPLAY
+    ========================================================= */
+
+    function renderStatus(
+      request
+    ) {
+
+      const status =
+        request.status ||
+        "Pending";
+
+
+      /*
+        Only the assigned personnel can
+        change their own Pending/Ongoing
+        request to Completed.
+
+        Admin manages status through Edit.
+      */
+
+      if (
+        isAssignedToCurrentUser(request) &&
+        ["Pending", "Ongoing"].includes(status)
+      ) {
+
+        return `
+          <select
+            class="status-select"
+            onchange="handleAnalystStatusChange(${request.id}, this.value)"
+          >
+
+            <option
+              value="Pending"
+              ${status === "Pending" ? "selected" : ""}
+            >
+              Pending
+            </option>
+
+            <option
+              value="Ongoing"
+              ${status === "Ongoing" ? "selected" : ""}
+            >
+              Ongoing
+            </option>
+
+            <option
+              value="Completed"
+            >
+              Completed
+            </option>
+
+          </select>
+        `;
+
+      }
+
+
+      return statusBadge(status);
+
+    }
+
+
+    /* =========================================================
+       ANALYST STATUS CHANGE
+    ========================================================= */
+
+    async function handleAnalystStatusChange(
+      requestId,
+      newStatus
+    ) {
+
+      const request =
+        requests.find(
+          r =>
+            String(r.id) ===
+            String(requestId)
+        );
+
+
+      if (!request) {
+
+        alert(
+          "Request could not be found."
+        );
+
+        loadDashboard();
+
+        return;
+
+      }
+
+
+      if (
+        !isAssignedToCurrentUser(
+          request
+        )
+      ) {
+
+        alert(
+          "You can only update requests assigned to you."
+        );
+
+        loadDashboard();
+
+        return;
+
+      }
+
+
+      /*
+        At this time, the analyst's
+        meaningful completion action is
+        selecting Completed.
+
+        Pending/Ongoing remain controlled
+        by the current record/admin.
+      */
+
+      if (
+        newStatus ===
+        "Completed"
+      ) {
+
+        const confirmed =
+          confirm(
+            `Mark ${request.request_no || "this request"} as Completed?`
           );
 
 
-      /*
-        Admin:
-        Full Edit
-      */
+        if (!confirmed) {
 
-      if (isAdmin) {
+          loadDashboard();
 
-        buttons.push(`
-          <button
-            class="edit-btn"
-            onclick="editRequest(${request.id})"
-          >
-            Edit
-          </button>
-        `);
+          return;
+
+        }
+
+
+        try {
+
+          await supabaseRpc(
+            "mark_request_completed",
+            {
+              request_id:
+                requestId
+            }
+          );
+
+
+          await reloadRequests();
+
+
+          if (
+            !document
+              .getElementById(
+                "requestsPage"
+              )
+              .classList.contains(
+                "hidden"
+              )
+          ) {
+
+            renderRequests(
+              requests,
+              "allRequestsTable"
+            );
+
+          }
+
+
+          if (
+            currentPersonnelId &&
+            !document
+              .getElementById(
+                "personnelDetailPage"
+              )
+              .classList.contains(
+                "hidden"
+              )
+          ) {
+
+            const personRequests =
+              requests.filter(
+                r =>
+                  String(
+                    r.assigned_personnel_id
+                  ) ===
+                  String(
+                    currentPersonnelId
+                  )
+              );
+
+
+            renderRequests(
+              personRequests,
+              "detailRequestsTable"
+            );
+
+          }
+
+
+          alert(
+            "Request marked as completed."
+          );
+
+        }
+
+
+        catch (error) {
+
+          console.error(
+            error
+          );
+
+
+          alert(
+            "Unable to mark the request as completed.\n\n" +
+            error.message
+          );
+
+
+          loadDashboard();
+
+        }
+
+
+        return;
 
       }
 
 
       /*
-        Personnel Viewer:
-        Completion only
+        If the analyst selects the
+        existing status, simply refresh.
       */
 
-      else if (
-        isAssignedPersonnel &&
-        request.status !==
-          "Completed"
-      ) {
-
-        buttons.push(`
-          <button
-            class="complete-btn"
-            onclick="completeRequest(${request.id})"
-          >
-            Complete
-          </button>
-        `);
-
-      }
-
-
-      /*
-        No action for:
-        - Office viewers
-        - Other personnel
-        - Already completed requests
-      */
-
-
-      return buttons.join(" ");
+      loadDashboard();
 
     }
 
@@ -3043,11 +3033,27 @@
 
       if (!data.length) {
 
-        const colspan =
+        let colspan = 9;
+
+
+        if (
           elementId ===
           "allRequestsTable"
-            ? 12
-            : 10;
+        ) {
+
+          colspan = 11;
+
+        }
+
+
+        else if (
+          elementId ===
+          "detailRequestsTable"
+        ) {
+
+          colspan = 8;
+
+        }
 
 
         tbody.innerHTML = `
@@ -3093,12 +3099,6 @@
           const status =
             r.status ||
             "Pending";
-
-
-          const actions =
-            getActionButtons(
-              r
-            );
 
 
           /*
@@ -3163,13 +3163,7 @@
               </td>
 
               <td>
-                ${statusBadge(
-                  status
-                )}
-              </td>
-
-              <td>
-                ${actions || "—"}
+                ${renderStatus(r)}
               </td>
 
             `;
@@ -3245,19 +3239,13 @@
               </td>
 
               <td>
-                ${statusBadge(
-                  status
-                )}
+                ${renderStatus(r)}
               </td>
 
               <td>
                 ${formatDate(
                   r.date_completed
                 )}
-              </td>
-
-              <td>
-                ${actions || "—"}
               </td>
 
             `;
@@ -3320,13 +3308,7 @@
               </td>
 
               <td>
-                ${statusBadge(
-                  status
-                )}
-              </td>
-
-              <td>
-                ${actions || "—"}
+                ${renderStatus(r)}
               </td>
 
             `;
@@ -3345,174 +3327,6 @@
 
 
     /* =========================================================
-       MARK REQUEST COMPLETED
-    ========================================================= */
-
-    async function completeRequest(
-      requestId
-    ) {
-
-      const request =
-        requests.find(
-          r =>
-            String(r.id) ===
-            String(requestId)
-        );
-
-
-      if (!request) {
-
-        alert(
-          "Request could not be found."
-        );
-
-        return;
-
-      }
-
-
-      if (
-        currentProfile?.role !==
-        "viewer"
-      ) {
-
-        alert(
-          "You are not authorized to complete this request."
-        );
-
-        return;
-
-      }
-
-
-      if (
-        !currentProfile?.personnel_id ||
-        String(
-          currentProfile.personnel_id
-        ) !==
-          String(
-            request.assigned_personnel_id
-          )
-      ) {
-
-        alert(
-          "You can only complete requests assigned to you."
-        );
-
-        return;
-
-      }
-
-
-      if (
-        request.status ===
-        "Completed"
-      ) {
-
-        return;
-
-      }
-
-
-      const confirmed =
-        confirm(
-          `Mark ${request.request_no || "this request"} as Completed?`
-        );
-
-
-      if (!confirmed) {
-        return;
-      }
-
-
-      try {
-
-        await supabaseRpc(
-          "mark_request_completed",
-          {
-            request_id:
-              requestId
-          }
-        );
-
-
-        await reloadRequests();
-
-
-        if (
-          !document
-            .getElementById(
-              "requestsPage"
-            )
-            .classList.contains(
-              "hidden"
-            )
-        ) {
-
-          renderRequests(
-            requests,
-            "allRequestsTable"
-          );
-
-        }
-
-
-        if (
-          currentPersonnelId &&
-          !document
-            .getElementById(
-              "personnelDetailPage"
-            )
-            .classList.contains(
-              "hidden"
-            )
-        ) {
-
-          const personRequests =
-            requests.filter(
-              r =>
-                String(
-                  r.assigned_personnel_id
-                ) ===
-                String(
-                  currentPersonnelId
-                )
-            );
-
-
-          renderRequests(
-            personRequests,
-            "detailRequestsTable"
-          );
-
-        }
-
-
-        alert(
-          "Request marked as completed."
-        );
-
-      }
-
-
-      catch (error) {
-
-        console.error(
-          error
-        );
-
-
-        alert(
-          "Unable to mark the request as completed.\n\n" +
-          error.message
-        );
-
-      }
-
-    }
-
-
-    /* =========================================================
        SUPABASE RPC
     ========================================================= */
 
@@ -3521,7 +3335,9 @@
       body
     ) {
 
-      if (!currentSession?.access_token) {
+      if (
+        !currentSession?.access_token
+      ) {
 
         throw new Error(
           "You are not logged in."
@@ -4150,22 +3966,14 @@
                 dateCompleted =
                   existingRequest
                     ?.date_completed ||
-                  new Date()
-                    .toISOString()
-                    .split(
-                      "T"
-                    )[0];
+                  getTodayLocalDate();
 
               }
 
               else {
 
                 dateCompleted =
-                  new Date()
-                    .toISOString()
-                    .split(
-                      "T"
-                    )[0];
+                  getTodayLocalDate();
 
               }
 
@@ -4558,6 +4366,43 @@
 
       box.className =
         "message";
+
+    }
+
+
+    /* =========================================================
+       DATE HELPER
+    ========================================================= */
+
+    function getTodayLocalDate() {
+
+      const now =
+        new Date();
+
+
+      const year =
+        now.getFullYear();
+
+
+      const month =
+        String(
+          now.getMonth() + 1
+        ).padStart(
+          2,
+          "0"
+        );
+
+
+      const day =
+        String(
+          now.getDate()
+        ).padStart(
+          2,
+          "0"
+        );
+
+
+      return `${year}-${month}-${day}`;
 
     }
 
