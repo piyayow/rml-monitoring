@@ -2663,7 +2663,7 @@ serviceItems =
     async function reloadRequests() {
 
       let endpoint =
-        "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name),service_item:service_item_id(id,name)&order=request_date.desc";
+        "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name),service_item:service_item_id(id,item_name)&order=request_date.desc";
 
 
       requests =
