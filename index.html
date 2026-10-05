@@ -262,37 +262,22 @@ body {
       flex-direction: column;
     }
 
-.sidebar-brand {
+.sidebar-title {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
-  margin-bottom: 25px;
+  margin: 0 0 5px;
+  font-size: 20px;
 }
 
 .dost-logo {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
   flex-shrink: 0;
 }
 
-.sidebar-brand-text {
-  flex: 1;
-}
 
-.sidebar-brand-text h2 {
-  margin: 0 0 5px 0;
-  font-size: 20px;
-  line-height: 1.2;
-}
-
-.sidebar-brand-text small {
-  color: #9ca3af;
-  display: block;
-  margin: 0;
-  font-size: 11px;
-  line-height: 1.4;
-}
 
     .nav-btn {
       width: 100%;
@@ -1145,24 +1130,28 @@ body {
     class="dost-logo"
   >
 
-  <div class="sidebar-brand-text">
+  <aside class="sidebar">
 
-    <h2>
-      RML Monitoring
-    </h2>
+  <h2 class="sidebar-title">
+    <img
+      src="dost-logo.png"
+      alt="DOST Logo"
+      class="dost-logo"
+    >
+    <span>RML Monitoring</span>
+  </h2>
 
-    <small>
-      DOST Davao Regional Metrology Laboratory
-    </small>
+  <small>
+    DOST Davao Regional Metrology Laboratory
+  </small>
 
-  </div>
-
-</div>
-  </div>
-
-</div>
-
-    <button
+  <button
+    class="nav-btn active"
+    id="dashboardNav"
+    onclick="showPage('dashboard')"
+  >
+    Dashboard
+  </button>
       class="nav-btn active"
       id="dashboardNav"
       onclick="showPage('dashboard')"
