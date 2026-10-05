@@ -2508,119 +2508,54 @@ async function signInWithGoogle() {
     ========================================================= */
 
    async function checkSession() {
-
-  // Check Google / Supabase session first
   try {
-
     const {
-      data: {
-        session
-      }
-    } =
-      await supabaseClient.auth.getSession();
+      data: { session },
+      error
+    } = await supabaseClient.auth.getSession();
 
-    if (session) {
-
-      currentSession = session;
-
-      localStorage.setItem(
-        "rml_session",
-        JSON.stringify(
-          currentSession
-        )
-      );
-
-      await loadCurrentProfile();
-
-      await loadInitialData();
-
-      showApp();
-
-      showPage(
-        "dashboard"
-      );
-
+    if (error) {
+      console.error("Auth session error:", error);
+      showLogin();
       return;
     }
 
-  } catch (error) {
-
-    console.error(
-      "Supabase session check error:",
-      error
-    );
-
-  }
-
-
-  // Check existing email/password session
-  const savedSession =
-    localStorage.getItem(
-      "rml_session"
-    );
-
-
-  if (!savedSession) {
-
-    showLogin();
-
-    return;
-
-  }
-
-
-  try {
-
-    currentSession =
-      JSON.parse(
-        savedSession
-      );
-
-
-    if (
-      !currentSession?.access_token
-    ) {
-
-      throw new Error(
-        "Invalid session."
-      );
-
+    if (!session) {
+      currentSession = null;
+      currentProfile = null;
+      localStorage.removeItem("rml_session");
+      showLogin();
+      return;
     }
 
+    currentSession = session;
+
+    localStorage.setItem(
+      "rml_session",
+      JSON.stringify(currentSession)
+    );
 
     await loadCurrentProfile();
-
     await loadInitialData();
 
     showApp();
+    showPage("dashboard");
 
-    showPage(
-      "dashboard"
-    );
-
-  }
-
-  catch (error) {
-
-    console.error(
-      "Session check error:",
-      error
-    );
-
-
-    localStorage.removeItem(
-      "rml_session"
-    );
+  } catch (error) {
+    console.error("Session initialization error:", error);
 
     currentSession = null;
-
     currentProfile = null;
+    localStorage.removeItem("rml_session");
 
+    try {
+      await supabaseClient.auth.signOut();
+    } catch (signOutError) {
+      console.error("Sign-out cleanup error:", signOutError);
+    }
 
     showLogin();
-
   }
-
 }
     /* =========================================================
        LOAD INITIAL DATA
