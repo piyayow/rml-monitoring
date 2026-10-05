@@ -262,16 +262,37 @@ body {
       flex-direction: column;
     }
 
-    .sidebar h2 {
-      margin: 0 0 5px;
-      font-size: 20px;
-    }
+  .sidebar-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 25px;
+}
 
-    .sidebar small {
-      color: #9ca3af;
-      display: block;
-      margin-bottom: 30px;
-    }
+.dost-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.sidebar-brand-text {
+  flex: 1;
+}
+
+.sidebar-brand-text h2 {
+  margin: 0 0 5px 0;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.sidebar-brand-text small {
+  color: #9ca3af;
+  display: block;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+}
 
     .nav-btn {
       width: 100%;
