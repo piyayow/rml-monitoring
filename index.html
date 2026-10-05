@@ -262,16 +262,37 @@ body {
       flex-direction: column;
     }
 
-    .sidebar h2 {
-      margin: 0 0 5px;
-      font-size: 20px;
-    }
+  .sidebar-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 25px;
+}
 
-    .sidebar small {
-      color: #9ca3af;
-      display: block;
-      margin-bottom: 30px;
-    }
+.dost-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.sidebar-brand-text {
+  flex: 1;
+}
+
+.sidebar-brand-text h2 {
+  margin: 0 0 5px 0;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.sidebar-brand-text small {
+  color: #9ca3af;
+  display: block;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+}
 
     .nav-btn {
       width: 100%;
@@ -1054,13 +1075,68 @@ body {
 
   </div>
 
+<!-- RESET PASSWORD MODAL -->
+<div
+  id="resetPasswordModal"
+  class="forgot-password-modal"
+  style="display: none;"
+>
+  <div class="forgot-password-card">
 
+    <h2>Reset Password</h2>
+
+    <p>Enter your new password below.</p>
+
+    <div
+      id="resetPasswordMessage"
+      class="forgot-password-message"
+    ></div>
+
+    <div class="login-group">
+      <label for="newPassword">New Password</label>
+
+      <input
+        type="password"
+        id="newPassword"
+        placeholder="Enter new password"
+        autocomplete="new-password"
+      >
+    </div>
+
+    <div class="login-group">
+      <label for="confirmPassword">Confirm Password</label>
+
+      <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm new password"
+        autocomplete="new-password"
+      >
+    </div>
+
+    <button
+      type="button"
+      class="login-button"
+      id="updatePasswordButton"
+    >
+      Update Password
+    </button>
+
+  </div>
+</div>
   <!-- =========================
        SIDEBAR
   ========================= -->
 
-  <aside class="sidebar">
+ <div class="sidebar-brand">
 
+  <img
+    src="dost-logo.png"
+    alt="DOST Logo"
+    class="dost-logo"
+  >
+
+  <div class="sidebar-brand-text">
     <h2>
       RML Monitoring
     </h2>
@@ -1068,6 +1144,9 @@ body {
     <small>
       DOST Davao Regional Metrology Laboratory
     </small>
+  </div>
+
+</div>
 
     <button
       class="nav-btn active"
@@ -2046,21 +2125,25 @@ const supabaseClient =
       }
 
 
-      if (!response.ok) {
+    if (!response.ok) {
 
-        throw new Error(
-          data?.message ||
-          data?.hint ||
-          data?.details ||
-          "Supabase request failed."
-        );
+  console.error("SUPABASE FETCH ERROR", {
+    endpoint: endpoint,
+    status: response.status,
+    data: data
+  });
 
-      }
+  throw new Error(
+    `[${response.status}] ` +
+    (
+      data?.message ||
+      data?.hint ||
+      data?.details ||
+      "Supabase request failed."
+    )
+  );
 
-
-      return data;
-
-    }
+}
 
 
     /* =========================================================
@@ -2519,8 +2602,7 @@ async function signInWithGoogle() {
     /* =========================================================
        CHECK EXISTING SESSION
     ========================================================= */
-
-  async function checkSession() {
+async function checkSession() {
   try {
     const {
       data: { session },
@@ -2529,20 +2611,12 @@ async function signInWithGoogle() {
 
     if (error) {
       console.error("Auth session error:", error);
-
-      currentSession = null;
-      currentProfile = null;
-
       showLogin();
       return;
     }
 
     if (!session) {
-      currentSession = null;
-      currentProfile = null;
-
       localStorage.removeItem("rml_session");
-
       showLogin();
       return;
     }
@@ -2554,31 +2628,36 @@ async function signInWithGoogle() {
       JSON.stringify(currentSession)
     );
 
+    console.log("STEP 1: Session found");
+
     await loadCurrentProfile();
+
+    console.log("STEP 2: Profile loaded");
+
     await loadInitialData();
 
+    console.log("STEP 3: Initial data loaded");
+
     showApp();
+
+    console.log("STEP 4: App shown");
+
     showPage("dashboard");
 
+    console.log("STEP 5: Dashboard shown");
+
   } catch (error) {
-    console.error(
-      "Session initialization error:",
-      error
+    console.error("CHECK SESSION CRASH:", error);
+
+    alert(
+      "Session error:\n\n" +
+      (error.message || error)
     );
 
     currentSession = null;
     currentProfile = null;
 
     localStorage.removeItem("rml_session");
-
-    try {
-      await supabaseClient.auth.signOut();
-    } catch (signOutError) {
-      console.error(
-        "Sign-out cleanup error:",
-        signOutError
-      );
-    }
 
     showLogin();
   }
@@ -5607,95 +5686,37 @@ serviceItems =
       message.textContent =
         "";
 
+try {
 
-      try {
-
-        const response =
-          await fetch(
-            `${SUPABASE_URL}/auth/v1/recover`,
-            {
-
-              method: "POST",
-
-              headers: {
-
-                "apikey":
-                  SUPABASE_KEY,
-
-                "Content-Type":
-                  "application/json"
-
-              },
-
-              body:
-                JSON.stringify({
-
-                  email:
-                    email,
-
-                  redirect_to:
-                    "https://rmldavao.github.io/rml-monitoring/"
-
-                })
-
-            }
-          );
-
-
-        const text =
-          await response.text();
-
-
-        let data = {};
-
-
-        try {
-
-          data =
-            text
-              ? JSON.parse(text)
-              : {};
-
-        }
-
-        catch {
-
-          data = {};
-
-        }
-
-
-        if (!response.ok) {
-
-          throw new Error(
-
-            data.msg ||
-
-            data.message ||
-
-            data.error_description ||
-
-            "Unable to send the password reset email."
-
-          );
-
-        }
-
-
-        message.className =
-          "forgot-password-message success";
-
-
-        message.textContent =
-          "If an account exists for this email, " +
-          "a password reset link has been sent. " +
-          "Please check your inbox.";
-
-
-        emailInput.value =
-          "";
-
+  const { error } =
+    await supabaseClient.auth.resetPasswordForEmail(
+      email,
+      {
+        redirectTo:
+          "https://rmldavao.github.io/rml-monitoring/"
       }
+    );
+
+
+  if (error) {
+    throw error;
+  }
+
+
+  message.className =
+    "forgot-password-message success";
+
+
+  message.textContent =
+    "If an account exists for this email, " +
+    "a password reset link has been sent. " +
+    "Please check your inbox.";
+
+
+  emailInput.value =
+    "";
+
+}
 
 
       catch (error) {
@@ -6137,6 +6158,134 @@ serviceItems =
     }
 
     checkSession();
+  }
+);
+    async function updateUserPassword() {
+
+  const newPassword =
+    document.getElementById("newPassword").value;
+
+  const confirmPassword =
+    document.getElementById("confirmPassword").value;
+
+  const message =
+    document.getElementById("resetPasswordMessage");
+
+  const button =
+    document.getElementById("updatePasswordButton");
+
+
+  if (!newPassword || !confirmPassword) {
+    message.className =
+      "forgot-password-message error";
+
+    message.textContent =
+      "Please enter and confirm your new password.";
+
+    return;
+  }
+
+
+  if (newPassword.length < 6) {
+    message.className =
+      "forgot-password-message error";
+
+    message.textContent =
+      "Password must be at least 6 characters.";
+
+    return;
+  }
+
+
+  if (newPassword !== confirmPassword) {
+    message.className =
+      "forgot-password-message error";
+
+    message.textContent =
+      "Passwords do not match.";
+
+    return;
+  }
+
+
+  button.disabled = true;
+  button.textContent = "Updating...";
+
+
+  try {
+
+    const { error } =
+      await supabaseClient.auth.updateUser({
+        password: newPassword
+      });
+
+
+    if (error) {
+      throw error;
+    }
+
+
+    message.className =
+      "forgot-password-message success";
+
+    message.textContent =
+      "Password updated successfully.";
+
+
+    setTimeout(() => {
+
+      document.getElementById(
+        "resetPasswordModal"
+      ).style.display = "none";
+
+      document.getElementById(
+        "loginPage"
+      ).style.display = "flex";
+
+    }, 1500);
+
+
+  } catch (error) {
+
+    message.className =
+      "forgot-password-message error";
+
+    message.textContent =
+      error.message ||
+      "Unable to update your password.";
+
+  }
+
+
+  button.disabled = false;
+  button.textContent = "Update Password";
+
+}
+
+
+document
+  .getElementById("updatePasswordButton")
+  .addEventListener(
+    "click",
+    updateUserPassword
+  );
+
+
+supabaseClient.auth.onAuthStateChange(
+  (event, session) => {
+
+    if (event === "PASSWORD_RECOVERY") {
+
+      document.getElementById(
+        "forgotPasswordModal"
+      ).style.display = "none";
+
+      document.getElementById(
+        "resetPasswordModal"
+      ).style.display = "flex";
+
+    }
+
   }
 );
   </script>
