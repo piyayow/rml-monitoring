@@ -5655,95 +5655,37 @@ serviceItems =
       message.textContent =
         "";
 
+try {
 
-      try {
-
-        const response =
-          await fetch(
-            `${SUPABASE_URL}/auth/v1/recover`,
-            {
-
-              method: "POST",
-
-              headers: {
-
-                "apikey":
-                  SUPABASE_KEY,
-
-                "Content-Type":
-                  "application/json"
-
-              },
-
-              body:
-                JSON.stringify({
-
-                  email:
-                    email,
-
-                  redirect_to:
-                    "https://rmldavao.github.io/rml-monitoring/"
-
-                })
-
-            }
-          );
-
-
-        const text =
-          await response.text();
-
-
-        let data = {};
-
-
-        try {
-
-          data =
-            text
-              ? JSON.parse(text)
-              : {};
-
-        }
-
-        catch {
-
-          data = {};
-
-        }
-
-
-        if (!response.ok) {
-
-          throw new Error(
-
-            data.msg ||
-
-            data.message ||
-
-            data.error_description ||
-
-            "Unable to send the password reset email."
-
-          );
-
-        }
-
-
-        message.className =
-          "forgot-password-message success";
-
-
-        message.textContent =
-          "If an account exists for this email, " +
-          "a password reset link has been sent. " +
-          "Please check your inbox.";
-
-
-        emailInput.value =
-          "";
-
+  const { error } =
+    await supabaseClient.auth.resetPasswordForEmail(
+      email,
+      {
+        redirectTo:
+          "https://rmldavao.github.io/rml-monitoring/"
       }
+    );
+
+
+  if (error) {
+    throw error;
+  }
+
+
+  message.className =
+    "forgot-password-message success";
+
+
+  message.textContent =
+    "If an account exists for this email, " +
+    "a password reset link has been sent. " +
+    "Please check your inbox.";
+
+
+  emailInput.value =
+    "";
+
+}
 
 
       catch (error) {
