@@ -20,99 +20,128 @@
     }
 
     /* =========================
-       LOGIN
-    ========================= */
+   LOGIN
+========================= */
 
-    .login-page {
-      position: fixed;
-      inset: 0;
-      background: #f5f7fb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 5000;
-      padding: 20px;
-    }
+.login-page {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(
+      rgba(15, 23, 42, 0.78),
+      rgba(15, 23, 42, 0.88)
+    ),
+    url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2000&q=80")
+    center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+  padding: 20px;
+}
 
-    .login-card {
-      width: 100%;
-      max-width: 400px;
-      background: white;
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.10);
-      border: 1px solid #e5e7eb;
-    }
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
 
-    .login-card h1 {
-      margin: 0 0 5px;
-      font-size: 25px;
-      color: #111827;
-    }
+.login-card h1 {
+  margin: 0 0 5px;
+  font-size: 27px;
+  color: #111827;
+}
 
-    .login-card > small {
-      display: block;
-      color: #6b7280;
-      margin-bottom: 25px;
-      line-height: 1.5;
-    }
+.login-card > small {
+  display: block;
+  color: #6b7280;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
 
-    .login-group {
-      margin-bottom: 15px;
-    }
+.login-group {
+  margin-bottom: 15px;
+}
 
-    .login-group label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: #374151;
-    }
+.login-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #374151;
+}
 
-    .login-group input {
-      width: 100%;
-      padding: 11px 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 7px;
-      font-size: 14px;
-      font-family: inherit;
-    }
+.login-group input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
 
-    .login-button {
-      width: 100%;
-      background: #2563eb;
-      color: white;
-      border: none;
-      border-radius: 7px;
-      padding: 11px 16px;
-      cursor: pointer;
-      font-size: 14px;
-      margin-top: 5px;
-    }
+.login-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
 
-    .login-button:hover {
-      background: #1d4ed8;
-    }
+.login-button {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 5px;
+}
 
-    .login-button:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
+.login-button:hover {
+  background: #1d4ed8;
+}
 
-    .login-error {
-      display: none;
-      padding: 10px 12px;
-      border-radius: 7px;
-      margin-bottom: 15px;
-      font-size: 13px;
-      background: #fee2e2;
-      color: #991b1b;
-    }
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 
-    .login-error.show {
-      display: block;
-    }
+.login-error {
+  display: none;
+  padding: 10px 12px;
+  border-radius: 7px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  background: #fee2e2;
+  color: #991b1b;
+}
 
+.login-error.show {
+  display: block;
+}
+.forgot-password {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.forgot-password button {
+  border: none;
+  background: none;
+  color: #2563eb;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.forgot-password button:hover {
+  text-decoration: underline;
+}
     /* =========================
        SIDEBAR
     ========================= */
@@ -672,12 +701,12 @@
 
     <div class="login-card">
 
-      <h1>RML Monitoring</h1>
+     <h1>RML Monitoring</h1>
 
-      <small>
-        DOST XI Regional Metrology Laboratory
-      </small>
-
+<small>
+  <strong>DOST Davao Regional Metrology Laboratory</strong><br>
+  Calibration Request and Monitoring System
+</small>
       <div id="loginError" class="login-error"></div>
 
       <form id="loginForm">
@@ -702,19 +731,88 @@
           >
         </div>
 
-        <button
-          type="submit"
-          class="login-button"
-          id="loginButton"
-        >
-          Login
-        </button>
+      <button
+  type="submit"
+  class="login-button"
+  id="loginButton"
+>
+  Login
+</button>
 
-      </form>
+</form>
+<div class="forgot-password">
+  <button
+    type="button"
+    onclick="showForgotPassword()"
+  >
+    Forgot Password?
+  </button>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     FORGOT PASSWORD MODAL
+========================= -->
+
+<div
+  id="forgotPasswordModal"
+  class="forgot-password-modal"
+  style="display: none;"
+>
+
+  <div class="forgot-password-card">
+
+    <h2>Forgot Password?</h2>
+
+    <p>
+      Enter your registered email address and
+      we'll send you a password reset link.
+    </p>
+
+    <div
+      id="forgotPasswordMessage"
+      class="forgot-password-message"
+    ></div>
+
+    <div class="login-group">
+
+      <label for="resetEmail">
+        Email Address
+      </label>
+
+      <input
+        type="email"
+        id="resetEmail"
+        placeholder="Enter your email"
+        autocomplete="email"
+      >
 
     </div>
 
+    <button
+      type="button"
+      class="login-button"
+      id="resetPasswordButton"
+      onclick="sendPasswordReset()"
+    >
+      Send Reset Link
+    </button>
+
+    <button
+      type="button"
+      class="back-login-button"
+      onclick="hideForgotPassword()"
+    >
+      ← Back to Login
+    </button>
+
   </div>
+
+</div>
 
 
   <!-- SIDEBAR -->
