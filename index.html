@@ -833,9 +833,13 @@ body {
 
 /* Google Login Button */
 .google-login-button {
-  position: relative;
   width: 100%;
   height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 
   background: #ffffff;
   color: #374151;
@@ -849,10 +853,6 @@ body {
   font-size: 14px;
   font-weight: 600;
   font-family: "Inter", Arial, Helvetica, sans-serif;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .google-login-button:hover {
@@ -865,18 +865,11 @@ body {
   cursor: not-allowed;
 }
 
-.google-login-button span {
-  display: block;
-  text-align: center;
-}
-
 .google-icon {
-  position: absolute;
   width: 18px;
   height: 18px;
-  left: calc(50% - 105px);
-  top: 50%;
-  transform: translateY(-50%);
+  display: block;
+  flex: 0 0 18px;
 }
 .login-divider {
   display: flex;
