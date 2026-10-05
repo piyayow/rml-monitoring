@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>RML Monitoring</title>
 
@@ -299,18 +296,13 @@
       background: white;
     }
 
-    .status-select:disabled {
-      cursor: default;
-      opacity: 1;
-    }
-
     /* =========================
        CARDS
     ========================= */
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 15px;
       margin-bottom: 25px;
     }
@@ -360,12 +352,7 @@
 
     .filters {
       display: grid;
-      grid-template-columns:
-        1.2fr
-        1.2fr
-        1fr
-        1fr
-        auto;
+      grid-template-columns: 1.2fr 1.2fr 1fr 1fr auto;
       gap: 10px;
       margin-bottom: 25px;
     }
@@ -452,11 +439,6 @@
     .status-Pending {
       background: #fef3c7;
       color: #92400e;
-    }
-
-    .status-Ongoing {
-      background: #dbeafe;
-      color: #1e40af;
     }
 
     .status-Completed {
@@ -665,9 +647,7 @@
 
 <body>
 
-  <!-- =========================
-       LOGIN PAGE
-  ========================= -->
+  <!-- LOGIN -->
 
   <div id="loginPage" class="login-page">
 
@@ -679,41 +659,28 @@
         DOST XI Regional Metrology Laboratory
       </small>
 
-      <div
-        id="loginError"
-        class="login-error"
-      ></div>
+      <div id="loginError" class="login-error"></div>
 
       <form id="loginForm">
 
         <div class="login-group">
-
-          <label>
-            Email
-          </label>
-
+          <label>Email</label>
           <input
             type="email"
             id="loginEmail"
             autocomplete="username"
             required
           >
-
         </div>
 
         <div class="login-group">
-
-          <label>
-            Password
-          </label>
-
+          <label>Password</label>
           <input
             type="password"
             id="loginPassword"
             autocomplete="current-password"
             required
           >
-
         </div>
 
         <button
@@ -731,9 +698,7 @@
   </div>
 
 
-  <!-- =========================
-       SIDEBAR
-  ========================= -->
+  <!-- SIDEBAR -->
 
   <aside class="sidebar">
 
@@ -791,28 +756,22 @@
   </aside>
 
 
-  <!-- =========================
-       MAIN
-  ========================= -->
+  <!-- MAIN -->
 
   <main class="main">
 
-    <!-- =========================
-         DASHBOARD
-    ========================= -->
+    <!-- DASHBOARD -->
 
     <div id="dashboardPage">
 
       <div class="header">
 
         <div>
-
           <h1>Dashboard</h1>
 
           <small>
             RML monitoring and personnel workload
           </small>
-
         </div>
 
         <button
@@ -840,23 +799,18 @@
         </div>
 
         <div class="card">
-          <div class="card-title">Ongoing</div>
-          <div class="card-value" id="totalOngoing">0</div>
-        </div>
-
-        <div class="card">
           <div class="card-title">Pending</div>
           <div class="card-value" id="totalPending">0</div>
         </div>
 
         <div class="card">
-          <div class="card-title">PCS</div>
-          <div class="card-value" id="totalPCS">0</div>
+          <div class="card-title">Cancelled</div>
+          <div class="card-value" id="totalCancelled">0</div>
         </div>
 
         <div class="card">
-          <div class="card-title">Amount</div>
-          <div class="card-value" id="totalAmount">₱0.00</div>
+          <div class="card-title">Replaced</div>
+          <div class="card-value" id="totalReplaced">0</div>
         </div>
 
       </div>
@@ -886,25 +840,11 @@
         >
           <option value="">All Status</option>
 
-          <option value="Completed">
-            Completed
-          </option>
+          <option value="Completed">Completed</option>
+          <option value="Pending">Pending</option>
+          <option value="Cancelled">Cancelled</option>
+          <option value="Replaced">Replaced</option>
 
-          <option value="Ongoing">
-            Ongoing
-          </option>
-
-          <option value="Pending">
-            Pending
-          </option>
-
-          <option value="Cancelled">
-            Cancelled
-          </option>
-
-          <option value="Replaced">
-            Replaced
-          </option>
         </select>
 
         <input
@@ -927,9 +867,7 @@
 
       <div class="section">
 
-        <h2>
-          Personnel Summary
-        </h2>
+        <h2>Personnel Summary</h2>
 
         <div class="table-wrapper">
 
@@ -941,8 +879,9 @@
                 <th>Personnel</th>
                 <th>Assigned</th>
                 <th>Completed</th>
-                <th>Ongoing</th>
                 <th>Pending</th>
+                <th>Cancelled</th>
+                <th>Replaced</th>
                 <th>PCS</th>
                 <th>Amount</th>
               </tr>
@@ -962,9 +901,7 @@
 
       <div class="section">
 
-        <h2>
-          Requests
-        </h2>
+        <h2>Requests</h2>
 
         <div class="search-box">
 
@@ -992,10 +929,7 @@
                 <th>Amount</th>
                 <th>Due</th>
                 <th>Status</th>
-
-                <!-- ADMIN ONLY -->
                 <th class="admin-edit-col">Edit</th>
-
               </tr>
 
             </thead>
@@ -1011,22 +945,15 @@
     </div>
 
 
-    <!-- =========================
-         ALL REQUESTS PAGE
-    ========================= -->
+    <!-- ALL REQUESTS -->
 
-    <div
-      id="requestsPage"
-      class="hidden"
-    >
+    <div id="requestsPage" class="hidden">
 
       <div class="header">
 
         <div>
 
-          <h1>
-            All Requests
-          </h1>
+          <h1>All Requests</h1>
 
           <small>
             RML monitoring records
@@ -1064,10 +991,7 @@
                 <th>Due</th>
                 <th>Status</th>
                 <th>Date Completed</th>
-
-                <!-- ADMIN ONLY -->
                 <th class="admin-edit-col">Edit</th>
-
               </tr>
 
             </thead>
@@ -1083,9 +1007,7 @@
     </div>
 
 
-    <!-- =========================
-         PERSONNEL DETAIL PAGE
-    ========================= -->
+    <!-- PERSONNEL DETAIL -->
 
     <div
       id="personnelDetailPage"
@@ -1099,7 +1021,6 @@
         ← Back to Dashboard
       </button>
 
-
       <div class="person-header">
 
         <h1 id="personDetailTitle">
@@ -1111,7 +1032,6 @@
         </small>
 
       </div>
-
 
       <div class="section">
 
@@ -1147,9 +1067,7 @@
   </main>
 
 
-  <!-- =========================
-       ADD / EDIT REQUEST MODAL
-  ========================= -->
+  <!-- ADD / EDIT MODAL -->
 
   <div
     id="requestModal"
@@ -1174,35 +1092,26 @@
 
       </div>
 
-
       <div
         id="formMessage"
         class="message"
       ></div>
 
-
       <form id="requestForm">
 
         <div class="form-group">
-
-          <label>
-            Request No.
-          </label>
+          <label>Request No.</label>
 
           <input
             type="text"
             id="requestNo"
             required
           >
-
         </div>
 
 
         <div class="form-group">
-
-          <label>
-            Assigned Personnel
-          </label>
+          <label>Assigned Personnel</label>
 
           <select
             id="assignedPersonnel"
@@ -1212,15 +1121,11 @@
               Select personnel
             </option>
           </select>
-
         </div>
 
 
         <div class="form-group">
-
-          <label>
-            Monitoring Category
-          </label>
+          <label>Monitoring Category</label>
 
           <select
             id="category"
@@ -1231,15 +1136,11 @@
               Select category
             </option>
           </select>
-
         </div>
 
 
         <div class="form-group">
-
-          <label>
-            Service / Item
-          </label>
+          <label>Service / Item</label>
 
           <select
             id="serviceItem"
@@ -1250,7 +1151,6 @@
               Select service/item
             </option>
           </select>
-
         </div>
 
 
@@ -1258,9 +1158,7 @@
 
           <div class="form-group">
 
-            <label>
-              PCS
-            </label>
+            <label>PCS</label>
 
             <input
               type="number"
@@ -1278,9 +1176,7 @@
 
           <div class="form-group">
 
-            <label>
-              Total Amount
-            </label>
+            <label>Total Amount</label>
 
             <input
               type="number"
@@ -1298,9 +1194,7 @@
 
         <div class="form-group">
 
-          <label>
-            Serial Number
-          </label>
+          <label>Serial Number</label>
 
           <input
             type="text"
@@ -1314,9 +1208,7 @@
 
           <div class="form-group">
 
-            <label>
-              Request Date
-            </label>
+            <label>Request Date</label>
 
             <input
               type="date"
@@ -1328,9 +1220,7 @@
 
           <div class="form-group">
 
-            <label>
-              Due Date
-            </label>
+            <label>Due Date</label>
 
             <input
               type="date"
@@ -1344,9 +1234,7 @@
 
         <div class="form-group">
 
-          <label>
-            Status
-          </label>
+          <label>Status</label>
 
           <select
             id="status"
@@ -1355,10 +1243,6 @@
 
             <option value="Pending">
               Pending
-            </option>
-
-            <option value="Ongoing">
-              Ongoing
             </option>
 
             <option value="Completed">
@@ -1380,9 +1264,7 @@
 
         <div class="form-group">
 
-          <label>
-            Description
-          </label>
+          <label>Description</label>
 
           <textarea
             id="description"
@@ -1393,12 +1275,11 @@
 
         <div class="form-group">
 
-          <label>
-            Remarks
-          </label>
+          <label>Remarks</label>
 
           <textarea
             id="remarks"
+            placeholder="For Cancelled or Replaced requests, indicate the reason."
           ></textarea>
 
         </div>
@@ -1413,7 +1294,6 @@
           >
             Cancel
           </button>
-
 
           <button
             type="submit"
@@ -1450,19 +1330,12 @@
     ========================================================= */
 
     let requests = [];
-
     let personnel = [];
-
     let categories = [];
-
     let serviceItems = [];
-
     let editingRequestId = null;
-
     let currentPersonnelId = null;
-
     let currentSession = null;
-
     let currentProfile = null;
 
 
@@ -1470,47 +1343,33 @@
        SUPABASE FETCH
     ========================================================= */
 
-    async function supabaseFetch(
-      endpoint,
-      options = {}
-    ) {
+    async function supabaseFetch(endpoint, options = {}) {
 
       if (!currentSession?.access_token) {
-
-        throw new Error(
-          "You are not logged in."
-        );
-
+        throw new Error("You are not logged in.");
       }
 
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/${endpoint}`,
+        {
+          ...options,
 
-      const response =
-        await fetch(
-          `${SUPABASE_URL}/rest/v1/${endpoint}`,
-          {
-            ...options,
+          headers: {
+            "apikey": SUPABASE_KEY,
 
-            headers: {
+            "Authorization":
+              `Bearer ${currentSession.access_token}`,
 
-              "apikey":
-                SUPABASE_KEY,
+            "Content-Type":
+              "application/json",
 
-              "Authorization":
-                `Bearer ${currentSession.access_token}`,
+            "Prefer":
+              "return=representation",
 
-              "Content-Type":
-                "application/json",
-
-              "Prefer":
-                "return=representation",
-
-              ...(options.headers || {})
-
-            }
-
+            ...(options.headers || {})
           }
-        );
-
+        }
+      );
 
       if (!response.ok) {
 
@@ -1521,21 +1380,16 @@
           errorText ||
           "Supabase request failed."
         );
-
       }
-
 
       const text =
         await response.text();
-
 
       if (!text) {
         return [];
       }
 
-
       return JSON.parse(text);
-
     }
 
 
@@ -1543,53 +1397,37 @@
        AUTHENTICATION
     ========================================================= */
 
-    async function signIn(
-      email,
-      password
-    ) {
+    async function signIn(email, password) {
 
-      const response =
-        await fetch(
-          `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
-          {
-            method: "POST",
+      const response = await fetch(
+        `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
+        {
+          method: "POST",
 
-            headers: {
-              "apikey": SUPABASE_KEY,
-              "Content-Type":
-                "application/json"
-            },
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Content-Type": "application/json"
+          },
 
-            body: JSON.stringify({
-              email,
-              password
-            })
-          }
-        );
-
+          body: JSON.stringify({
+            email,
+            password
+          })
+        }
+      );
 
       const text =
         await response.text();
 
-
       let data = {};
 
-
       try {
-
-        data =
-          text
-            ? JSON.parse(text)
-            : {};
-
+        data = text ? JSON.parse(text) : {};
       }
 
       catch {
-
         data = {};
-
       }
-
 
       if (!response.ok) {
 
@@ -1599,24 +1437,16 @@
           data.message ||
           "Invalid email or password."
         );
-
       }
 
-
-      currentSession =
-        data;
-
+      currentSession = data;
 
       localStorage.setItem(
         "rml_session",
-        JSON.stringify(
-          currentSession
-        )
+        JSON.stringify(currentSession)
       );
 
-
       await loadCurrentProfile();
-
     }
 
 
@@ -1626,57 +1456,44 @@
 
     async function loadCurrentProfile() {
 
-      if (
-        !currentSession?.user?.id
-      ) {
+      if (!currentSession?.user?.id) {
 
         throw new Error(
           "User session is invalid."
         );
-
       }
-
 
       const userId =
         encodeURIComponent(
           currentSession.user.id
         );
 
-
       const profiles =
         await supabaseFetch(
           `user_profiles?select=id,personnel_id,role,active&id=eq.${userId}`
         );
-
 
       if (!profiles.length) {
 
         throw new Error(
           "Your account does not have an RML Monitoring profile."
         );
-
       }
-
 
       const profile =
         profiles[0];
-
 
       if (!profile.active) {
 
         throw new Error(
           "Your RML Monitoring account is inactive."
         );
-
       }
-
 
       currentProfile =
         profile;
 
-
       updateLoggedInUser();
-
     }
 
 
@@ -1691,21 +1508,16 @@
           "loggedUserCode"
         );
 
-
       const roleElement =
         document.getElementById(
           "loggedUserRole"
         );
 
-
       let displayCode =
         currentSession?.user?.email ||
         "User";
 
-
-      if (
-        currentProfile?.personnel_id
-      ) {
+      if (currentProfile?.personnel_id) {
 
         const person =
           personnel.find(
@@ -1716,34 +1528,21 @@
               )
           );
 
-
         if (person) {
 
           displayCode =
             `${person.code} — ${person.name || ""}`;
-
         }
 
       }
 
-      else {
-
-        displayCode =
-          currentSession?.user?.email ||
-          "User";
-
-      }
-
-
       codeElement.textContent =
         displayCode;
-
 
       roleElement.textContent =
         currentProfile?.role === "admin"
           ? "Administrator"
           : "Viewer";
-
     }
 
 
@@ -1754,46 +1553,23 @@
     function applyPermissions() {
 
       const isAdmin =
-        currentProfile?.role ===
-        "admin";
-
+        currentProfile?.role === "admin";
 
       document
-        .querySelectorAll(
-          ".admin-only"
-        )
-        .forEach(
-          element => {
+        .querySelectorAll(".admin-only")
+        .forEach(element => {
 
-            element.style.display =
-              isAdmin
-                ? ""
-                : "none";
-
-          }
-        );
-
-
-      /*
-        Admin Edit column headers are also
-        hidden for non-admin users.
-      */
+          element.style.display =
+            isAdmin ? "" : "none";
+        });
 
       document
-        .querySelectorAll(
-          ".admin-edit-col"
-        )
-        .forEach(
-          element => {
+        .querySelectorAll(".admin-edit-col")
+        .forEach(element => {
 
-            element.style.display =
-              isAdmin
-                ? ""
-                : "none";
-
-          }
-        );
-
+          element.style.display =
+            isAdmin ? "" : "none";
+        });
     }
 
 
@@ -1803,14 +1579,11 @@
 
     function showApp() {
 
-      document.getElementById(
-        "loginPage"
-      ).classList.add(
-        "hidden"
-      );
+      document
+        .getElementById("loginPage")
+        .classList.add("hidden");
 
       applyPermissions();
-
     }
 
 
@@ -1820,12 +1593,9 @@
 
     function showLogin() {
 
-      document.getElementById(
-        "loginPage"
-      ).classList.remove(
-        "hidden"
-      );
-
+      document
+        .getElementById("loginPage")
+        .classList.remove("hidden");
     }
 
 
@@ -1837,9 +1607,7 @@
 
       try {
 
-        if (
-          currentSession?.access_token
-        ) {
+        if (currentSession?.access_token) {
 
           await fetch(
             `${SUPABASE_URL}/auth/v1/logout`,
@@ -1847,15 +1615,13 @@
               method: "POST",
 
               headers: {
-                "apikey":
-                  SUPABASE_KEY,
+                "apikey": SUPABASE_KEY,
 
                 "Authorization":
                   `Bearer ${currentSession.access_token}`
               }
             }
           );
-
         }
 
       }
@@ -1866,30 +1632,20 @@
           "Logout error:",
           error
         );
-
       }
 
-
       currentSession = null;
-
       currentProfile = null;
-
       requests = [];
-
       personnel = [];
-
       categories = [];
-
       serviceItems = [];
-
 
       localStorage.removeItem(
         "rml_session"
       );
 
-
       location.reload();
-
     }
 
 
@@ -1904,34 +1660,24 @@
           "rml_session"
         );
 
-
       if (!stored) {
 
         showLogin();
 
         return;
-
       }
-
 
       try {
 
         currentSession =
-          JSON.parse(
-            stored
-          );
+          JSON.parse(stored);
 
-
-        if (
-          !currentSession?.access_token
-        ) {
+        if (!currentSession?.access_token) {
 
           throw new Error(
             "Invalid session."
           );
-
         }
-
 
         await loadCurrentProfile();
 
@@ -1941,27 +1687,19 @@
 
       }
 
-
       catch (error) {
 
-        console.error(
-          error
-        );
-
+        console.error(error);
 
         localStorage.removeItem(
           "rml_session"
         );
 
-
         currentSession = null;
-
         currentProfile = null;
 
         showLogin();
-
       }
-
     }
 
 
@@ -1970,59 +1708,43 @@
     ========================================================= */
 
     document
-      .getElementById(
-        "loginForm"
-      )
+      .getElementById("loginForm")
       .addEventListener(
         "submit",
         async function(event) {
 
           event.preventDefault();
 
-
           const email =
             document
-              .getElementById(
-                "loginEmail"
-              )
+              .getElementById("loginEmail")
               .value
               .trim();
 
-
           const password =
             document
-              .getElementById(
-                "loginPassword"
-              )
+              .getElementById("loginPassword")
               .value;
-
 
           const loginButton =
             document.getElementById(
               "loginButton"
             );
 
-
           const loginError =
             document.getElementById(
               "loginError"
             );
 
-
-          loginError.textContent =
-            "";
+          loginError.textContent = "";
 
           loginError.classList.remove(
             "show"
           );
 
-
-          loginButton.disabled =
-            true;
-
+          loginButton.disabled = true;
           loginButton.textContent =
             "Logging in...";
-
 
           try {
 
@@ -2031,35 +1753,26 @@
               password
             );
 
-
             await init();
 
             showApp();
 
           }
 
-
           catch (error) {
 
-            console.error(
-              error
-            );
-
+            console.error(error);
 
             currentSession = null;
-
             currentProfile = null;
-
 
             localStorage.removeItem(
               "rml_session"
             );
 
-
             loginError.textContent =
               error.message ||
               "Unable to log in.";
-
 
             loginError.classList.add(
               "show"
@@ -2067,17 +1780,12 @@
 
           }
 
-
           finally {
 
-            loginButton.disabled =
-              false;
-
+            loginButton.disabled = false;
             loginButton.textContent =
               "Login";
-
           }
-
         }
       );
 
@@ -2114,9 +1822,7 @@
           "Unable to load RML Monitoring data.\n\n" +
           error.message
         );
-
       }
-
     }
 
 
@@ -2131,18 +1837,15 @@
           "personnel?select=*&active=eq.true&order=code.asc"
         );
 
-
       const personnelSelect =
         document.getElementById(
           "assignedPersonnel"
         );
 
-
       const personnelFilter =
         document.getElementById(
           "personnelFilter"
         );
-
 
       personnelSelect.innerHTML = `
         <option value="">
@@ -2150,33 +1853,26 @@
         </option>
       `;
 
-
       personnelFilter.innerHTML = `
         <option value="">
           All Personnel
         </option>
       `;
 
+      personnel.forEach(person => {
 
-      personnel.forEach(
-        person => {
+        personnelSelect.innerHTML += `
+          <option value="${person.id}">
+            ${escapeHtml(person.code)}
+          </option>
+        `;
 
-          personnelSelect.innerHTML += `
-            <option value="${person.id}">
-              ${escapeHtml(person.code)}
-            </option>
-          `;
-
-
-          personnelFilter.innerHTML += `
-            <option value="${person.id}">
-              ${escapeHtml(person.code)}
-            </option>
-          `;
-
-        }
-      );
-
+        personnelFilter.innerHTML += `
+          <option value="${person.id}">
+            ${escapeHtml(person.code)}
+          </option>
+        `;
+      });
     }
 
 
@@ -2191,18 +1887,15 @@
           "monitoring_categories?select=*&active=eq.true&order=name.asc"
         );
 
-
       const categorySelect =
         document.getElementById(
           "category"
         );
 
-
       const categoryFilter =
         document.getElementById(
           "categoryFilter"
         );
-
 
       categorySelect.innerHTML = `
         <option value="">
@@ -2210,33 +1903,26 @@
         </option>
       `;
 
-
       categoryFilter.innerHTML = `
         <option value="">
           All Categories
         </option>
       `;
 
+      categories.forEach(category => {
 
-      categories.forEach(
-        category => {
+        categorySelect.innerHTML += `
+          <option value="${category.id}">
+            ${escapeHtml(category.name)}
+          </option>
+        `;
 
-          categorySelect.innerHTML += `
-            <option value="${category.id}">
-              ${escapeHtml(category.name)}
-            </option>
-          `;
-
-
-          categoryFilter.innerHTML += `
-            <option value="${category.id}">
-              ${escapeHtml(category.name)}
-            </option>
-          `;
-
-        }
-      );
-
+        categoryFilter.innerHTML += `
+          <option value="${category.id}">
+            ${escapeHtml(category.name)}
+          </option>
+        `;
+      });
     }
 
 
@@ -2250,7 +1936,6 @@
         await supabaseFetch(
           "service_items?select=*&active=eq.true&order=item_name.asc"
         );
-
     }
 
 
@@ -2265,12 +1950,10 @@
           "category"
         ).value;
 
-
       const serviceSelect =
         document.getElementById(
           "serviceItem"
         );
-
 
       serviceSelect.innerHTML = `
         <option value="">
@@ -2278,15 +1961,12 @@
         </option>
       `;
 
-
       if (!categoryId) {
 
         updateAmount();
 
         return;
-
       }
-
 
       const filtered =
         serviceItems.filter(
@@ -2295,26 +1975,20 @@
             String(categoryId)
         );
 
+      filtered.forEach(item => {
 
-      filtered.forEach(
-        item => {
-
-          serviceSelect.innerHTML += `
-            <option
-              value="${item.id}"
-              data-price="${item.price || 0}"
-            >
-              ${escapeHtml(item.item_name)}
-              — ₱${formatNumber(item.price || 0)}
-            </option>
-          `;
-
-        }
-      );
-
+        serviceSelect.innerHTML += `
+          <option
+            value="${item.id}"
+            data-price="${item.price || 0}"
+          >
+            ${escapeHtml(item.item_name)}
+            — ₱${formatNumber(item.price || 0)}
+          </option>
+        `;
+      });
 
       updateAmount();
-
     }
 
 
@@ -2329,14 +2003,12 @@
           "serviceItem"
         ).value;
 
-
       const pcs =
         Number(
           document.getElementById(
             "pcs"
           ).value
         ) || 0;
-
 
       const selected =
         serviceItems.find(
@@ -2345,22 +2017,18 @@
             String(serviceItemId)
         );
 
-
       const price =
         selected
           ? Number(selected.price || 0)
           : 0;
 
-
       const total =
         price * pcs;
-
 
       document.getElementById(
         "amount"
       ).value =
         total.toFixed(2);
-
     }
 
 
@@ -2375,9 +2043,7 @@
           "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name),serviceItem:service_item_id(id,item_name,details,price)&order=created_at.desc"
         );
 
-
       loadDashboard();
-
     }
 
 
@@ -2392,24 +2058,20 @@
           "categoryFilter"
         ).value;
 
-
       const person =
         document.getElementById(
           "personnelFilter"
         ).value;
-
 
       const status =
         document.getElementById(
           "statusFilter"
         ).value;
 
-
       const month =
         document.getElementById(
           "monthFilter"
         )?.value;
-
 
       const search =
         document.getElementById(
@@ -2418,106 +2080,66 @@
           .trim()
           .toLowerCase();
 
+      return requests.filter(r => {
 
-      return requests.filter(
-        r => {
-
-          if (
-            category &&
-            String(r.category_id) !==
-              String(category)
-          ) {
-
-            return false;
-
-          }
-
-
-          if (
-            person &&
-            String(
-              r.assigned_personnel_id
-            ) !==
-              String(person)
-          ) {
-
-            return false;
-
-          }
-
-
-          if (
-            status &&
-            r.status !== status
-          ) {
-
-            return false;
-
-          }
-
-
-          /*
-            Month filter uses Due Date.
-          */
-
-          if (
-            month &&
-            !r.due_date?.startsWith(
-              month
-            )
-          ) {
-
-            return false;
-
-          }
-
-
-          if (search) {
-
-            const searchableText = [
-
-              r.request_no,
-
-              r.personnel?.code,
-
-              r.personnel?.name,
-
-              r.category?.name,
-
-              r.serviceItem?.item_name,
-
-              r.serviceItem?.details,
-
-              r.serial_number,
-
-              r.description,
-
-              r.remarks
-
-            ]
-              .filter(Boolean)
-              .join(" ")
-              .toLowerCase();
-
-
-            if (
-              !searchableText.includes(
-                search
-              )
-            ) {
-
-              return false;
-
-            }
-
-          }
-
-
-          return true;
-
+        if (
+          category &&
+          String(r.category_id) !==
+            String(category)
+        ) {
+          return false;
         }
-      );
 
+        if (
+          person &&
+          String(r.assigned_personnel_id) !==
+            String(person)
+        ) {
+          return false;
+        }
+
+        if (
+          status &&
+          r.status !== status
+        ) {
+          return false;
+        }
+
+        if (
+          month &&
+          !r.due_date?.startsWith(month)
+        ) {
+          return false;
+        }
+
+        if (search) {
+
+          const searchableText = [
+
+            r.request_no,
+            r.personnel?.code,
+            r.personnel?.name,
+            r.category?.name,
+            r.serviceItem?.item_name,
+            r.serviceItem?.details,
+            r.serial_number,
+            r.description,
+            r.remarks
+
+          ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
+          if (
+            !searchableText.includes(search)
+          ) {
+            return false;
+          }
+        }
+
+        return true;
+      });
     }
 
 
@@ -2530,91 +2152,45 @@
       const filtered =
         getFilteredRequests();
 
-
       document.getElementById(
         "totalAssigned"
       ).textContent =
         filtered.length;
 
-
       document.getElementById(
         "totalCompleted"
       ).textContent =
         filtered.filter(
-          r =>
-            r.status ===
-            "Completed"
+          r => r.status === "Completed"
         ).length;
-
-
-      document.getElementById(
-        "totalOngoing"
-      ).textContent =
-        filtered.filter(
-          r =>
-            r.status ===
-            "Ongoing"
-        ).length;
-
 
       document.getElementById(
         "totalPending"
       ).textContent =
         filtered.filter(
-          r =>
-            r.status ===
-            "Pending"
+          r => r.status === "Pending"
         ).length;
 
-
-      const totalPCS =
-        filtered.reduce(
-          (sum, r) =>
-            sum +
-            Number(
-              r.pcs || 0
-            ),
-          0
-        );
-
+      document.getElementById(
+        "totalCancelled"
+      ).textContent =
+        filtered.filter(
+          r => r.status === "Cancelled"
+        ).length;
 
       document.getElementById(
-        "totalPCS"
+        "totalReplaced"
       ).textContent =
-        formatNumber(
-          totalPCS
-        );
+        filtered.filter(
+          r => r.status === "Replaced"
+        ).length;
 
-
-      const totalAmount =
-        filtered.reduce(
-          (sum, r) =>
-            sum +
-            Number(
-              r.amount || 0
-            ),
-          0
-        );
-
-
-      document.getElementById(
-        "totalAmount"
-      ).textContent =
-        formatCurrency(
-          totalAmount
-        );
-
-
-      renderPersonnelSummary(
-        filtered
-      );
-
+      renderPersonnelSummary(filtered);
 
       renderRequests(
         filtered,
         "requestsTable"
       );
-
     }
 
 
@@ -2622,154 +2198,107 @@
        PERSONNEL SUMMARY
     ========================================================= */
 
-    function renderPersonnelSummary(
-      data
-    ) {
+    function renderPersonnelSummary(data) {
 
       const tbody =
         document.getElementById(
           "personnelTable"
         );
 
-
-      tbody.innerHTML =
-        "";
-
+      tbody.innerHTML = "";
 
       if (!personnel.length) {
 
         tbody.innerHTML = `
           <tr>
-            <td
-              colspan="7"
-              class="empty"
-            >
+            <td colspan="8" class="empty">
               No personnel found.
             </td>
           </tr>
         `;
 
         return;
-
       }
 
+      personnel.forEach(person => {
 
-      personnel.forEach(
-        person => {
-
-          const personRequests =
-            data.filter(
-              r =>
-                String(
-                  r.assigned_personnel_id
-                ) ===
-                String(
-                  person.id
-                )
-            );
-
-
-          const completed =
-            personRequests.filter(
-              r =>
-                r.status ===
-                "Completed"
-            ).length;
-
-
-          const ongoing =
-            personRequests.filter(
-              r =>
-                r.status ===
-                "Ongoing"
-            ).length;
-
-
-          const pending =
-            personRequests.filter(
-              r =>
-                r.status ===
-                "Pending"
-            ).length;
-
-
-          const pcs =
-            personRequests.reduce(
-              (sum, r) =>
-                sum +
-                Number(
-                  r.pcs || 0
-                ),
-              0
-            );
-
-
-          const amount =
-            personRequests.reduce(
-              (sum, r) =>
-                sum +
-                Number(
-                  r.amount || 0
-                ),
-              0
-            );
-
-
-          const tr =
-            document.createElement(
-              "tr"
-            );
-
-
-          tr.innerHTML = `
-
-            <td>
-
-              <button
-                class="edit-btn"
-                onclick="openPersonnelDetail(${person.id})"
-              >
-                ${escapeHtml(
-                  person.code
-                )}
-              </button>
-
-            </td>
-
-            <td>
-              ${personRequests.length}
-            </td>
-
-            <td>
-              ${completed}
-            </td>
-
-            <td>
-              ${ongoing}
-            </td>
-
-            <td>
-              ${pending}
-            </td>
-
-            <td>
-              ${formatNumber(pcs)}
-            </td>
-
-            <td>
-              ${formatCurrency(amount)}
-            </td>
-
-          `;
-
-
-          tbody.appendChild(
-            tr
+        const personRequests =
+          data.filter(
+            r =>
+              String(
+                r.assigned_personnel_id
+              ) ===
+              String(person.id)
           );
 
-        }
-      );
+        const completed =
+          personRequests.filter(
+            r => r.status === "Completed"
+          ).length;
 
+        const pending =
+          personRequests.filter(
+            r => r.status === "Pending"
+          ).length;
+
+        const cancelled =
+          personRequests.filter(
+            r => r.status === "Cancelled"
+          ).length;
+
+        const replaced =
+          personRequests.filter(
+            r => r.status === "Replaced"
+          ).length;
+
+        const pcs =
+          personRequests.reduce(
+            (sum, r) =>
+              sum + Number(r.pcs || 0),
+            0
+          );
+
+        const amount =
+          personRequests.reduce(
+            (sum, r) =>
+              sum + Number(r.amount || 0),
+            0
+          );
+
+        const tr =
+          document.createElement("tr");
+
+        tr.innerHTML = `
+
+          <td>
+
+            <button
+              class="edit-btn"
+              onclick="openPersonnelDetail(${person.id})"
+            >
+              ${escapeHtml(person.code)}
+            </button>
+
+          </td>
+
+          <td>${personRequests.length}</td>
+
+          <td>${completed}</td>
+
+          <td>${pending}</td>
+
+          <td>${cancelled}</td>
+
+          <td>${replaced}</td>
+
+          <td>${formatNumber(pcs)}</td>
+
+          <td>${formatCurrency(amount)}</td>
+
+        `;
+
+        tbody.appendChild(tr);
+      });
     }
 
 
@@ -2777,22 +2306,18 @@
        CHECK IF CURRENT USER OWNS REQUEST
     ========================================================= */
 
-    function isAssignedToCurrentUser(
-      request
-    ) {
+    function isAssignedToCurrentUser(request) {
 
       return (
-        currentProfile?.role ===
-          "viewer" &&
+        currentProfile?.role === "viewer" &&
         currentProfile?.personnel_id &&
         String(
           currentProfile.personnel_id
         ) ===
-          String(
-            request.assigned_personnel_id
-          )
+        String(
+          request.assigned_personnel_id
+        )
       );
-
     }
 
 
@@ -2800,26 +2325,25 @@
        STATUS DISPLAY
     ========================================================= */
 
-    function renderStatus(
-      request
-    ) {
+    function renderStatus(request) {
 
       const status =
-        request.status ||
-        "Pending";
-
+        request.status || "Pending";
 
       /*
-        Only the assigned personnel can
-        change their own Pending/Ongoing
-        request to Completed.
+        Assigned personnel can manage
+        their own Pending requests.
 
-        Admin manages status through Edit.
+        Available choices:
+        Pending
+        Completed
+        Cancelled
+        Replaced
       */
 
       if (
         isAssignedToCurrentUser(request) &&
-        ["Pending", "Ongoing"].includes(status)
+        status === "Pending"
       ) {
 
         return `
@@ -2830,32 +2354,28 @@
 
             <option
               value="Pending"
-              ${status === "Pending" ? "selected" : ""}
+              selected
             >
               Pending
             </option>
 
-            <option
-              value="Ongoing"
-              ${status === "Ongoing" ? "selected" : ""}
-            >
-              Ongoing
+            <option value="Completed">
+              Completed
             </option>
 
-            <option
-              value="Completed"
-            >
-              Completed
+            <option value="Cancelled">
+              Cancelled
+            </option>
+
+            <option value="Replaced">
+              Replaced
             </option>
 
           </select>
         `;
-
       }
 
-
       return statusBadge(status);
-
     }
 
 
@@ -2875,45 +2395,155 @@
             String(requestId)
         );
 
-
       if (!request) {
 
         alert(
           "Request could not be found."
         );
 
-        loadDashboard();
+        await reloadRequests();
 
         return;
-
       }
 
-
       if (
-        !isAssignedToCurrentUser(
-          request
-        )
+        !isAssignedToCurrentUser(request)
       ) {
 
         alert(
           "You can only update requests assigned to you."
         );
 
-        loadDashboard();
+        await reloadRequests();
 
         return;
-
       }
 
+      if (
+        ![
+          "Pending",
+          "Completed",
+          "Cancelled",
+          "Replaced"
+        ].includes(newStatus)
+      ) {
+
+        alert(
+          "Invalid status."
+        );
+
+        await reloadRequests();
+
+        return;
+      }
 
       /*
-        Selecting Completed calls the
-        secure Supabase RPC.
+        Selecting the current status
+        does nothing.
       */
 
       if (
-        newStatus ===
-        "Completed"
+        newStatus === request.status
+      ) {
+
+        loadDashboard();
+
+        return;
+      }
+
+
+      /* =========================
+         CANCELLED / REPLACED
+      ========================= */
+
+      if (
+        newStatus === "Cancelled" ||
+        newStatus === "Replaced"
+      ) {
+
+        const reason =
+          prompt(
+            `Please enter the reason for marking ${request.request_no || "this request"} as ${newStatus}:`
+          );
+
+        if (
+          reason === null
+        ) {
+
+          loadDashboard();
+
+          return;
+        }
+
+        const remarks =
+          reason.trim();
+
+        if (!remarks) {
+
+          alert(
+            `${newStatus} requires a remark explaining the reason.`
+          );
+
+          loadDashboard();
+
+          return;
+        }
+
+        const confirmed =
+          confirm(
+            `Mark ${request.request_no || "this request"} as ${newStatus}?\n\nReason:\n${remarks}`
+          );
+
+        if (!confirmed) {
+
+          loadDashboard();
+
+          return;
+        }
+
+        try {
+
+          await supabaseRpc(
+            "mark_request_status",
+            {
+              request_id: requestId,
+              new_status: newStatus,
+              new_remarks: remarks
+            }
+          );
+
+          await reloadRequests();
+
+          refreshCurrentPage();
+
+          alert(
+            `Request marked as ${newStatus}.`
+          );
+
+        }
+
+        catch (error) {
+
+          console.error(error);
+
+          alert(
+            `Unable to mark the request as ${newStatus}.\n\n` +
+            error.message
+          );
+
+          await reloadRequests();
+        }
+
+        return;
+      }
+
+
+      /* =========================
+         COMPLETED
+      ========================= */
+
+      if (
+        newStatus === "Completed"
       ) {
 
         const confirmed =
@@ -2921,78 +2551,28 @@
             `Mark ${request.request_no || "this request"} as Completed?`
           );
 
-
         if (!confirmed) {
 
           loadDashboard();
 
           return;
-
         }
-
 
         try {
 
           await supabaseRpc(
-            "mark_request_completed",
+            "mark_request_status",
             {
-              request_id:
-                requestId
+              request_id: requestId,
+              new_status: "Completed",
+              new_remarks:
+                request.remarks || null
             }
           );
 
-
           await reloadRequests();
 
-
-          if (
-            !document
-              .getElementById(
-                "requestsPage"
-              )
-              .classList.contains(
-                "hidden"
-              )
-          ) {
-
-            renderRequests(
-              requests,
-              "allRequestsTable"
-            );
-
-          }
-
-
-          if (
-            currentPersonnelId &&
-            !document
-              .getElementById(
-                "personnelDetailPage"
-              )
-              .classList.contains(
-                "hidden"
-              )
-          ) {
-
-            const personRequests =
-              requests.filter(
-                r =>
-                  String(
-                    r.assigned_personnel_id
-                  ) ===
-                  String(
-                    currentPersonnelId
-                  )
-              );
-
-
-            renderRequests(
-              personRequests,
-              "detailRequestsTable"
-            );
-
-          }
-
+          refreshCurrentPage();
 
           alert(
             "Request marked as completed."
@@ -3000,37 +2580,62 @@
 
         }
 
-
         catch (error) {
 
-          console.error(
-            error
-          );
-
+          console.error(error);
 
           alert(
             "Unable to mark the request as completed.\n\n" +
             error.message
           );
 
-
-          loadDashboard();
-
+          await reloadRequests();
         }
 
-
         return;
+      }
+    }
 
+
+    /* =========================================================
+       REFRESH CURRENT PAGE
+    ========================================================= */
+
+    function refreshCurrentPage() {
+
+      if (
+        !document
+          .getElementById("requestsPage")
+          .classList.contains("hidden")
+      ) {
+
+        renderRequests(
+          requests,
+          "allRequestsTable"
+        );
       }
 
+      if (
+        currentPersonnelId &&
+        !document
+          .getElementById("personnelDetailPage")
+          .classList.contains("hidden")
+      ) {
 
-      /*
-        If the analyst selects the
-        existing status, simply refresh.
-      */
+        const personRequests =
+          requests.filter(
+            r =>
+              String(
+                r.assigned_personnel_id
+              ) ===
+              String(currentPersonnelId)
+          );
 
-      loadDashboard();
-
+        renderRequests(
+          personRequests,
+          "detailRequestsTable"
+        );
+      }
     }
 
 
@@ -3038,22 +2643,17 @@
        ADMIN EDIT BUTTON
     ========================================================= */
 
-    function renderEditButton(
-      request
-    ) {
+    function renderEditButton(request) {
 
       if (
-        currentProfile?.role !==
-        "admin"
+        currentProfile?.role !== "admin"
       ) {
-
         return "";
-
       }
-
 
       return `
         <td class="admin-edit-cell">
+
           <button
             type="button"
             class="edit-btn"
@@ -3061,9 +2661,9 @@
           >
             Edit
           </button>
+
         </td>
       `;
-
     }
 
 
@@ -3081,71 +2681,42 @@
           elementId
         );
 
-
       if (!tbody) {
         return;
       }
 
-
-      tbody.innerHTML =
-        "";
-
+      tbody.innerHTML = "";
 
       if (!data.length) {
 
-        let colspan = 9;
-
+        let colspan = 8;
 
         if (
-          elementId ===
-          "allRequestsTable"
+          elementId === "requestsTable"
         ) {
 
-          colspan = 11;
-
+          colspan =
+            currentProfile?.role === "admin"
+              ? 10
+              : 9;
         }
 
+        else if (
+          elementId === "allRequestsTable"
+        ) {
+
+          colspan =
+            currentProfile?.role === "admin"
+              ? 12
+              : 11;
+        }
 
         else if (
-          elementId ===
-          "detailRequestsTable"
+          elementId === "detailRequestsTable"
         ) {
 
           colspan = 8;
-
         }
-
-
-        /*
-          Add one column for Admin Edit.
-        */
-
-        if (
-          currentProfile?.role ===
-          "admin"
-        ) {
-
-          if (
-            elementId ===
-            "requestsTable"
-          ) {
-
-            colspan = 10;
-
-          }
-
-
-          else if (
-            elementId ===
-            "allRequestsTable"
-          ) {
-
-            colspan = 12;
-
-          }
-
-        }
-
 
         tbody.innerHTML = `
           <tr>
@@ -3159,268 +2730,234 @@
         `;
 
         return;
-
       }
 
+      data.forEach(r => {
 
-      data.forEach(
-        r => {
+        const tr =
+          document.createElement("tr");
 
-          const tr =
-            document.createElement(
-              "tr"
-            );
+        const serviceName =
+          r.serviceItem?.item_name || "—";
 
+        const personnelCode =
+          r.personnel?.code || "—";
 
-          const serviceName =
-            r.serviceItem?.item_name ||
-            "—";
-
-
-          const personnelCode =
-            r.personnel?.code ||
-            "—";
+        const categoryName =
+          r.category?.name || "—";
 
 
-          const categoryName =
-            r.category?.name ||
-            "—";
+        /* =========================
+           DASHBOARD
+        ========================= */
 
+        if (
+          elementId === "requestsTable"
+        ) {
 
-          /*
-            DASHBOARD TABLE
-          */
+          tr.innerHTML = `
 
-          if (
-            elementId ===
-            "requestsTable"
-          ) {
+            <td>
+              ${escapeHtml(
+                r.request_no || "—"
+              )}
+            </td>
 
-            tr.innerHTML = `
+            <td>
+              ${escapeHtml(
+                personnelCode
+              )}
+            </td>
 
-              <td>
-                ${escapeHtml(
-                  r.request_no ||
-                  "—"
-                )}
-              </td>
+            <td>
+              ${escapeHtml(
+                categoryName
+              )}
+            </td>
 
-              <td>
-                ${escapeHtml(
-                  personnelCode
-                )}
-              </td>
+            <td>
+              ${escapeHtml(
+                serviceName
+              )}
+            </td>
 
-              <td>
-                ${escapeHtml(
-                  categoryName
-                )}
-              </td>
+            <td>
+              ${escapeHtml(
+                r.serial_number || "—"
+              )}
+            </td>
 
-              <td>
-                ${escapeHtml(
-                  serviceName
-                )}
-              </td>
+            <td>
+              ${formatNumber(
+                r.pcs || 0
+              )}
+            </td>
 
-              <td>
-                ${escapeHtml(
-                  r.serial_number ||
-                  "—"
-                )}
-              </td>
+            <td>
+              ${formatCurrency(
+                r.amount || 0
+              )}
+            </td>
 
-              <td>
-                ${formatNumber(
-                  r.pcs || 0
-                )}
-              </td>
+            <td>
+              ${formatDate(
+                r.due_date
+              )}
+            </td>
 
-              <td>
-                ${formatCurrency(
-                  r.amount || 0
-                )}
-              </td>
+            <td>
+              ${renderStatus(r)}
+            </td>
 
-              <td>
-                ${formatDate(
-                  r.due_date
-                )}
-              </td>
+            ${renderEditButton(r)}
 
-              <td>
-                ${renderStatus(r)}
-              </td>
-
-              ${renderEditButton(r)}
-
-            `;
-
-          }
-
-
-          /*
-            ALL REQUESTS TABLE
-          */
-
-          else if (
-            elementId ===
-            "allRequestsTable"
-          ) {
-
-            tr.innerHTML = `
-
-              <td>
-                ${escapeHtml(
-                  r.request_no ||
-                  "—"
-                )}
-              </td>
-
-              <td>
-                ${escapeHtml(
-                  personnelCode
-                )}
-              </td>
-
-              <td>
-                ${escapeHtml(
-                  categoryName
-                )}
-              </td>
-
-              <td>
-                ${escapeHtml(
-                  serviceName
-                )}
-              </td>
-
-              <td>
-                ${escapeHtml(
-                  r.serial_number ||
-                  "—"
-                )}
-              </td>
-
-              <td>
-                ${formatDate(
-                  r.request_date
-                )}
-              </td>
-
-              <td>
-                ${formatNumber(
-                  r.pcs || 0
-                )}
-              </td>
-
-              <td>
-                ${formatCurrency(
-                  r.amount || 0
-                )}
-              </td>
-
-              <td>
-                ${formatDate(
-                  r.due_date
-                )}
-              </td>
-
-              <td>
-                ${renderStatus(r)}
-              </td>
-
-              <td>
-                ${formatDate(
-                  r.date_completed
-                )}
-              </td>
-
-              ${renderEditButton(r)}
-
-            `;
-
-          }
-
-
-          /*
-            PERSONNEL DETAIL TABLE
-          */
-
-          else if (
-            elementId ===
-            "detailRequestsTable"
-          ) {
-
-            tr.innerHTML = `
-
-              <td>
-                ${escapeHtml(
-                  r.request_no ||
-                  "—"
-                )}
-              </td>
-
-              <td>
-                ${escapeHtml(
-                  personnelCode
-                )}
-              </td>
-
-              <td>
-                ${escapeHtml(
-                  categoryName
-                )}
-              </td>
-
-              <td>
-                ${escapeHtml(
-                  serviceName
-                )}
-              </td>
-
-              <td>
-                ${formatNumber(
-                  r.pcs || 0
-                )}
-              </td>
-
-              <td>
-                ${formatCurrency(
-                  r.amount || 0
-                )}
-              </td>
-
-              <td>
-                ${formatDate(
-                  r.due_date
-                )}
-              </td>
-
-              <td>
-                ${renderStatus(r)}
-              </td>
-
-            `;
-
-          }
-
-
-          tbody.appendChild(
-            tr
-          );
-
+          `;
         }
-      );
 
 
-      /*
-        Make sure Admin Edit columns are
-        visible only to Admin.
-      */
+        /* =========================
+           ALL REQUESTS
+        ========================= */
+
+        else if (
+          elementId === "allRequestsTable"
+        ) {
+
+          tr.innerHTML = `
+
+            <td>
+              ${escapeHtml(
+                r.request_no || "—"
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                personnelCode
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                categoryName
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                serviceName
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                r.serial_number || "—"
+              )}
+            </td>
+
+            <td>
+              ${formatDate(
+                r.request_date
+              )}
+            </td>
+
+            <td>
+              ${formatNumber(
+                r.pcs || 0
+              )}
+            </td>
+
+            <td>
+              ${formatCurrency(
+                r.amount || 0
+              )}
+            </td>
+
+            <td>
+              ${formatDate(
+                r.due_date
+              )}
+            </td>
+
+            <td>
+              ${renderStatus(r)}
+            </td>
+
+            <td>
+              ${formatDate(
+                r.date_completed
+              )}
+            </td>
+
+            ${renderEditButton(r)}
+
+          `;
+        }
+
+
+        /* =========================
+           PERSONNEL DETAIL
+        ========================= */
+
+        else if (
+          elementId === "detailRequestsTable"
+        ) {
+
+          tr.innerHTML = `
+
+            <td>
+              ${escapeHtml(
+                r.request_no || "—"
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                personnelCode
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                categoryName
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                serviceName
+              )}
+            </td>
+
+            <td>
+              ${formatNumber(
+                r.pcs || 0
+              )}
+            </td>
+
+            <td>
+              ${formatCurrency(
+                r.amount || 0
+              )}
+            </td>
+
+            <td>
+              ${formatDate(
+                r.due_date
+              )}
+            </td>
+
+            <td>
+              ${renderStatus(r)}
+            </td>
+
+          `;
+        }
+
+        tbody.appendChild(tr);
+      });
 
       applyPermissions();
-
     }
 
 
@@ -3440,9 +2977,7 @@
         throw new Error(
           "You are not logged in."
         );
-
       }
-
 
       const response =
         await fetch(
@@ -3464,17 +2999,12 @@
             },
 
             body:
-              JSON.stringify(
-                body
-              )
-
+              JSON.stringify(body)
           }
         );
 
-
       const text =
         await response.text();
-
 
       if (!response.ok) {
 
@@ -3482,29 +3012,22 @@
           text ||
           "Supabase function failed."
         );
-
       }
-
 
       if (!text) {
         return null;
       }
 
-
       try {
 
-        return JSON.parse(
-          text
-        );
+        return JSON.parse(text);
 
       }
 
       catch {
 
         return text;
-
       }
-
     }
 
 
@@ -3519,7 +3042,6 @@
       currentPersonnelId =
         personnelId;
 
-
       const person =
         personnel.find(
           p =>
@@ -3527,56 +3049,34 @@
             String(personnelId)
         );
 
-
       if (!person) {
         return;
       }
-
 
       document.getElementById(
         "personDetailTitle"
       ).textContent =
         `${person.code} — ${person.name || ""}`;
 
-
-      document.getElementById(
-        "dashboardPage"
-      ).classList.add(
-        "hidden"
-      );
-
-
-      document.getElementById(
-        "requestsPage"
-      ).classList.add(
-        "hidden"
-      );
-
-
-      document.getElementById(
-        "personnelDetailPage"
-      ).classList.remove(
-        "hidden"
-      );
-
+      document
+        .getElementById("dashboardPage")
+        .classList.add("hidden");
 
       document
-        .getElementById(
-          "dashboardNav"
-        )
-        .classList.remove(
-          "active"
-        );
-
+        .getElementById("requestsPage")
+        .classList.add("hidden");
 
       document
-        .getElementById(
-          "requestsNav"
-        )
-        .classList.remove(
-          "active"
-        );
+        .getElementById("personnelDetailPage")
+        .classList.remove("hidden");
 
+      document
+        .getElementById("dashboardNav")
+        .classList.remove("active");
+
+      document
+        .getElementById("requestsNav")
+        .classList.remove("active");
 
       const personRequests =
         requests.filter(
@@ -3584,17 +3084,13 @@
             String(
               r.assigned_personnel_id
             ) ===
-            String(
-              personnelId
-            )
+            String(personnelId)
         );
-
 
       renderRequests(
         personRequests,
         "detailRequestsTable"
       );
-
     }
 
 
@@ -3602,113 +3098,58 @@
        NAVIGATION
     ========================================================= */
 
-    function showPage(
-      page
-    ) {
+    function showPage(page) {
 
       document
-        .getElementById(
-          "dashboardPage"
-        )
-        .classList.add(
-          "hidden"
-        );
-
+        .getElementById("dashboardPage")
+        .classList.add("hidden");
 
       document
-        .getElementById(
-          "requestsPage"
-        )
-        .classList.add(
-          "hidden"
-        );
-
+        .getElementById("requestsPage")
+        .classList.add("hidden");
 
       document
-        .getElementById(
-          "personnelDetailPage"
-        )
-        .classList.add(
-          "hidden"
-        );
-
+        .getElementById("personnelDetailPage")
+        .classList.add("hidden");
 
       document
-        .getElementById(
-          "dashboardNav"
-        )
-        .classList.remove(
-          "active"
-        );
-
+        .getElementById("dashboardNav")
+        .classList.remove("active");
 
       document
-        .getElementById(
-          "requestsNav"
-        )
-        .classList.remove(
-          "active"
-        );
+        .getElementById("requestsNav")
+        .classList.remove("active");
 
 
-      if (
-        page ===
-        "dashboard"
-      ) {
+      if (page === "dashboard") {
 
         document
-          .getElementById(
-            "dashboardPage"
-          )
-          .classList.remove(
-            "hidden"
-          );
-
+          .getElementById("dashboardPage")
+          .classList.remove("hidden");
 
         document
-          .getElementById(
-            "dashboardNav"
-          )
-          .classList.add(
-            "active"
-          );
-
+          .getElementById("dashboardNav")
+          .classList.add("active");
 
         loadDashboard();
-
       }
 
 
-      else if (
-        page ===
-        "requests"
-      ) {
+      else if (page === "requests") {
 
         document
-          .getElementById(
-            "requestsPage"
-          )
-          .classList.remove(
-            "hidden"
-          );
-
+          .getElementById("requestsPage")
+          .classList.remove("hidden");
 
         document
-          .getElementById(
-            "requestsNav"
-          )
-          .classList.add(
-            "active"
-          );
-
+          .getElementById("requestsNav")
+          .classList.add("active");
 
         renderRequests(
           requests,
           "allRequestsTable"
         );
-
       }
-
     }
 
 
@@ -3719,8 +3160,7 @@
     function openAddRequest() {
 
       if (
-        currentProfile?.role !==
-        "admin"
+        currentProfile?.role !== "admin"
       ) {
 
         alert(
@@ -3728,32 +3168,23 @@
         );
 
         return;
-
       }
 
-
-      editingRequestId =
-        null;
-
+      editingRequestId = null;
 
       document.getElementById(
         "modalTitle"
       ).textContent =
         "Add Request";
 
-
       document.getElementById(
         "saveRequestBtn"
       ).textContent =
         "Save Request";
 
-
       document
-        .getElementById(
-          "requestForm"
-        )
+        .getElementById("requestForm")
         .reset();
-
 
       document.getElementById(
         "serviceItem"
@@ -3763,30 +3194,19 @@
         </option>
       `;
 
-
       document.getElementById(
         "amount"
-      ).value =
-        "0";
-
+      ).value = "0";
 
       clearFormMessage();
-
 
       const modal =
         document.getElementById(
           "requestModal"
         );
 
-
-      modal.classList.remove(
-        "hidden"
-      );
-
-
-      modal.style.display =
-        "flex";
-
+      modal.classList.remove("hidden");
+      modal.style.display = "flex";
     }
 
 
@@ -3801,18 +3221,10 @@
           "requestModal"
         );
 
-
-      modal.classList.add(
-        "hidden"
-      );
-
-
-      modal.style.display =
-        "none";
-
+      modal.classList.add("hidden");
+      modal.style.display = "none";
 
       clearFormMessage();
-
     }
 
 
@@ -3820,13 +3232,10 @@
        EDIT REQUEST
     ========================================================= */
 
-    function editRequest(
-      requestId
-    ) {
+    function editRequest(requestId) {
 
       if (
-        currentProfile?.role !==
-        "admin"
+        currentProfile?.role !== "admin"
       ) {
 
         alert(
@@ -3834,9 +3243,7 @@
         );
 
         return;
-
       }
-
 
       const request =
         requests.find(
@@ -3845,7 +3252,6 @@
             String(requestId)
         );
 
-
       if (!request) {
 
         alert(
@@ -3853,132 +3259,94 @@
         );
 
         return;
-
       }
-
 
       editingRequestId =
         request.id;
-
 
       document.getElementById(
         "modalTitle"
       ).textContent =
         "Edit Request";
 
-
       document.getElementById(
         "saveRequestBtn"
       ).textContent =
         "Update Request";
 
-
       document.getElementById(
         "requestNo"
       ).value =
-        request.request_no ||
-        "";
-
+        request.request_no || "";
 
       document.getElementById(
         "assignedPersonnel"
       ).value =
-        request.assigned_personnel_id ||
-        "";
-
+        request.assigned_personnel_id || "";
 
       document.getElementById(
         "category"
       ).value =
-        request.category_id ||
-        "";
-
+        request.category_id || "";
 
       populateServiceItems();
-
 
       document.getElementById(
         "serviceItem"
       ).value =
-        request.service_item_id ||
-        "";
-
+        request.service_item_id || "";
 
       document.getElementById(
         "pcs"
       ).value =
-        request.pcs ||
-        1;
-
+        request.pcs || 1;
 
       document.getElementById(
         "amount"
       ).value =
         Number(
-          request.amount ||
-          0
+          request.amount || 0
         ).toFixed(2);
-
 
       document.getElementById(
         "serialNumber"
       ).value =
-        request.serial_number ||
-        "";
-
+        request.serial_number || "";
 
       document.getElementById(
         "requestDate"
       ).value =
-        request.request_date ||
-        "";
-
+        request.request_date || "";
 
       document.getElementById(
         "dueDate"
       ).value =
-        request.due_date ||
-        "";
-
+        request.due_date || "";
 
       document.getElementById(
         "status"
       ).value =
-        request.status ||
-        "Pending";
-
+        request.status || "Pending";
 
       document.getElementById(
         "description"
       ).value =
-        request.description ||
-        "";
-
+        request.description || "";
 
       document.getElementById(
         "remarks"
       ).value =
-        request.remarks ||
-        "";
-
+        request.remarks || "";
 
       clearFormMessage();
-
 
       const modal =
         document.getElementById(
           "requestModal"
         );
 
-
-      modal.classList.remove(
-        "hidden"
-      );
-
-
-      modal.style.display =
-        "flex";
-
+      modal.classList.remove("hidden");
+      modal.style.display = "flex";
     }
 
 
@@ -3987,19 +3355,15 @@
     ========================================================= */
 
     document
-      .getElementById(
-        "requestForm"
-      )
+      .getElementById("requestForm")
       .addEventListener(
         "submit",
         async function(event) {
 
           event.preventDefault();
 
-
           if (
-            currentProfile?.role !==
-            "admin"
+            currentProfile?.role !== "admin"
           ) {
 
             showFormMessage(
@@ -4008,25 +3372,19 @@
             );
 
             return;
-
           }
-
 
           const saveButton =
             document.getElementById(
               "saveRequestBtn"
             );
 
-
-          saveButton.disabled =
-            true;
-
+          saveButton.disabled = true;
 
           saveButton.textContent =
             editingRequestId
               ? "Updating..."
               : "Saving...";
-
 
           try {
 
@@ -4035,31 +3393,46 @@
                 "status"
               ).value;
 
+            const remarks =
+              document.getElementById(
+                "remarks"
+              ).value
+                .trim();
 
-            let dateCompleted =
-              null;
-
+            /*
+              Admin must also provide a
+              reason for Cancelled/Replaced.
+            */
 
             if (
-              status ===
-              "Completed"
+              (
+                status === "Cancelled" ||
+                status === "Replaced"
+              ) &&
+              !remarks
             ) {
 
-              if (
-                editingRequestId
-              ) {
+              throw new Error(
+                `${status} requires a remark explaining the reason.`
+              );
+            }
+
+            let dateCompleted = null;
+
+            if (
+              status === "Completed"
+            ) {
+
+              if (editingRequestId) {
 
                 const existingRequest =
                   requests.find(
                     r =>
-                      String(
-                        r.id
-                      ) ===
+                      String(r.id) ===
                       String(
                         editingRequestId
                       )
                   );
-
 
                 dateCompleted =
                   existingRequest
@@ -4072,11 +3445,8 @@
 
                 dateCompleted =
                   getTodayLocalDate();
-
               }
-
             }
-
 
             const data = {
 
@@ -4088,7 +3458,6 @@
                   .value
                   .trim(),
 
-
               assigned_personnel_id:
                 document
                   .getElementById(
@@ -4096,7 +3465,6 @@
                   )
                   .value ||
                 null,
-
 
               category_id:
                 document
@@ -4106,7 +3474,6 @@
                   .value ||
                 null,
 
-
               service_item_id:
                 document
                   .getElementById(
@@ -4114,7 +3481,6 @@
                   )
                   .value ||
                 null,
-
 
               pcs:
                 Number(
@@ -4125,7 +3491,6 @@
                     .value
                 ) || 0,
 
-
               amount:
                 Number(
                   document
@@ -4134,7 +3499,6 @@
                     )
                     .value
                 ) || 0,
-
 
               serial_number:
                 document
@@ -4145,7 +3509,6 @@
                   .trim() ||
                 null,
 
-
               request_date:
                 document
                   .getElementById(
@@ -4153,7 +3516,6 @@
                   )
                   .value ||
                 null,
-
 
               due_date:
                 document
@@ -4163,14 +3525,11 @@
                   .value ||
                 null,
 
-
               date_completed:
                 dateCompleted,
 
-
               status:
                 status,
-
 
               description:
                 document
@@ -4181,75 +3540,50 @@
                   .trim() ||
                 null,
 
-
               remarks:
-                document
-                  .getElementById(
-                    "remarks"
-                  )
-                  .value
-                  .trim() ||
+                remarks ||
                 null
-
             };
 
 
-            /*
-              UPDATE
-            */
+            /* UPDATE */
 
-            if (
-              editingRequestId
-            ) {
+            if (editingRequestId) {
 
               await supabaseFetch(
                 `requests?id=eq.${editingRequestId}`,
                 {
-                  method:
-                    "PATCH",
+                  method: "PATCH",
 
                   body:
-                    JSON.stringify(
-                      data
-                    )
+                    JSON.stringify(data)
                 }
               );
-
             }
 
 
-            /*
-              INSERT
-            */
+            /* INSERT */
 
             else {
 
               await supabaseFetch(
                 "requests",
                 {
-                  method:
-                    "POST",
+                  method: "POST",
 
                   body:
-                    JSON.stringify(
-                      data
-                    )
+                    JSON.stringify(data)
                 }
               );
-
             }
 
-
-            editingRequestId =
-              null;
-
+            editingRequestId = null;
 
             document
               .getElementById(
                 "requestForm"
               )
               .reset();
-
 
             document.getElementById(
               "serviceItem"
@@ -4259,76 +3593,21 @@
               </option>
             `;
 
-
             document.getElementById(
               "amount"
-            ).value =
-              "0";
-
+            ).value = "0";
 
             closeAddRequest();
 
-
             await reloadRequests();
 
-
-            if (
-              !document
-                .getElementById(
-                  "requestsPage"
-                )
-                .classList.contains(
-                  "hidden"
-                )
-            ) {
-
-              renderRequests(
-                requests,
-                "allRequestsTable"
-              );
-
-            }
-
-
-            if (
-              currentPersonnelId &&
-              !document
-                .getElementById(
-                  "personnelDetailPage"
-                )
-                .classList.contains(
-                  "hidden"
-                )
-            ) {
-
-              const personRequests =
-                requests.filter(
-                  r =>
-                    String(
-                      r.assigned_personnel_id
-                    ) ===
-                    String(
-                      currentPersonnelId
-                    )
-                );
-
-
-              renderRequests(
-                personRequests,
-                "detailRequestsTable"
-              );
-
-            }
+            refreshCurrentPage();
 
           }
 
-
           catch (error) {
 
-            console.error(
-              error
-            );
-
+            console.error(error);
 
             showFormMessage(
               error.message ||
@@ -4338,18 +3617,13 @@
 
           }
 
-
           finally {
 
-            saveButton.disabled =
-              false;
-
+            saveButton.disabled = false;
 
             saveButton.textContent =
               "Save Request";
-
           }
-
         }
       );
 
@@ -4365,7 +3639,6 @@
           "requestSearch"
         );
 
-
       if (searchBox) {
 
         searchBox.addEventListener(
@@ -4373,12 +3646,9 @@
           function() {
 
             loadDashboard();
-
           }
         );
-
       }
-
     }
 
 
@@ -4390,36 +3660,25 @@
 
       document.getElementById(
         "categoryFilter"
-      ).value =
-        "";
-
+      ).value = "";
 
       document.getElementById(
         "personnelFilter"
-      ).value =
-        "";
-
+      ).value = "";
 
       document.getElementById(
         "statusFilter"
-      ).value =
-        "";
-
+      ).value = "";
 
       document.getElementById(
         "requestSearch"
-      ).value =
-        "";
-
+      ).value = "";
 
       document.getElementById(
         "monthFilter"
-      ).value =
-        "";
-
+      ).value = "";
 
       loadDashboard();
-
     }
 
 
@@ -4437,14 +3696,11 @@
           "formMessage"
         );
 
-
       box.textContent =
         message;
 
-
       box.className =
         `message ${type}`;
-
     }
 
 
@@ -4455,14 +3711,10 @@
           "formMessage"
         );
 
-
-      box.textContent =
-        "";
-
+      box.textContent = "";
 
       box.className =
         "message";
-
     }
 
 
@@ -4475,31 +3727,20 @@
       const now =
         new Date();
 
-
       const year =
         now.getFullYear();
-
 
       const month =
         String(
           now.getMonth() + 1
-        ).padStart(
-          2,
-          "0"
-        );
-
+        ).padStart(2, "0");
 
       const day =
         String(
           now.getDate()
-        ).padStart(
-          2,
-          "0"
-        );
-
+        ).padStart(2, "0");
 
       return `${year}-${month}-${day}`;
-
     }
 
 
@@ -4507,84 +3748,59 @@
        FORMATTERS
     ========================================================= */
 
-    function formatCurrency(
-      value
-    ) {
+    function formatCurrency(value) {
 
       return (
         "₱" +
-        Number(
-          value || 0
-        ).toLocaleString(
+        Number(value || 0)
+          .toLocaleString(
+            "en-PH",
+            {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            }
+          )
+      );
+    }
+
+
+    function formatNumber(value) {
+
+      return Number(value || 0)
+        .toLocaleString(
           "en-PH",
           {
-            minimumFractionDigits:
-              2,
-
-            maximumFractionDigits:
-              2
+            maximumFractionDigits: 2
           }
-        )
-      );
-
+        );
     }
 
 
-    function formatNumber(
-      value
-    ) {
-
-      return Number(
-        value || 0
-      ).toLocaleString(
-        "en-PH",
-        {
-          maximumFractionDigits:
-            2
-        }
-      );
-
-    }
-
-
-    function formatDate(
-      date
-    ) {
+    function formatDate(date) {
 
       if (!date) {
         return "—";
       }
 
-
       const parts =
         date.split("-");
 
-
       if (
-        parts.length !==
-        3
+        parts.length !== 3
       ) {
-
         return date;
-
       }
-
 
       return (
         `${parts[1]}/${parts[2]}/${parts[0]}`
       );
-
     }
 
 
-    function statusBadge(
-      status
-    ) {
+    function statusBadge(status) {
 
       const safeStatus =
-        status ||
-        "Pending";
-
+        status || "Pending";
 
       return `
         <span
@@ -4597,7 +3813,6 @@
           )}
         </span>
       `;
-
     }
 
 
@@ -4605,42 +3820,21 @@
        HTML ESCAPE
     ========================================================= */
 
-    function escapeHtml(
-      value
-    ) {
+    function escapeHtml(value) {
 
       if (
         value === null ||
         value === undefined
       ) {
-
         return "";
-
       }
 
-
       return String(value)
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
-        );
-
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     }
 
 
