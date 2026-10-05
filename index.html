@@ -2125,25 +2125,21 @@ const supabaseClient =
       }
 
 
-    if (!response.ok) {
+      if (!response.ok) {
 
-  console.error("SUPABASE FETCH ERROR", {
-    endpoint: endpoint,
-    status: response.status,
-    data: data
-  });
+        throw new Error(
+          data?.message ||
+          data?.hint ||
+          data?.details ||
+          "Supabase request failed."
+        );
 
-  throw new Error(
-    `[${response.status}] ` +
-    (
-      data?.message ||
-      data?.hint ||
-      data?.details ||
-      "Supabase request failed."
-    )
-  );
+      }
 
-}
+
+      return data;
+
+    }
 
 
     /* =========================================================
