@@ -5689,13 +5689,13 @@ serviceItems =
 try {
 
   const { error } =
-    await supabaseClient.auth.resetPasswordForEmail(
-      email,
-      {
-        redirectTo:
-          "https://rmldavao.github.io/rml-monitoring/"
-      }
-    );
+   await supabaseClient.auth.resetPasswordForEmail(
+  email,
+  {
+    redirectTo:
+      "https://rmldavao.github.io/rml-monitoring/"
+  }
+);
 
 
   if (error) {
