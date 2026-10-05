@@ -1,9 +1,13 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>RML Monitoring</title>
 
   <style>
@@ -14,9 +18,13 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6f8;
+      background: #f5f7fb;
       color: #1f2937;
     }
+
+    /* =========================
+       SIDEBAR
+    ========================= */
 
     .sidebar {
       position: fixed;
@@ -24,43 +32,54 @@
       top: 0;
       width: 230px;
       height: 100vh;
-      background: #17365d;
+      background: #111827;
       color: white;
       padding: 25px 15px;
+      z-index: 100;
     }
 
     .sidebar h2 {
-      margin: 0 10px 5px;
-      font-size: 22px;
+      margin: 0 0 5px;
+      font-size: 20px;
     }
 
-    .sidebar p {
-      margin: 0 10px 25px;
-      font-size: 12px;
-      opacity: .75;
+    .sidebar small {
+      color: #9ca3af;
+      display: block;
+      margin-bottom: 30px;
     }
 
     .nav-btn {
       width: 100%;
-      border: 0;
+      border: none;
       background: transparent;
-      color: white;
+      color: #d1d5db;
       text-align: left;
-      padding: 13px 12px;
-      margin-bottom: 4px;
-      border-radius: 7px;
+      padding: 13px 15px;
+      border-radius: 8px;
+      margin-bottom: 5px;
       cursor: pointer;
       font-size: 14px;
     }
 
     .nav-btn:hover,
     .nav-btn.active {
-      background: rgba(255,255,255,.15);
+      background: #374151;
+      color: white;
     }
+
+    /* =========================
+       MAIN
+    ========================= */
 
     .main {
       margin-left: 230px;
       padding: 30px;
+      min-height: 100vh;
+    }
+
+    .hidden {
+      display: none !important;
     }
 
     .header {
@@ -68,16 +87,71 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 25px;
+      gap: 20px;
     }
 
     .header h1 {
-      margin: 0;
+      margin: 0 0 5px;
       font-size: 28px;
     }
 
     .header small {
       color: #6b7280;
     }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    button {
+      font-family: inherit;
+    }
+
+    .primary {
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .primary:hover {
+      background: #1d4ed8;
+    }
+
+    .secondary {
+      background: #e5e7eb;
+      color: #374151;
+      border: none;
+      border-radius: 7px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .secondary:hover {
+      background: #d1d5db;
+    }
+
+    .edit-btn {
+      background: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+      border-radius: 5px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .edit-btn:hover {
+      background: #e5e7eb;
+    }
+
+    /* =========================
+       CARDS
+    ========================= */
 
     .cards {
       display: grid;
@@ -90,194 +164,281 @@
       background: white;
       border-radius: 10px;
       padding: 18px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e5e7eb;
     }
 
-    .card-label {
+    .card-title {
       font-size: 12px;
       color: #6b7280;
       margin-bottom: 8px;
     }
 
     .card-value {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: bold;
+      color: #111827;
     }
 
-    .filters {
-      background: white;
-      padding: 18px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    select,
-    input {
-      padding: 10px;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
-      background: white;
-      font-size: 14px;
-    }
-
-    button.primary {
-      background: #17365d;
-      color: white;
-      border: 0;
-      padding: 10px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button.primary:hover {
-      background: #0f2948;
-    }
+    /* =========================
+       SECTION
+    ========================= */
 
     .section {
       background: white;
       border-radius: 10px;
       padding: 20px;
       margin-bottom: 25px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
-      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e5e7eb;
     }
 
     .section h2 {
       margin-top: 0;
+      margin-bottom: 18px;
       font-size: 19px;
     }
 
-    .search-box {
-  position: relative;
-  z-index: 100;
-}
+    /* =========================
+       FILTERS
+    ========================= */
 
-.search-box input {
-  pointer-events: auto;
-  cursor: text;
-}
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    .filters {
+      display: grid;
+      grid-template-columns:
+        1.2fr
+        1.2fr
+        1fr
+        1fr
+        auto;
+      gap: 10px;
+      margin-bottom: 25px;
     }
 
-    th,
-    td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #e5e7eb;
-      text-align: left;
+    .filters select,
+    .filters input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      background: white;
       font-size: 14px;
     }
 
+    /* =========================
+       SEARCH
+    ========================= */
+
+    .search-box {
+      margin-bottom: 15px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      font-size: 14px;
+    }
+
+    /* =========================
+       TABLE
+    ========================= */
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
     th {
-      background: #f8fafc;
+      background: #f9fafb;
+      color: #4b5563;
       font-weight: 600;
+      text-align: left;
+      padding: 12px 10px;
+      border-bottom: 1px solid #e5e7eb;
+      white-space: nowrap;
     }
 
-    tr.person-row {
-      cursor: pointer;
+    td {
+      padding: 11px 10px;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: middle;
     }
 
-    tr.person-row:hover {
-      background: #f8fafc;
+    tbody tr:hover {
+      background: #fafafa;
     }
+
+    .empty {
+      text-align: center;
+      color: #9ca3af;
+      padding: 30px;
+    }
+
+    /* =========================
+       STATUS
+    ========================= */
 
     .status {
       display: inline-block;
       padding: 5px 9px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
+      white-space: nowrap;
     }
 
-    .status.Completed {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .status.Ongoing {
-      background: #dbeafe;
-      color: #1e40af;
-    }
-
-    .status.Pending {
+    .status-Pending {
       background: #fef3c7;
       color: #92400e;
     }
 
-    .status.Cancelled {
+    .status-Ongoing {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .status-Completed {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-Cancelled {
       background: #fee2e2;
       color: #991b1b;
     }
 
-    .hidden {
-      display: none;
+    /* =========================
+       PERSONNEL DETAIL
+    ========================= */
+
+    .back-btn {
+      margin-bottom: 20px;
     }
+
+    .person-header {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .person-header h1 {
+      margin: 0 0 5px;
+    }
+
+    .person-header small {
+      color: #6b7280;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
 
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,.45);
+      background: rgba(0, 0, 0, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
       z-index: 1000;
+      padding: 20px;
     }
 
-    .modal-box {
+    .modal-content {
       background: white;
       width: 100%;
-      max-width: 850px;
+      max-width: 650px;
       max-height: 90vh;
       overflow-y: auto;
       border-radius: 12px;
       padding: 25px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 20px;
     }
 
-    .close {
-      border: 0;
+    .modal-header h2 {
+      margin: 0;
+    }
+
+    .close-btn {
+      border: none;
       background: transparent;
       font-size: 25px;
       cursor: pointer;
+      color: #6b7280;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
+    /* =========================
+       FORM
+    ========================= */
 
     .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-group.full {
-      grid-column: 1 / -1;
+      margin-bottom: 15px;
     }
 
     .form-group label {
+      display: block;
       font-size: 13px;
       font-weight: 600;
+      margin-bottom: 6px;
+      color: #374151;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .amount-display {
+      background: #f3f4f6;
+      font-weight: bold;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
     }
 
     .message {
-      margin-bottom: 15px;
-      padding: 12px;
-      border-radius: 7px;
       display: none;
+      padding: 10px 12px;
+      border-radius: 7px;
+      margin-bottom: 15px;
+      font-size: 13px;
     }
 
     .message.success {
@@ -292,33 +453,47 @@
       color: #991b1b;
     }
 
-    @media (max-width: 1100px) {
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 1200px) {
       .cards {
         grid-template-columns: repeat(3, 1fr);
       }
+
+      .filters {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
-    @media (max-width: 750px) {
+    @media (max-width: 800px) {
       .sidebar {
-        position: static;
+        position: relative;
         width: 100%;
         height: auto;
       }
 
       .main {
         margin-left: 0;
+        padding: 20px;
       }
 
       .cards {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .form-grid {
+      .filters {
         grid-template-columns: 1fr;
       }
 
-      .form-group.full {
-        grid-column: auto;
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
   </style>
@@ -326,302 +501,570 @@
 
 <body>
 
-  <!-- SIDEBAR -->
+  <!-- =========================
+       SIDEBAR
+  ========================= -->
+
   <aside class="sidebar">
+
     <h2>RML Monitoring</h2>
-    <p>Regional Metrology Laboratory</p>
+    <small>DOST XI Regional Metrology Laboratory</small>
 
-    <button class="nav-btn active" onclick="showDashboard()">
-      📊 Dashboard
+    <button
+      class="nav-btn active"
+      id="dashboardNav"
+      onclick="showPage('dashboard')"
+    >
+      Dashboard
     </button>
 
-    <button class="nav-btn" onclick="showRequests()">
-      📋 Requests
+    <button
+      class="nav-btn"
+      id="requestsNav"
+      onclick="showPage('requests')"
+    >
+      All Requests
     </button>
 
-    <button class="nav-btn" onclick="openAddRequest()">
-      ➕ Add Request
-    </button>
   </aside>
 
 
-  <!-- MAIN -->
+  <!-- =========================
+       MAIN
+  ========================= -->
+
   <main class="main">
 
-    <!-- DASHBOARD -->
+    <!-- =========================
+         DASHBOARD
+    ========================= -->
+
     <div id="dashboardPage">
 
       <div class="header">
+
         <div>
-          <h1>Personnel Monitoring</h1>
-          <small>RML calibration workload and accomplishment</small>
+          <h1>Dashboard</h1>
+          <small>RML monitoring and personnel workload</small>
         </div>
 
-        <button class="primary" onclick="openAddRequest()">
+        <button
+          class="primary"
+          onclick="openAddRequest()"
+        >
           + Add Request
         </button>
+
       </div>
 
 
       <!-- SUMMARY CARDS -->
+
       <div class="cards">
 
         <div class="card">
-          <div class="card-label">Total Assigned</div>
-          <div class="card-value" id="totalAssigned">0</div>
+          <div class="card-title">
+            Assigned
+          </div>
+
+          <div
+            class="card-value"
+            id="totalAssigned"
+          >
+            0
+          </div>
         </div>
 
-        <div class="card">
-          <div class="card-label">Completed</div>
-          <div class="card-value" id="totalCompleted">0</div>
-        </div>
 
         <div class="card">
-          <div class="card-label">Ongoing</div>
-          <div class="card-value" id="totalOngoing">0</div>
+          <div class="card-title">
+            Completed
+          </div>
+
+          <div
+            class="card-value"
+            id="totalCompleted"
+          >
+            0
+          </div>
         </div>
 
-        <div class="card">
-          <div class="card-label">Pending</div>
-          <div class="card-value" id="totalPending">0</div>
-        </div>
 
         <div class="card">
-          <div class="card-label">Total PCS</div>
-          <div class="card-value" id="totalPCS">0</div>
+          <div class="card-title">
+            Ongoing
+          </div>
+
+          <div
+            class="card-value"
+            id="totalOngoing"
+          >
+            0
+          </div>
         </div>
 
+
         <div class="card">
-          <div class="card-label">Total Amount</div>
-          <div class="card-value" id="totalAmount">₱0.00</div>
+          <div class="card-title">
+            Pending
+          </div>
+
+          <div
+            class="card-value"
+            id="totalPending"
+          >
+            0
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-title">
+            PCS
+          </div>
+
+          <div
+            class="card-value"
+            id="totalPCS"
+          >
+            0
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-title">
+            Amount
+          </div>
+
+          <div
+            class="card-value"
+            id="totalAmount"
+          >
+            ₱0.00
+          </div>
         </div>
 
       </div>
 
 
       <!-- FILTERS -->
-<div class="filters">
 
-  <select id="categoryFilter" onchange="loadDashboard()">
-    <option value="">All Categories</option>
-  </select>
+      <div class="filters">
 
-  <select id="personnelFilter" onchange="loadDashboard()">
-    <option value="">All Personnel</option>
-  </select>
-
-  <select id="statusFilter" onchange="loadDashboard()">
-    <option value="">All Status</option>
-    <option value="Completed">Completed</option>
-    <option value="Ongoing">Ongoing</option>
-    <option value="Pending">Pending</option>
-    <option value="Cancelled">Cancelled</option>
-  </select>
-
- <input type="month" id="monthFilter" onchange="loadDashboard()">
-  <button class="primary" onclick="clearFilters()">
-    Clear Filters
-  </button>
-
-</div>
-      <!-- PERSONNEL SUMMARY -->
-      <div class="section">
-
-        <h2>Personnel Summary</h2>
-
-        <table>
-
-          <table>
-
-<!-- PERSONNEL SUMMARY -->
-<div class="section">
-
-  <h2>Personnel Summary</h2>
-
-  <table>
-
-    <thead>
-      <tr>
-        <th>Personnel</th>
-        <th>Assigned</th>
-        <th>Completed</th>
-        <th>Ongoing</th>
-        <th>Pending</th>
-        <th>PCS</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-
-    <tbody id="personnelTable">
-    </tbody>
-
-  </table>
-
-</div>
-
-      <!-- RECENT REQUESTS -->
-<div class="section">
-<div class="search-box" style="display:flex; justify-content:space-between; align-items:center; gap:15px; margin-bottom:15px;">
-
-  <h2 style="margin:0;">Requests</h2>
-
-<input
-  id="requestSearch"
-  type="text"
-  placeholder="Search requests..."
-  autocomplete="off"
-  style="width:280px;"
->
-</div>
-
-</div>
-
-  <table>
-          <thead>
-            <tr>
-              <th>Request No.</th>
-<th>Personnel</th>
-<th>Category</th>
-<th>Service / Item</th>
-<th>Serial Number</th>
-<th>PCS</th>
-<th>Amount</th>
-<th>Due</th>
-<th>Status</th>
-<th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody id="requestsTable">
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </div>
+        <select
+          id="categoryFilter"
+          onchange="loadDashboard()"
+        >
+          <option value="">
+            All Categories
+          </option>
+        </select>
 
 
-    <!-- PERSONNEL DETAIL -->
-    <div id="personnelPage" class="hidden">
+        <select
+          id="personnelFilter"
+          onchange="loadDashboard()"
+        >
+          <option value="">
+            All Personnel
+          </option>
+        </select>
 
-      <div class="header">
 
-        <div>
-          <h1 id="personnelTitle">Personnel</h1>
-          <small>Assigned calibration requests</small>
-        </div>
+        <select
+          id="statusFilter"
+          onchange="loadDashboard()"
+        >
 
-        <button class="primary" onclick="showDashboard()">
-          ← Back
+          <option value="">
+            All Status
+          </option>
+
+          <option value="Completed">
+            Completed
+          </option>
+
+          <option value="Ongoing">
+            Ongoing
+          </option>
+
+          <option value="Pending">
+            Pending
+          </option>
+
+          <option value="Cancelled">
+            Cancelled
+          </option>
+
+        </select>
+
+
+        <input
+          type="month"
+          id="monthFilter"
+          onchange="loadDashboard()"
+        >
+
+
+        <button
+          class="primary"
+          onclick="clearFilters()"
+        >
+          Clear Filters
         </button>
 
       </div>
 
-      <div class="cards">
 
-        <div class="card">
-          <div class="card-label">Assigned</div>
-          <div class="card-value" id="detailAssigned">0</div>
-        </div>
+      <!-- PERSONNEL SUMMARY -->
 
-        <div class="card">
-          <div class="card-label">Completed</div>
-          <div class="card-value" id="detailCompleted">0</div>
-        </div>
+      <div class="section">
 
-        <div class="card">
-          <div class="card-label">Ongoing</div>
-          <div class="card-value" id="detailOngoing">0</div>
-        </div>
+        <h2>
+          Personnel Summary
+        </h2>
 
-        <div class="card">
-          <div class="card-label">Pending</div>
-          <div class="card-value" id="detailPending">0</div>
-        </div>
+        <div class="table-wrapper">
 
-        <div class="card">
-          <div class="card-label">PCS</div>
-          <div class="card-value" id="detailPCS">0</div>
-        </div>
+          <table>
 
-        <div class="card">
-          <div class="card-label">Amount</div>
-          <div class="card-value" id="detailAmount">₱0.00</div>
+            <thead>
+
+              <tr>
+
+                <th>
+                  Personnel
+                </th>
+
+                <th>
+                  Assigned
+                </th>
+
+                <th>
+                  Completed
+                </th>
+
+                <th>
+                  Ongoing
+                </th>
+
+                <th>
+                  Pending
+                </th>
+
+                <th>
+                  PCS
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody
+              id="personnelTable"
+            >
+            </tbody>
+
+          </table>
+
         </div>
 
       </div>
 
+
+      <!-- DASHBOARD REQUESTS -->
+
       <div class="section">
 
-        <h2>Assigned Requests</h2>
+        <h2>
+          Requests
+        </h2>
 
-        <table>
 
-          <thead>
-            <tr>
-             <th>Request No.</th>
-<th>Personnel</th>
-<th>Category</th>
-<th>Service / Item</th>
-<th>PCS</th>
-<th>Amount</th>
-<th>Due</th>
-<th>Status</th>
-<th>Action</th>
-            </tr>
-          </thead>
+        <div class="search-box">
 
-          <tbody id="detailRequestsTable">
-          </tbody>
+          <input
+            type="text"
+            id="requestSearch"
+            placeholder="Search request no., personnel, category, service/item, serial number..."
+          >
 
-        </table>
+        </div>
+
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Request No.
+                </th>
+
+                <th>
+                  Personnel
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Service / Item
+                </th>
+
+                <th>
+                  Serial Number
+                </th>
+
+                <th>
+                  PCS
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+                <th>
+                  Due
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Action
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody
+              id="requestsTable"
+            >
+            </tbody>
+
+          </table>
+
+        </div>
 
       </div>
 
     </div>
 
 
-    <!-- ALL REQUESTS -->
-    <div id="requestsPage" class="hidden">
+    <!-- =========================
+         ALL REQUESTS PAGE
+    ========================= -->
+
+    <div
+      id="requestsPage"
+      class="hidden"
+    >
 
       <div class="header">
 
         <div>
-          <h1>All Requests</h1>
-          <small>RML monitoring records</small>
+
+          <h1>
+            All Requests
+          </h1>
+
+          <small>
+            RML monitoring records
+          </small>
+
         </div>
 
-        <button class="primary" onclick="openAddRequest()">
+
+        <button
+          class="primary"
+          onclick="openAddRequest()"
+        >
           + Add Request
         </button>
 
       </div>
 
+
       <div class="section">
 
-        <table>
+        <div class="table-wrapper">
 
-          <thead>
-            <tr>
-             <th>Request No.</th>
-<th>Personnel</th>
-<th>Category</th>
-<th>Service / Item</th>
-<th>Serial Number</th>
-<th>Request Date</th>
-<th>PCS</th>
-<th>Amount</th>
-<th>Due</th>
-<th>Status</th>
-<th>Action</th>
-            </tr>
-          </thead>
+          <table>
 
-          <tbody id="allRequestsTable">
-          </tbody>
+            <thead>
 
-        </table>
+              <tr>
+
+                <th>
+                  Request No.
+                </th>
+
+                <th>
+                  Personnel
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Service / Item
+                </th>
+
+                <th>
+                  Serial Number
+                </th>
+
+                <th>
+                  Request Date
+                </th>
+
+                <th>
+                  PCS
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+                <th>
+                  Due
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Date Completed
+                </th>
+
+                <th>
+                  Action
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody
+              id="allRequestsTable"
+            >
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         PERSONNEL DETAIL PAGE
+    ========================= -->
+
+    <div
+      id="personnelDetailPage"
+      class="hidden"
+    >
+
+      <button
+        class="secondary back-btn"
+        onclick="showPage('dashboard')"
+      >
+        ← Back to Dashboard
+      </button>
+
+
+      <div class="person-header">
+
+        <h1 id="personDetailTitle">
+          Personnel
+        </h1>
+
+        <small>
+          Assigned requests
+        </small>
+
+      </div>
+
+
+      <div class="section">
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Request No.
+                </th>
+
+                <th>
+                  Personnel
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Service / Item
+                </th>
+
+                <th>
+                  PCS
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+                <th>
+                  Due
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Action
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody
+              id="detailRequestsTable"
+            >
+            </tbody>
+
+          </table>
+
+        </div>
 
       </div>
 
@@ -630,107 +1073,308 @@
   </main>
 
 
-  <!-- ADD REQUEST MODAL -->
-  <div id="requestModal" class="modal hidden">
+  <!-- =========================
+       ADD / EDIT REQUEST MODAL
+  ========================= -->
 
-    <div class="modal-box">
+  <div
+    id="requestModal"
+    class="modal hidden"
+    style="display: none;"
+  >
+
+    <div class="modal-content">
 
       <div class="modal-header">
 
-        <h2>Add Calibration Request</h2>
+        <h2 id="modalTitle">
+          Add Request
+        </h2>
 
-       <button type="button" class="close" onclick="closeAddRequest()">
-  ×
-</button>
+        <button
+          class="close-btn"
+          onclick="closeAddRequest()"
+        >
+          ×
+        </button>
 
       </div>
 
-      <div id="formMessage" class="message"></div>
+
+      <div
+        id="formMessage"
+        class="message"
+      >
+      </div>
+
 
       <form id="requestForm">
 
-        <div class="form-grid">
+        <!-- REQUEST NO. -->
+
+        <div class="form-group">
+
+          <label>
+            Request No.
+          </label>
+
+          <input
+            type="text"
+            id="requestNo"
+            required
+          >
+
+        </div>
+
+
+        <!-- PERSONNEL -->
+
+        <div class="form-group">
+
+          <label>
+            Assigned Personnel
+          </label>
+
+          <select
+            id="assignedPersonnel"
+            required
+          >
+
+            <option value="">
+              Select personnel
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="form-group">
+
+          <label>
+            Monitoring Category
+          </label>
+
+          <select
+            id="category"
+            required
+            onchange="populateServiceItems()"
+          >
+
+            <option value="">
+              Select category
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- SERVICE ITEM -->
+
+        <div class="form-group">
+
+          <label>
+            Service / Item
+          </label>
+
+          <select
+            id="serviceItem"
+            required
+            onchange="updateAmount()"
+          >
+
+            <option value="">
+              Select service/item
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- PCS / AMOUNT -->
+
+        <div class="form-row">
 
           <div class="form-group">
-            <label>Request No.</label>
-            <input id="requestNo" required>
+
+            <label>
+              PCS
+            </label>
+
+            <input
+              type="number"
+              id="pcs"
+              min="1"
+              step="1"
+              value="1"
+              onchange="updateAmount()"
+              oninput="updateAmount()"
+              required
+            >
+
           </div>
+
 
           <div class="form-group">
-            <label>Assigned Personnel</label>
-            <select id="assignedPersonnel" required>
-              <option value="">Select personnel</option>
-            </select>
-          </div>
 
-          <div class="form-group">
-            <label>Monitoring Category</label>
-            <select id="category" required>
-              <option value="">Select category</option>
-            </select>
-          </div>
+            <label>
+              Total Amount
+            </label>
 
-          <!-- NEW SERVICE / ITEM -->
-          <div class="form-group">
-            <label>Service / Item</label>
-            <select id="serviceItem" required>
-              <option value="">Select service/item</option>
-            </select>
-          </div>
+            <input
+              type="number"
+              id="amount"
+              class="amount-display"
+              readonly
+              value="0"
+              step="0.01"
+            >
 
-          <div class="form-group">
-            <label>PCS</label>
-            <input id="pcs" type="number" min="0" step="0.01" value="1" required>
-          </div>
-
-          <div class="form-group">
-            <label>Total Amount (₱)</label>
-            <input id="amount" type="number" min="0" step="0.01" value="0" required>
-          </div>
-
-          <div class="form-group">
-         <label>Request Date</label>
-<input id="requestDate" type="date">
-
-<label>Due Date</label>
-<input id="dueDate" type="date">
-
-<label>Date Completed</label>
-<input id="dateCompleted" type="date">
-          </div>
-
-          <div class="form-group">
-            <label>Status</label>
-            <select id="status">
-              <option value="Pending">Pending</option>
-              <option value="Ongoing">Ongoing</option>
-              <option value="Completed">Completed</option>
-              <option value="Cancelled">Cancelled</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Serial Number</label>
-            <input id="serialNumber">
-          </div>
-
-          <div class="form-group full">
-            <label>Description</label>
-            <input id="description">
-          </div>
-
-          <div class="form-group full">
-            <label>Remarks</label>
-            <input id="remarks">
           </div>
 
         </div>
 
-        <br>
 
-        <button type="submit" class="primary">
-          Save Request
-        </button>
+        <!-- SERIAL NUMBER -->
+
+        <div class="form-group">
+
+          <label>
+            Serial Number
+          </label>
+
+          <input
+            type="text"
+            id="serialNumber"
+          >
+
+        </div>
+
+
+        <!-- REQUEST DATE / DUE DATE -->
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label>
+              Request Date
+            </label>
+
+            <input
+              type="date"
+              id="requestDate"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Due Date
+            </label>
+
+            <input
+              type="date"
+              id="dueDate"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="form-group">
+
+          <label>
+            Status
+          </label>
+
+          <select
+            id="status"
+            required
+          >
+
+            <option value="Pending">
+              Pending
+            </option>
+
+            <option value="Ongoing">
+              Ongoing
+            </option>
+
+            <option value="Completed">
+              Completed
+            </option>
+
+            <option value="Cancelled">
+              Cancelled
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <div class="form-group">
+
+          <label>
+            Description
+          </label>
+
+          <textarea
+            id="description"
+          ></textarea>
+
+        </div>
+
+
+        <!-- REMARKS -->
+
+        <div class="form-group">
+
+          <label>
+            Remarks
+          </label>
+
+          <textarea
+            id="remarks"
+          ></textarea>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="modal-actions">
+
+          <button
+            type="button"
+            class="secondary"
+            onclick="closeAddRequest()"
+          >
+            Cancel
+          </button>
+
+
+          <button
+            type="submit"
+            class="primary"
+            id="saveRequestBtn"
+          >
+            Save Request
+          </button>
+
+        </div>
 
       </form>
 
@@ -739,1057 +1383,2063 @@
   </div>
 
 
-<script>
+  <script>
 
-  // ==========================================
-  // SUPABASE CONNECTION
-  // ==========================================
+    /* =========================================================
+       SUPABASE CONFIGURATION
+    ========================================================= */
 
-  const SUPABASE_URL =
-    "https://ciibzyfkgiakarohyxka.supabase.co";
+    const SUPABASE_URL =
+      "https://ciibzyfkgiakarohyxka.supabase.co";
 
-  const SUPABASE_KEY =
-    "sb_publishable_616pyky7S6t2xj_qB_I6wA_x2q8EDZi";
+    const SUPABASE_KEY =
+      "sb_publishable_616pyky7S6t2xj_qB_I6wA_x2q8EDZi";
 
 
-  // ==========================================
-  // GLOBAL DATA
-  // ==========================================
+    /* =========================================================
+       GLOBAL VARIABLES
+    ========================================================= */
 
- let personnel = [];
-let categories = [];
-let requests = [];
-let serviceItems = [];
+    let requests = [];
 
-let editingRequestId = null;
-  // ==========================================
-  // SUPABASE API
-  // ==========================================
+    let personnel = [];
 
-  async function supabaseFetch(table, options = {}) {
+    let categories = [];
 
-    const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/${table}`,
-      {
-        ...options,
+    let serviceItems = [];
 
-        headers: {
-          "apikey": SUPABASE_KEY,
-          "Authorization": `Bearer ${SUPABASE_KEY}`,
-          "Content-Type": "application/json",
-          "Prefer": options.method === "POST"
-            ? "return=representation"
-            : ""
+    let editingRequestId = null;
+
+    let currentPersonnelId = null;
+
+
+    /* =========================================================
+       SUPABASE FETCH
+    ========================================================= */
+
+    async function supabaseFetch(
+      endpoint,
+      options = {}
+    ) {
+
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/${endpoint}`,
+        {
+          ...options,
+
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization":
+              `Bearer ${SUPABASE_KEY}`,
+            "Content-Type":
+              "application/json",
+            "Prefer":
+              options.method === "POST"
+                ? "return=representation"
+                : "return=representation",
+
+            ...(options.headers || {})
+          }
         }
+      );
+
+
+      if (!response.ok) {
+
+        const errorText =
+          await response.text();
+
+        throw new Error(
+          errorText || "Supabase request failed."
+        );
+
       }
-    );
 
-    if (!response.ok) {
 
-      const errorText = await response.text();
+      const text =
+        await response.text();
 
-      throw new Error(errorText);
+
+      if (!text) {
+        return [];
+      }
+
+
+      return JSON.parse(text);
+
     }
 
-    if (response.status === 204) {
-      return [];
+
+    /* =========================================================
+       INITIALIZATION
+    ========================================================= */
+
+    async function init() {
+
+      try {
+
+        await loadPersonnel();
+
+        await loadCategories();
+
+        await loadServiceItems();
+
+        await reloadRequests();
+
+        setupSearch();
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Unable to load RML Monitoring data.\n\n" +
+          error.message
+        );
+
+      }
+
     }
 
-    return response.json();
-  }
+
+    /* =========================================================
+       LOAD PERSONNEL
+    ========================================================= */
+
+    async function loadPersonnel() {
+
+      personnel =
+        await supabaseFetch(
+          "personnel?select=*&active=eq.true&order=code.asc"
+        );
 
 
-  // ==========================================
-  // LOAD INITIAL DATA
-  // ==========================================
+      const personnelSelect =
+        document.getElementById(
+          "assignedPersonnel"
+        );
 
-  async function loadData() {
 
-    try {
+      const personnelFilter =
+        document.getElementById(
+          "personnelFilter"
+        );
 
-      personnel = await supabaseFetch(
-        "personnel?select=*&active=eq.true&order=code"
-      );
 
-      categories = await supabaseFetch(
-        "monitoring_categories?select=*&active=eq.true&order=name"
-      );
+      personnelSelect.innerHTML = `
+        <option value="">
+          Select personnel
+        </option>
+      `;
 
-      serviceItems = await supabaseFetch(
-        "service_items?select=*&active=eq.true&order=item_name"
-      );
 
-      requests = await supabaseFetch(
-        "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name),serviceItem:service_item_id(id,item_name,details,price)&order=created_at.desc"
-      );
+      personnelFilter.innerHTML = `
+        <option value="">
+          All Personnel
+        </option>
+      `;
 
-      populateFilters();
+
+      personnel.forEach(person => {
+
+        personnelSelect.innerHTML += `
+          <option value="${person.id}">
+            ${escapeHtml(person.code)}
+          </option>
+        `;
+
+
+        personnelFilter.innerHTML += `
+          <option value="${person.id}">
+            ${escapeHtml(person.code)}
+          </option>
+        `;
+
+      });
+
+    }
+
+
+    /* =========================================================
+       LOAD CATEGORIES
+    ========================================================= */
+
+    async function loadCategories() {
+
+      categories =
+        await supabaseFetch(
+          "monitoring_categories?select=*&active=eq.true&order=name.asc"
+        );
+
+
+      const categorySelect =
+        document.getElementById(
+          "category"
+        );
+
+
+      const categoryFilter =
+        document.getElementById(
+          "categoryFilter"
+        );
+
+
+      categorySelect.innerHTML = `
+        <option value="">
+          Select category
+        </option>
+      `;
+
+
+      categoryFilter.innerHTML = `
+        <option value="">
+          All Categories
+        </option>
+      `;
+
+
+      categories.forEach(category => {
+
+        categorySelect.innerHTML += `
+          <option value="${category.id}">
+            ${escapeHtml(category.name)}
+          </option>
+        `;
+
+
+        categoryFilter.innerHTML += `
+          <option value="${category.id}">
+            ${escapeHtml(category.name)}
+          </option>
+        `;
+
+      });
+
+    }
+
+
+    /* =========================================================
+       LOAD SERVICE ITEMS
+    ========================================================= */
+
+    async function loadServiceItems() {
+
+      serviceItems =
+        await supabaseFetch(
+          "service_items?select=*&active=eq.true&order=item_name.asc"
+        );
+
+    }
+
+
+    /* =========================================================
+       POPULATE SERVICE ITEMS
+    ========================================================= */
+
+    function populateServiceItems() {
+
+      const categoryId =
+        document.getElementById(
+          "category"
+        ).value;
+
+
+      const serviceSelect =
+        document.getElementById(
+          "serviceItem"
+        );
+
+
+      serviceSelect.innerHTML = `
+        <option value="">
+          Select service/item
+        </option>
+      `;
+
+
+      if (!categoryId) {
+
+        updateAmount();
+
+        return;
+
+      }
+
+
+      const filtered =
+        serviceItems.filter(
+          item =>
+            String(item.category_id) ===
+            String(categoryId)
+        );
+
+
+      filtered.forEach(item => {
+
+        serviceSelect.innerHTML += `
+          <option
+            value="${item.id}"
+            data-price="${item.price || 0}"
+          >
+            ${escapeHtml(item.item_name)}
+            — ₱${formatNumber(item.price || 0)}
+          </option>
+        `;
+
+      });
+
+
+      updateAmount();
+
+    }
+
+
+    /* =========================================================
+       UPDATE AMOUNT
+    ========================================================= */
+
+    function updateAmount() {
+
+      const serviceItemId =
+        document.getElementById(
+          "serviceItem"
+        ).value;
+
+
+      const pcs =
+        Number(
+          document.getElementById(
+            "pcs"
+          ).value
+        ) || 0;
+
+
+      const selected =
+        serviceItems.find(
+          item =>
+            String(item.id) ===
+            String(serviceItemId)
+        );
+
+
+      const price =
+        selected
+          ? Number(selected.price || 0)
+          : 0;
+
+
+      const total =
+        price * pcs;
+
+
+      document.getElementById(
+        "amount"
+      ).value =
+        total.toFixed(2);
+
+    }
+
+
+    /* =========================================================
+       RELOAD REQUESTS
+    ========================================================= */
+
+    async function reloadRequests() {
+
+      requests =
+        await supabaseFetch(
+          "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name),serviceItem:service_item_id(id,item_name,details,price)&order=created_at.desc"
+        );
+
 
       loadDashboard();
 
-    } catch (error) {
+    }
 
-      console.error(error);
 
-      alert(
-        "Unable to connect to the RML database.\n\n" +
-        error.message
+    /* =========================================================
+       FILTER REQUESTS
+    ========================================================= */
+
+    function getFilteredRequests() {
+
+      const category =
+        document.getElementById(
+          "categoryFilter"
+        ).value;
+
+
+      const person =
+        document.getElementById(
+          "personnelFilter"
+        ).value;
+
+
+      const status =
+        document.getElementById(
+          "statusFilter"
+        ).value;
+
+
+      const month =
+        document.getElementById(
+          "monthFilter"
+        )?.value;
+
+
+      const search =
+        document.getElementById(
+          "requestSearch"
+        )?.value
+          .trim()
+          .toLowerCase();
+
+
+      return requests.filter(r => {
+
+        if (
+          category &&
+          String(r.category_id) !==
+            String(category)
+        ) {
+          return false;
+        }
+
+
+        if (
+          person &&
+          String(r.assigned_personnel_id) !==
+            String(person)
+        ) {
+          return false;
+        }
+
+
+        if (
+          status &&
+          r.status !== status
+        ) {
+          return false;
+        }
+
+
+        /*
+          Month filter uses Due Date.
+        */
+
+        if (
+          month &&
+          !r.due_date?.startsWith(month)
+        ) {
+          return false;
+        }
+
+
+        if (search) {
+
+          const searchableText = [
+
+            r.request_no,
+
+            r.personnel?.code,
+
+            r.personnel?.name,
+
+            r.category?.name,
+
+            r.serviceItem?.item_name,
+
+            r.serviceItem?.details,
+
+            r.serial_number,
+
+            r.description,
+
+            r.remarks
+
+          ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
+
+          if (
+            !searchableText.includes(search)
+          ) {
+            return false;
+          }
+
+        }
+
+
+        return true;
+
+      });
+
+    }
+
+
+    /* =========================================================
+       LOAD DASHBOARD
+    ========================================================= */
+
+    function loadDashboard() {
+
+      const filtered =
+        getFilteredRequests();
+
+
+      /*
+        SUMMARY CARDS
+      */
+
+      document.getElementById(
+        "totalAssigned"
+      ).textContent =
+        filtered.length;
+
+
+      document.getElementById(
+        "totalCompleted"
+      ).textContent =
+        filtered.filter(
+          r => r.status === "Completed"
+        ).length;
+
+
+      document.getElementById(
+        "totalOngoing"
+      ).textContent =
+        filtered.filter(
+          r => r.status === "Ongoing"
+        ).length;
+
+
+      document.getElementById(
+        "totalPending"
+      ).textContent =
+        filtered.filter(
+          r => r.status === "Pending"
+        ).length;
+
+
+      const totalPCS =
+        filtered.reduce(
+          (sum, r) =>
+            sum + Number(r.pcs || 0),
+          0
+        );
+
+
+      document.getElementById(
+        "totalPCS"
+      ).textContent =
+        formatNumber(totalPCS);
+
+
+      const totalAmount =
+        filtered.reduce(
+          (sum, r) =>
+            sum + Number(r.amount || 0),
+          0
+        );
+
+
+      document.getElementById(
+        "totalAmount"
+      ).textContent =
+        formatCurrency(totalAmount);
+
+
+      /*
+        PERSONNEL SUMMARY
+      */
+
+      renderPersonnelSummary(
+        filtered
+      );
+
+
+      /*
+        DASHBOARD REQUESTS
+      */
+
+      renderRequests(
+        filtered,
+        "requestsTable"
       );
 
     }
 
-  }
+
+    /* =========================================================
+       PERSONNEL SUMMARY
+    ========================================================= */
+
+    function renderPersonnelSummary(
+      data
+    ) {
+
+      const tbody =
+        document.getElementById(
+          "personnelTable"
+        );
 
 
-  // ==========================================
-  // POPULATE SELECTS
-  // ==========================================
-
-  function populateFilters() {
-
-    const categoryFilter =
-      document.getElementById("categoryFilter");
-
-    const personnelFilter =
-      document.getElementById("personnelFilter");
-
-    const categorySelect =
-      document.getElementById("category");
-
-    const personnelSelect =
-      document.getElementById("assignedPersonnel");
+      tbody.innerHTML = "";
 
 
-    categories.forEach(category => {
+      if (!personnel.length) {
 
-      categoryFilter.innerHTML += `
-        <option value="${category.id}">
-          ${escapeHTML(category.name)}
-        </option>
-      `;
+        tbody.innerHTML = `
+          <tr>
+            <td
+              colspan="7"
+              class="empty"
+            >
+              No personnel found.
+            </td>
+          </tr>
+        `;
 
-      categorySelect.innerHTML += `
-        <option value="${category.id}">
-          ${escapeHTML(category.name)}
-        </option>
-      `;
+        return;
 
-    });
-
-
-    personnel.forEach(person => {
-
-      personnelFilter.innerHTML += `
-        <option value="${person.id}">
-          ${escapeHTML(person.code)}
-        </option>
-      `;
-
-      personnelSelect.innerHTML += `
-        <option value="${person.id}">
-          ${escapeHTML(person.code)}
-        </option>
-      `;
-
-    });
-
-  }
+      }
 
 
-  // ==========================================
-  // SERVICE / ITEM SELECTION
-  // ==========================================
+      personnel.forEach(person => {
 
-  document.getElementById("category")
-    .addEventListener("change", populateServiceItems);
-
-
-  document.getElementById("serviceItem")
-    .addEventListener("change", updateAmountFromService);
-
-
-  function populateServiceItems() {
-
-    const categoryId =
-      document.getElementById("category").value;
-
-    const serviceSelect =
-      document.getElementById("serviceItem");
-
-    const amountInput =
-      document.getElementById("amount");
+        const personRequests =
+          data.filter(
+            r =>
+              String(
+                r.assigned_personnel_id
+              ) === String(person.id)
+          );
 
 
-    serviceSelect.innerHTML = `
-      <option value="">Select service/item</option>
-    `;
+        const completed =
+          personRequests.filter(
+            r =>
+              r.status === "Completed"
+          ).length;
 
-    amountInput.value = "0";
+
+        const ongoing =
+          personRequests.filter(
+            r =>
+              r.status === "Ongoing"
+          ).length;
 
 
-    if (!categoryId) {
-      return;
+        const pending =
+          personRequests.filter(
+            r =>
+              r.status === "Pending"
+          ).length;
+
+
+        const pcs =
+          personRequests.reduce(
+            (sum, r) =>
+              sum + Number(r.pcs || 0),
+            0
+          );
+
+
+        const amount =
+          personRequests.reduce(
+            (sum, r) =>
+              sum + Number(r.amount || 0),
+            0
+          );
+
+
+        const tr =
+          document.createElement(
+            "tr"
+          );
+
+
+        tr.innerHTML = `
+
+          <td>
+
+            <button
+              class="edit-btn"
+              onclick="openPersonnelDetail(${person.id})"
+            >
+              ${escapeHtml(person.code)}
+            </button>
+
+          </td>
+
+          <td>
+            ${personRequests.length}
+          </td>
+
+          <td>
+            ${completed}
+          </td>
+
+          <td>
+            ${ongoing}
+          </td>
+
+          <td>
+            ${pending}
+          </td>
+
+          <td>
+            ${formatNumber(pcs)}
+          </td>
+
+          <td>
+            ${formatCurrency(amount)}
+          </td>
+
+        `;
+
+
+        tbody.appendChild(tr);
+
+      });
+
     }
 
 
-    const filteredItems =
-      serviceItems.filter(
-        item =>
-          String(item.category_id) ===
-          String(categoryId)
+    /* =========================================================
+       RENDER REQUESTS
+    ========================================================= */
+
+    function renderRequests(
+      data,
+      elementId
+    ) {
+
+      const tbody =
+        document.getElementById(
+          elementId
+        );
+
+
+      if (!tbody) {
+        return;
+      }
+
+
+      tbody.innerHTML = "";
+
+
+      if (!data.length) {
+
+        const colspan =
+          elementId ===
+          "allRequestsTable"
+            ? 12
+            : 10;
+
+
+        tbody.innerHTML = `
+          <tr>
+            <td
+              colspan="${colspan}"
+              class="empty"
+            >
+              No requests found.
+            </td>
+          </tr>
+        `;
+
+        return;
+
+      }
+
+
+      data.forEach(r => {
+
+        const tr =
+          document.createElement(
+            "tr"
+          );
+
+
+        const serviceName =
+          r.serviceItem?.item_name ||
+          "—";
+
+
+        const personnelCode =
+          r.personnel?.code ||
+          "—";
+
+
+        const categoryName =
+          r.category?.name ||
+          "—";
+
+
+        const status =
+          r.status ||
+          "Pending";
+
+
+        /*
+          DASHBOARD TABLE
+        */
+
+        if (
+          elementId ===
+          "requestsTable"
+        ) {
+
+          tr.innerHTML = `
+
+            <td>
+              ${escapeHtml(
+                r.request_no || "—"
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                personnelCode
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                categoryName
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                serviceName
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                r.serial_number || "—"
+              )}
+            </td>
+
+            <td>
+              ${formatNumber(
+                r.pcs || 0
+              )}
+            </td>
+
+            <td>
+              ${formatCurrency(
+                r.amount || 0
+              )}
+            </td>
+
+            <td>
+              ${formatDate(
+                r.due_date
+              )}
+            </td>
+
+            <td>
+              ${statusBadge(status)}
+            </td>
+
+            <td>
+              <button
+                class="edit-btn"
+                onclick="editRequest(${r.id})"
+              >
+                Edit
+              </button>
+            </td>
+
+          `;
+
+        }
+
+
+        /*
+          ALL REQUESTS TABLE
+        */
+
+        else if (
+          elementId ===
+          "allRequestsTable"
+        ) {
+
+          tr.innerHTML = `
+
+            <td>
+              ${escapeHtml(
+                r.request_no || "—"
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                personnelCode
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                categoryName
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                serviceName
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                r.serial_number || "—"
+              )}
+            </td>
+
+            <td>
+              ${formatDate(
+                r.request_date
+              )}
+            </td>
+
+            <td>
+              ${formatNumber(
+                r.pcs || 0
+              )}
+            </td>
+
+            <td>
+              ${formatCurrency(
+                r.amount || 0
+              )}
+            </td>
+
+            <td>
+              ${formatDate(
+                r.due_date
+              )}
+            </td>
+
+            <td>
+              ${statusBadge(status)}
+            </td>
+
+            <td>
+              ${formatDate(
+                r.date_completed
+              )}
+            </td>
+
+            <td>
+              <button
+                class="edit-btn"
+                onclick="editRequest(${r.id})"
+              >
+                Edit
+              </button>
+            </td>
+
+          `;
+
+        }
+
+
+        /*
+          PERSONNEL DETAIL TABLE
+        */
+
+        else if (
+          elementId ===
+          "detailRequestsTable"
+        ) {
+
+          tr.innerHTML = `
+
+            <td>
+              ${escapeHtml(
+                r.request_no || "—"
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                personnelCode
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                categoryName
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                serviceName
+              )}
+            </td>
+
+            <td>
+              ${formatNumber(
+                r.pcs || 0
+              )}
+            </td>
+
+            <td>
+              ${formatCurrency(
+                r.amount || 0
+              )}
+            </td>
+
+            <td>
+              ${formatDate(
+                r.due_date
+              )}
+            </td>
+
+            <td>
+              ${statusBadge(status)}
+            </td>
+
+            <td>
+              <button
+                class="edit-btn"
+                onclick="editRequest(${r.id})"
+              >
+                Edit
+              </button>
+            </td>
+
+          `;
+
+        }
+
+
+        tbody.appendChild(tr);
+
+      });
+
+    }
+
+
+    /* =========================================================
+       PERSONNEL DETAIL
+    ========================================================= */
+
+    function openPersonnelDetail(
+      personnelId
+    ) {
+
+      currentPersonnelId =
+        personnelId;
+
+
+      const person =
+        personnel.find(
+          p =>
+            String(p.id) ===
+            String(personnelId)
+        );
+
+
+      if (!person) {
+        return;
+      }
+
+
+      document.getElementById(
+        "personDetailTitle"
+      ).textContent =
+        `${person.code} — ${person.name || ""}`;
+
+
+      document.getElementById(
+        "dashboardPage"
+      ).classList.add("hidden");
+
+
+      document.getElementById(
+        "requestsPage"
+      ).classList.add("hidden");
+
+
+      document.getElementById(
+        "personnelDetailPage"
+      ).classList.remove("hidden");
+
+
+      document
+        .getElementById("dashboardNav")
+        .classList.remove("active");
+
+
+      document
+        .getElementById("requestsNav")
+        .classList.remove("active");
+
+
+      const personRequests =
+        requests.filter(
+          r =>
+            String(
+              r.assigned_personnel_id
+            ) === String(personnelId)
+        );
+
+
+      renderRequests(
+        personRequests,
+        "detailRequestsTable"
       );
 
-
-    filteredItems.forEach(item => {
-
-      const option =
-        document.createElement("option");
-
-      option.value = item.id;
-
-      option.textContent =
-        item.item_name +
-        (item.details
-          ? ` — ${item.details}`
-          : "");
-
-      option.dataset.price =
-        item.price;
-
-      serviceSelect.appendChild(option);
-
-    });
-
-  }
-
-
-  function updateAmountFromService() {
-
-    const serviceId =
-      document.getElementById("serviceItem").value;
-
-    const item =
-      serviceItems.find(
-        x =>
-          String(x.id) ===
-          String(serviceId)
-      );
-
-
-    document.getElementById("amount").value =
-      item ? Number(item.price) : 0;
-
-  }
-
-
-  // ==========================================
-  // FILTER REQUESTS
-  // ==========================================
-function getFilteredRequests() {
-
-  const category =
-    document.getElementById("categoryFilter").value;
-
-  const person =
-    document.getElementById("personnelFilter").value;
-
- const status =
-  document.getElementById("statusFilter").value;
-
-const month =
-  document.getElementById("monthFilter")?.value;
-
-const search =
-  document.getElementById("requestSearch")?.value
-    .trim()
-    .toLowerCase();
-
-
-  return requests.filter(r => {
-
-    if (
-      category &&
-      String(r.category_id) !== String(category)
-    ) {
-      return false;
     }
 
-    if (
-      person &&
-      String(r.assigned_personnel_id) !== String(person)
+
+    /* =========================================================
+       NAVIGATION
+    ========================================================= */
+
+    function showPage(
+      page
     ) {
-      return false;
-    }
 
-    if (
-      status &&
-      r.status !== status
-    ) {
-      return false;
-    }
-if (
-  month &&
-  !r.due_date?.startsWith(month)
-) {
-  return false;
-}
-
-    if (search) {
-
-      const searchableText = [
-
-        r.request_no,
-
-        r.personnel?.code,
-
-        r.personnel?.name,
-
-        r.category?.name,
-
-        r.serviceItem?.item_name,
-
-        r.serviceItem?.details,
-
-        r.serial_number,
-
-        r.description,
-
-        r.remarks
-
-      ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
+      document
+        .getElementById(
+          "dashboardPage"
+        )
+        .classList.add("hidden");
 
 
-      if (!searchableText.includes(search)) {
-        return false;
+      document
+        .getElementById(
+          "requestsPage"
+        )
+        .classList.add("hidden");
+
+
+      document
+        .getElementById(
+          "personnelDetailPage"
+        )
+        .classList.add("hidden");
+
+
+      document
+        .getElementById(
+          "dashboardNav"
+        )
+        .classList.remove("active");
+
+
+      document
+        .getElementById(
+          "requestsNav"
+        )
+        .classList.remove("active");
+
+
+      if (
+        page === "dashboard"
+      ) {
+
+        document
+          .getElementById(
+            "dashboardPage"
+          )
+          .classList.remove("hidden");
+
+
+        document
+          .getElementById(
+            "dashboardNav"
+          )
+          .classList.add("active");
+
+
+        loadDashboard();
+
+      }
+
+
+      else if (
+        page === "requests"
+      ) {
+
+        document
+          .getElementById(
+            "requestsPage"
+          )
+          .classList.remove("hidden");
+
+
+        document
+          .getElementById(
+            "requestsNav"
+          )
+          .classList.add("active");
+
+
+        renderRequests(
+          requests,
+          "allRequestsTable"
+        );
+
       }
 
     }
 
 
-    return true;
+    /* =========================================================
+       OPEN ADD REQUEST
+    ========================================================= */
 
-  });
+    function openAddRequest() {
 
-}
-
-
-  // ==========================================
-  // DASHBOARD
-  // ==========================================
-
-  function loadDashboard() {
-
-    const filtered =
-      getFilteredRequests();
+      editingRequestId =
+        null;
 
 
-    const assigned =
-      filtered.length;
-
-    const completed =
-      filtered.filter(
-        r => r.status === "Completed"
-      ).length;
-
-    const ongoing =
-      filtered.filter(
-        r => r.status === "Ongoing"
-      ).length;
-
-    const pending =
-      filtered.filter(
-        r => r.status === "Pending"
-      ).length;
-
-    const pcs =
-      filtered.reduce(
-        (sum, r) => sum + Number(r.pcs || 0),
-        0
-      );
-
-    const amount =
-      filtered.reduce(
-        (sum, r) => sum + Number(r.amount || 0),
-        0
-      );
+      document.getElementById(
+        "modalTitle"
+      ).textContent =
+        "Add Request";
 
 
-    document.getElementById("totalAssigned").textContent =
-      assigned;
-
-    document.getElementById("totalCompleted").textContent =
-      completed;
-
-    document.getElementById("totalOngoing").textContent =
-      ongoing;
-
-    document.getElementById("totalPending").textContent =
-      pending;
-
-    document.getElementById("totalPCS").textContent =
-      pcs.toLocaleString();
-
-    document.getElementById("totalAmount").textContent =
-      formatMoney(amount);
+      document.getElementById(
+        "saveRequestBtn"
+      ).textContent =
+        "Save Request";
 
 
-    // PERSONNEL SUMMARY
-
-    const table =
-      document.getElementById("personnelTable");
-
-    table.innerHTML = "";
-
-
-    personnel.forEach(person => {
-
-      const personRequests =
-        filtered.filter(
-          r =>
-            String(r.assigned_personnel_id) ===
-            String(person.id)
-        );
+      document
+        .getElementById(
+          "requestForm"
+        )
+        .reset();
 
 
-      const completed =
-        personRequests.filter(
-          r => r.status === "Completed"
-        ).length;
-
-      const ongoing =
-        personRequests.filter(
-          r => r.status === "Ongoing"
-        ).length;
-
-      const pending =
-        personRequests.filter(
-          r => r.status === "Pending"
-        ).length;
-
-      const totalPCS =
-        personRequests.reduce(
-          (sum, r) => sum + Number(r.pcs || 0),
-          0
-        );
-
-      const totalAmount =
-        personRequests.reduce(
-          (sum, r) => sum + Number(r.amount || 0),
-          0
-        );
-
-
-      table.innerHTML += `
-
-        <tr
-          class="person-row"
-          onclick="openPersonnel(${person.id})"
-        >
-
-          <td>
-            <strong>${escapeHTML(person.code)}</strong>
-          </td>
-
-          <td>${personRequests.length}</td>
-
-          <td>${completed}</td>
-
-          <td>${ongoing}</td>
-
-          <td>${pending}</td>
-
-          <td>${totalPCS}</td>
-
-          <td>${formatMoney(totalAmount)}</td>
-
-        </tr>
-
+      document.getElementById(
+        "serviceItem"
+      ).innerHTML = `
+        <option value="">
+          Select service/item
+        </option>
       `;
 
-    });
+
+      document.getElementById(
+        "amount"
+      ).value =
+        "0";
 
 
-    renderRequests(
-      filtered,
-      "requestsTable"
-    );
-
-  }
+      clearFormMessage();
 
 
-
-  // ==========================================
-  // REQUEST TABLE
-  // ==========================================
-function renderRequests(data, elementId) {
-
-  const table =
-    document.getElementById(elementId);
-
-  table.innerHTML = "";
-
-  const isAllRequests =
-    elementId === "allRequestsTable";
-
-  if (!data.length) {
-
-    table.innerHTML = `
-      <tr>
-        <td colspan="${isAllRequests ? 11 : 10}" style="text-align:center">
-          No records found.
-        </td>
-      </tr>
-    `;
-
-    return;
-  }
-
-  data.forEach(r => {
-
-    const serviceName =
-      r.serviceItem?.item_name || "-";
-
-    table.innerHTML += `
-
-      <tr>
-
-        <td>
-          ${escapeHTML(r.request_no)}
-        </td>
-
-        <td>
-          ${escapeHTML(r.personnel?.code || "")}
-        </td>
-
-        <td>
-          ${escapeHTML(r.category?.name || "")}
-        </td>
-
-        <td>
-          ${escapeHTML(serviceName)}
-        </td>
-
-        <td>
-          ${escapeHTML(r.serial_number || "-")}
-        </td>
-
-        ${isAllRequests ? `
-        <td>
-          ${r.request_date || "-"}
-        </td>
-        ` : ""}
-
-        <td>
-          ${r.pcs}
-        </td>
-
-        <td>
-          ${formatMoney(r.amount)}
-        </td>
-
-        <td>
-          ${r.due_date || "-"}
-        </td>
-
-        <td>
-          <span class="status ${r.status}">
-            ${escapeHTML(r.status)}
-          </span>
-        </td>
-
-        <td>
-          <button
-            type="button"
-            class="primary"
-            onclick="editRequest(${r.id})"
-          >
-            Edit
-          </button>
-        </td>
-
-      </tr>
-
-    `;
-
-  });
-
-}
-
-}
-
-  // ==========================================
-  // PERSONNEL DETAIL
-  // ==========================================
-
-  function openPersonnel(personId) {
-
-    const person =
-      personnel.find(
-        p => String(p.id) === String(personId)
-      );
-
-    if (!person) return;
+      const modal =
+        document.getElementById(
+          "requestModal"
+        );
 
 
-    const personRequests =
-      requests.filter(
-        r =>
-          String(r.assigned_personnel_id) ===
-          String(personId)
+      modal.classList.remove(
+        "hidden"
       );
 
 
-    document.getElementById("dashboardPage")
-      .classList.add("hidden");
+      modal.style.display =
+        "flex";
 
-    document.getElementById("requestsPage")
-      .classList.add("hidden");
-
-    document.getElementById("personnelPage")
-      .classList.remove("hidden");
-
-
-    document.getElementById("personnelTitle")
-      .textContent =
-      `${person.code} — ${person.name}`;
-
-
-    document.getElementById("detailAssigned")
-      .textContent =
-      personRequests.length;
-
-
-    document.getElementById("detailCompleted")
-      .textContent =
-      personRequests.filter(
-        r => r.status === "Completed"
-      ).length;
-
-
-    document.getElementById("detailOngoing")
-      .textContent =
-      personRequests.filter(
-        r => r.status === "Ongoing"
-      ).length;
-
-
-    document.getElementById("detailPending")
-      .textContent =
-      personRequests.filter(
-        r => r.status === "Pending"
-      ).length;
-
-
-    document.getElementById("detailPCS")
-      .textContent =
-      personRequests.reduce(
-        (sum, r) => sum + Number(r.pcs || 0),
-        0
-      );
-
-
-    document.getElementById("detailAmount")
-      .textContent =
-      formatMoney(
-        personRequests.reduce(
-          (sum, r) => sum + Number(r.amount || 0),
-          0
-        )
-      );
-
-
-    renderRequests(
-      personRequests,
-      "detailRequestsTable"
-    );
-
-  }
-
-
-  // ==========================================
-  // ADD REQUEST
-  // ==========================================
-
-  function openAddRequest() {
-
-  const modal = document.getElementById("requestModal");
-
-  modal.classList.remove("hidden");
-  modal.style.display = "flex";
-
-  document.getElementById("formMessage")
-    .className = "message";
-
-}
-
-
-  function closeAddRequest() {
-
-  const modal = document.getElementById("requestModal");
-
-  modal.classList.add("hidden");
-  modal.style.display = "none";
-
-  document.getElementById("formMessage")
-    .className = "message";
-
-}
-function editRequest(requestId) {
-
-  const request = requests.find(
-    r => String(r.id) === String(requestId)
-  );
-
-  
-  if (!request) {
-    alert("Request not found.");
-    return;
-  }
-  
-editingRequestId = requestId;
-
-  document.getElementById("requestNo").value =
-    request.request_no || "";
-
-  document.getElementById("assignedPersonnel").value =
-    request.assigned_personnel_id || "";
-
-  document.getElementById("category").value =
-    request.category_id || "";
-
-  // Load services/items for the selected category
-  populateServiceItems();
-
-  document.getElementById("serviceItem").value =
-    request.service_item_id || "";
-
-  document.getElementById("pcs").value =
-    request.pcs || 1;
-
-  document.getElementById("amount").value =
-    request.amount || 0;
-
-  document.getElementById("dueDate").value =
-    request.due_date || "";
-
-  document.getElementById("status").value =
-    request.status || "Pending";
-
-  document.getElementById("serialNumber").value =
-    request.serial_number || "";
-
-  document.getElementById("description").value =
-    request.description || "";
-
-  document.getElementById("remarks").value =
-    request.remarks || "";
-
-  openAddRequest();
-
-}
-  document.getElementById("requestForm")
-    .addEventListener(
-      "submit",
-      async function(event) {
-
-        event.preventDefault();
-
-
-        const serviceItemId =
-          document.getElementById("serviceItem").value;
-
-
-        if (!serviceItemId) {
-
-          showFormMessage(
-            "Please select a service/item.",
-            "error"
-          );
-
-          return;
-
-        }
-
-
-        const data = {
-
-          request_no:
-            document.getElementById("requestNo")
-              .value
-              .trim(),
-
-          category_id:
-            Number(
-              document.getElementById("category")
-                .value
-            ),
-
-          service_item_id:
-            Number(serviceItemId),
-
-          assigned_personnel_id:
-            Number(
-              document.getElementById("assignedPersonnel")
-                .value
-            ),
-
-          pcs:
-            Number(
-              document.getElementById("pcs")
-                .value
-            ),
-
-          amount:
-            Number(
-              document.getElementById("amount")
-                .value
-            ),
-request_date:
-  document.getElementById("requestDate")
-    .value || null,
-          
-          due_date:
-            document.getElementById("dueDate")
-              .value || null,
-
-          status:
-            document.getElementById("status")
-              .value,
-
-          serial_number:
-            document.getElementById("serialNumber")
-              .value
-              .trim(),
-
-          description:
-            document.getElementById("description")
-              .value
-              .trim(),
-
-          remarks:
-            document.getElementById("remarks")
-              .value
-              .trim()
-
-        };
-
-
-        try {
-
-          // SAVE REQUEST
-
-if (editingRequestId) {
-
-  await supabaseFetch(
-    `requests?id=eq.${editingRequestId}`,
-    {
-      method: "PATCH",
-      body: JSON.stringify(data)
     }
-  );
 
-} else {
 
-  await supabaseFetch(
-    "requests",
-    {
-      method: "POST",
-      body: JSON.stringify(data)
+    /* =========================================================
+       CLOSE MODAL
+    ========================================================= */
+
+    function closeAddRequest() {
+
+      const modal =
+        document.getElementById(
+          "requestModal"
+        );
+
+
+      modal.classList.add(
+        "hidden"
+      );
+
+
+      modal.style.display =
+        "none";
+
+
+      clearFormMessage();
+
     }
-  );
 
-}
 
-editingRequestId = null;
-          // RESET FORM
+    /* =========================================================
+       EDIT REQUEST
+    ========================================================= */
 
-          document.getElementById("requestForm")
-            .reset();
+    function editRequest(
+      requestId
+    ) {
 
-          document.getElementById("serviceItem")
-            .innerHTML = `
+      const request =
+        requests.find(
+          r =>
+            String(r.id) ===
+            String(requestId)
+        );
+
+
+      if (!request) {
+
+        alert(
+          "Request could not be found."
+        );
+
+        return;
+
+      }
+
+
+      editingRequestId =
+        request.id;
+
+
+      document.getElementById(
+        "modalTitle"
+      ).textContent =
+        "Edit Request";
+
+
+      document.getElementById(
+        "saveRequestBtn"
+      ).textContent =
+        "Update Request";
+
+
+      document.getElementById(
+        "requestNo"
+      ).value =
+        request.request_no || "";
+
+
+      document.getElementById(
+        "assignedPersonnel"
+      ).value =
+        request.assigned_personnel_id || "";
+
+
+      document.getElementById(
+        "category"
+      ).value =
+        request.category_id || "";
+
+
+      populateServiceItems();
+
+
+      document.getElementById(
+        "serviceItem"
+      ).value =
+        request.service_item_id || "";
+
+
+      document.getElementById(
+        "pcs"
+      ).value =
+        request.pcs || 1;
+
+
+      /*
+        Keep stored amount when editing.
+      */
+
+      document.getElementById(
+        "amount"
+      ).value =
+        Number(
+          request.amount || 0
+        ).toFixed(2);
+
+
+      document.getElementById(
+        "serialNumber"
+      ).value =
+        request.serial_number || "";
+
+
+      document.getElementById(
+        "requestDate"
+      ).value =
+        request.request_date || "";
+
+
+      document.getElementById(
+        "dueDate"
+      ).value =
+        request.due_date || "";
+
+
+      document.getElementById(
+        "status"
+      ).value =
+        request.status || "Pending";
+
+
+      document.getElementById(
+        "description"
+      ).value =
+        request.description || "";
+
+
+      document.getElementById(
+        "remarks"
+      ).value =
+        request.remarks || "";
+
+
+      clearFormMessage();
+
+
+      const modal =
+        document.getElementById(
+          "requestModal"
+        );
+
+
+      modal.classList.remove(
+        "hidden"
+      );
+
+
+      modal.style.display =
+        "flex";
+
+    }
+
+
+    /* =========================================================
+       SAVE / UPDATE REQUEST
+    ========================================================= */
+
+    document
+      .getElementById(
+        "requestForm"
+      )
+      .addEventListener(
+        "submit",
+        async function(event) {
+
+          event.preventDefault();
+
+
+          const saveButton =
+            document.getElementById(
+              "saveRequestBtn"
+            );
+
+
+          saveButton.disabled =
+            true;
+
+
+          saveButton.textContent =
+            editingRequestId
+              ? "Updating..."
+              : "Saving...";
+
+
+          try {
+
+            const status =
+              document.getElementById(
+                "status"
+              ).value;
+
+
+            /*
+              AUTOMATIC DATE COMPLETED
+
+              New Completed request:
+              today's date.
+
+              Existing Completed request:
+              preserve its original completion date.
+
+              Changed away from Completed:
+              clear the completion date.
+            */
+
+            let dateCompleted =
+              null;
+
+
+            if (
+              status ===
+              "Completed"
+            ) {
+
+              if (
+                editingRequestId
+              ) {
+
+                const existingRequest =
+                  requests.find(
+                    r =>
+                      String(r.id) ===
+                      String(
+                        editingRequestId
+                      )
+                  );
+
+
+                dateCompleted =
+                  existingRequest
+                    ?.date_completed ||
+                  new Date()
+                    .toISOString()
+                    .split("T")[0];
+
+              }
+
+              else {
+
+                dateCompleted =
+                  new Date()
+                    .toISOString()
+                    .split("T")[0];
+
+              }
+
+            }
+
+
+            const data = {
+
+              request_no:
+                document.getElementById(
+                  "requestNo"
+                ).value.trim(),
+
+
+              assigned_personnel_id:
+                document.getElementById(
+                  "assignedPersonnel"
+                ).value || null,
+
+
+              category_id:
+                document.getElementById(
+                  "category"
+                ).value || null,
+
+
+              service_item_id:
+                document.getElementById(
+                  "serviceItem"
+                ).value || null,
+
+
+              pcs:
+                Number(
+                  document.getElementById(
+                    "pcs"
+                  ).value
+                ) || 0,
+
+
+              amount:
+                Number(
+                  document.getElementById(
+                    "amount"
+                  ).value
+                ) || 0,
+
+
+              serial_number:
+                document.getElementById(
+                  "serialNumber"
+                ).value.trim() ||
+                null,
+
+
+              request_date:
+                document.getElementById(
+                  "requestDate"
+                ).value ||
+                null,
+
+
+              due_date:
+                document.getElementById(
+                  "dueDate"
+                ).value ||
+                null,
+
+
+              date_completed:
+                dateCompleted,
+
+
+              status:
+                status,
+
+
+              description:
+                document.getElementById(
+                  "description"
+                ).value.trim() ||
+                null,
+
+
+              remarks:
+                document.getElementById(
+                  "remarks"
+                ).value.trim() ||
+                null
+
+            };
+
+
+            /*
+              UPDATE
+            */
+
+            if (
+              editingRequestId
+            ) {
+
+              await supabaseFetch(
+                `requests?id=eq.${editingRequestId}`,
+                {
+                  method: "PATCH",
+                  body:
+                    JSON.stringify(data)
+                }
+              );
+
+            }
+
+
+            /*
+              INSERT
+            */
+
+            else {
+
+              await supabaseFetch(
+                "requests",
+                {
+                  method: "POST",
+                  body:
+                    JSON.stringify(data)
+                }
+              );
+
+            }
+
+
+            /*
+              RESET
+            */
+
+            editingRequestId =
+              null;
+
+
+            document
+              .getElementById(
+                "requestForm"
+              )
+              .reset();
+
+
+            document.getElementById(
+              "serviceItem"
+            ).innerHTML = `
               <option value="">
                 Select service/item
               </option>
             `;
 
-          document.getElementById("amount")
-            .value = "0";
+
+            document.getElementById(
+              "amount"
+            ).value =
+              "0";
 
 
-          // CLOSE POPUP IMMEDIATELY
-          // AFTER SUCCESSFUL SAVE
-
-          closeAddRequest();
+            closeAddRequest();
 
 
-          // REFRESH DASHBOARD
+            /*
+              RELOAD EVERYTHING
+            */
 
-          await reloadRequests();
+            await reloadRequests();
 
 
-        } catch (error) {
+            /*
+              If currently viewing
+              All Requests, refresh it.
+            */
 
-          console.error(error);
+            if (
+              !document
+                .getElementById(
+                  "requestsPage"
+                )
+                .classList.contains(
+                  "hidden"
+                )
+            ) {
 
-          showFormMessage(
-            "Error saving request: " +
-            error.message,
-            "error"
-          );
+              renderRequests(
+                requests,
+                "allRequestsTable"
+              );
+
+            }
+
+
+            /*
+              If currently viewing
+              a personnel detail page,
+              refresh it too.
+            */
+
+            if (
+              currentPersonnelId &&
+              !document
+                .getElementById(
+                  "personnelDetailPage"
+                )
+                .classList.contains(
+                  "hidden"
+                )
+            ) {
+
+              const personRequests =
+                requests.filter(
+                  r =>
+                    String(
+                      r.assigned_personnel_id
+                    ) ===
+                    String(
+                      currentPersonnelId
+                    )
+                );
+
+
+              renderRequests(
+                personRequests,
+                "detailRequestsTable"
+              );
+
+            }
+
+          }
+
+
+          catch (error) {
+
+            console.error(error);
+
+
+            showFormMessage(
+              error.message ||
+                "Unable to save request.",
+              "error"
+            );
+
+          }
+
+
+          finally {
+
+            saveButton.disabled =
+              false;
+
+
+            saveButton.textContent =
+              editingRequestId
+                ? "Update Request"
+                : "Save Request";
+
+          }
 
         }
+      );
+
+
+    /* =========================================================
+       SEARCH
+    ========================================================= */
+
+    function setupSearch() {
+
+      const searchBox =
+        document.getElementById(
+          "requestSearch"
+        );
+
+
+      if (searchBox) {
+
+        searchBox.addEventListener(
+          "input",
+          function() {
+
+            loadDashboard();
+
+          }
+        );
 
       }
-    );
 
-
-  // ==========================================
-  // RELOAD REQUESTS
-  // ==========================================
-
-  async function reloadRequests() {
-
-    requests = await supabaseFetch(
-      "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name),serviceItem:service_item_id(id,item_name,details,price)&order=created_at.desc"
-    );
-
-    loadDashboard();
-
-  }
-
-
-  // ==========================================
-  // PAGES
-  // ==========================================
-
-  function showDashboard() {
-
-    document.getElementById("dashboardPage")
-      .classList.remove("hidden");
-
-    document.getElementById("personnelPage")
-      .classList.add("hidden");
-
-    document.getElementById("requestsPage")
-      .classList.add("hidden");
-
-    loadDashboard();
-
-  }
-
-
-  function showRequests() {
-
-    document.getElementById("dashboardPage")
-      .classList.add("hidden");
-
-    document.getElementById("personnelPage")
-      .classList.add("hidden");
-
-    document.getElementById("requestsPage")
-      .classList.remove("hidden");
-
-
-    renderRequests(
-      requests,
-      "allRequestsTable"
-    );
-
-  }
-
-
-  // ==========================================
-  // FILTER RESET
-  // ==========================================
-
-function clearFilters() {
-  document.getElementById("categoryFilter").value = "";
-  document.getElementById("personnelFilter").value = "";
-  document.getElementById("statusFilter").value = "";
-  document.getElementById("requestSearch").value = "";
-  document.getElementById("monthFilter").value = "";
-
-  loadDashboard();
-}
-
-
-  // ==========================================
-  // HELPERS
-  // ==========================================
-
-  function formatMoney(value) {
-
-    return Number(value || 0).toLocaleString(
-      "en-PH",
-      {
-        style: "currency",
-        currency: "PHP"
-      }
-    );
-
-  }
-
-
-  function escapeHTML(value) {
-
-    if (
-      value === null ||
-      value === undefined
-    ) {
-      return "";
     }
 
 
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+    /* =========================================================
+       CLEAR FILTERS
+    ========================================================= */
 
-  }
+    function clearFilters() {
 
-
-  function showFormMessage(text, type) {
-
-    const message =
-      document.getElementById("formMessage");
-
-    message.textContent = text;
-
-    message.className =
-      `message ${type}`;
-
-  }
+      document.getElementById(
+        "categoryFilter"
+      ).value =
+        "";
 
 
-  // ==========================================
-  // START APPLICATION
-  // ==========================================
+      document.getElementById(
+        "personnelFilter"
+      ).value =
+        "";
 
-  loadData();
-document.addEventListener("DOMContentLoaded", function () {
 
-  const searchBox =
-    document.getElementById("requestSearch");
+      document.getElementById(
+        "statusFilter"
+      ).value =
+        "";
 
-  if (searchBox) {
 
-    searchBox.addEventListener("input", function () {
+      document.getElementById(
+        "requestSearch"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "monthFilter"
+      ).value =
+        "";
+
 
       loadDashboard();
 
-    });
+    }
 
-  }
 
-});
-</script>
+    /* =========================================================
+       FORM MESSAGE
+    ========================================================= */
+
+    function showFormMessage(
+      message,
+      type
+    ) {
+
+      const box =
+        document.getElementById(
+          "formMessage"
+        );
+
+
+      box.textContent =
+        message;
+
+
+      box.className =
+        `message ${type}`;
+
+    }
+
+
+    function clearFormMessage() {
+
+      const box =
+        document.getElementById(
+          "formMessage"
+        );
+
+
+      box.textContent =
+        "";
+
+
+      box.className =
+        "message";
+
+    }
+
+
+    /* =========================================================
+       FORMATTERS
+    ========================================================= */
+
+    function formatCurrency(
+      value
+    ) {
+
+      return (
+        "₱" +
+        Number(
+          value || 0
+        ).toLocaleString(
+          "en-PH",
+          {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          }
+        )
+      );
+
+    }
+
+
+    function formatNumber(
+      value
+    ) {
+
+      return Number(
+        value || 0
+      ).toLocaleString(
+        "en-PH",
+        {
+          maximumFractionDigits: 2
+        }
+      );
+
+    }
+
+
+    function formatDate(
+      date
+    ) {
+
+      if (!date) {
+        return "—";
+      }
+
+
+      const parts =
+        date.split("-");
+
+
+      if (
+        parts.length !== 3
+      ) {
+
+        return date;
+
+      }
+
+
+      return (
+        `${parts[1]}/${parts[2]}/${parts[0]}`
+      );
+
+    }
+
+
+    function statusBadge(
+      status
+    ) {
+
+      const safeStatus =
+        status || "Pending";
+
+
+      return `
+        <span
+          class="status status-${escapeHtml(
+            safeStatus
+          )}"
+        >
+          ${escapeHtml(
+            safeStatus
+          )}
+        </span>
+      `;
+
+    }
+
+
+    /* =========================================================
+       HTML ESCAPE
+    ========================================================= */
+
+    function escapeHtml(
+      value
+    ) {
+
+      if (
+        value === null ||
+        value === undefined
+      ) {
+
+        return "";
+
+      }
+
+
+      return String(value)
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* =========================================================
+       START APP
+    ========================================================= */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      init
+    );
+
+  </script>
 
 </body>
 </html>
-```
