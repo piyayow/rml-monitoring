@@ -1641,7 +1641,217 @@
       await loadCurrentProfile();
     }
 
+    /* =========================================================
+       FORGOT PASSWORD
+    ========================================================= */
 
+    function showForgotPassword() {
+
+      const modal =
+        document.getElementById(
+          "forgotPasswordModal"
+        );
+
+      const emailInput =
+        document.getElementById(
+          "resetEmail"
+        );
+
+      const message =
+        document.getElementById(
+          "forgotPasswordMessage"
+        );
+
+      message.className =
+        "forgot-password-message";
+
+      message.textContent = "";
+
+      /*
+        If the login email field already has
+        an email address, copy it here.
+      */
+   const loginEmail =
+  document.getElementById(
+    "loginEmail"
+  );
+        );
+
+      if (
+        loginEmail &&
+        loginEmail.value.trim()
+      ) {
+        emailInput.value =
+          loginEmail.value.trim();
+      }
+
+      modal.style.display = "flex";
+
+      setTimeout(() => {
+        emailInput.focus();
+      }, 100);
+    }
+
+
+    function hideForgotPassword() {
+
+      const modal =
+        document.getElementById(
+          "forgotPasswordModal"
+        );
+
+      modal.style.display = "none";
+
+      const message =
+        document.getElementById(
+          "forgotPasswordMessage"
+        );
+
+      message.className =
+        "forgot-password-message";
+
+      message.textContent = "";
+    }
+
+
+    async function sendPasswordReset() {
+
+      const emailInput =
+        document.getElementById(
+          "resetEmail"
+        );
+
+      const button =
+        document.getElementById(
+          "resetPasswordButton"
+        );
+
+      const message =
+        document.getElementById(
+          "forgotPasswordMessage"
+        );
+
+      const email =
+        emailInput.value.trim();
+
+      if (!email) {
+
+        message.className =
+          "forgot-password-message error";
+
+        message.textContent =
+          "Please enter your email address.";
+
+        emailInput.focus();
+
+        return;
+      }
+
+      if (!email.includes("@")) {
+
+        message.className =
+          "forgot-password-message error";
+
+        message.textContent =
+          "Please enter a valid email address.";
+
+        emailInput.focus();
+
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Sending...";
+
+      message.className =
+        "forgot-password-message";
+
+      message.textContent = "";
+
+      try {
+
+        const response =
+          await fetch(
+            `${SUPABASE_URL}/auth/v1/recover`,
+            {
+              method: "POST",
+
+              headers: {
+                "apikey": SUPABASE_KEY,
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+                email: email,
+                redirect_to:
+                  "https://rmldavao.github.io/rml-monitoring/"
+              })
+            }
+          );
+
+        const text =
+          await response.text();
+
+        let data = {};
+
+        try {
+          data =
+            text
+              ? JSON.parse(text)
+              : {};
+        }
+
+        catch {
+          data = {};
+        }
+
+        if (!response.ok) {
+
+          throw new Error(
+            data.msg ||
+            data.message ||
+            data.error_description ||
+            "Unable to send the password reset email."
+          );
+        }
+
+        message.className =
+          "forgot-password-message success";
+
+        message.textContent =
+          "If an account exists for this email, " +
+          "a password reset link has been sent. " +
+          "Please check your inbox.";
+
+        emailInput.value = "";
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Password reset error:",
+          error
+        );
+
+        message.className =
+          "forgot-password-message error";
+
+        message.textContent =
+          error.message ||
+          "Unable to send the password reset email.";
+
+      }
+
+      finally {
+
+        button.disabled = false;
+
+        button.textContent =
+          "Send Reset Link";
+      }
+    }
     /* =========================================================
        LOAD CURRENT PROFILE
     ========================================================= */
