@@ -849,6 +849,10 @@ body {
   font-size: 14px;
   font-weight: 600;
   font-family: "Inter", Arial, Helvetica, sans-serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .google-login-button:hover {
@@ -861,15 +865,18 @@ body {
   cursor: not-allowed;
 }
 
+.google-login-button span {
+  display: block;
+  text-align: center;
+}
+
 .google-icon {
   position: absolute;
-  left: calc(50% - 82px);
-  top: 50%;
-  transform: translateY(-50%);
-
   width: 18px;
   height: 18px;
-  display: block;
+  left: calc(50% - 105px);
+  top: 50%;
+  transform: translateY(-50%);
 }
 .login-divider {
   display: flex;
