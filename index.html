@@ -457,6 +457,25 @@
     }
 
     /* =========================
+       STATUS REMARK
+    ========================= */
+
+    .status-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+
+    .status-remark {
+      font-size: 11px;
+      color: #6b7280;
+      line-height: 1.4;
+      max-width: 220px;
+      white-space: normal;
+    }
+
+    /* =========================
        PERSONNEL DETAIL
     ========================= */
 
@@ -2330,6 +2349,9 @@
       const status =
         request.status || "Pending";
 
+      const remarks =
+        request.remarks || "";
+
       /*
         Assigned personnel can manage
         their own Pending requests.
@@ -2347,35 +2369,52 @@
       ) {
 
         return `
-          <select
-            class="status-select"
-            onchange="handleAnalystStatusChange(${request.id}, this.value)"
-          >
+          <div class="status-wrapper">
 
-            <option
-              value="Pending"
-              selected
+            <select
+              class="status-select"
+              onchange="handleAnalystStatusChange(${request.id}, this.value)"
             >
-              Pending
-            </option>
 
-            <option value="Completed">
-              Completed
-            </option>
+              <option
+                value="Pending"
+                selected
+              >
+                Pending
+              </option>
 
-            <option value="Cancelled">
-              Cancelled
-            </option>
+              <option value="Completed">
+                Completed
+              </option>
 
-            <option value="Replaced">
-              Replaced
-            </option>
+              <option value="Cancelled">
+                Cancelled
+              </option>
 
-          </select>
+              <option value="Replaced">
+                Replaced
+              </option>
+
+            </select>
+
+            ${
+              remarks
+                ? `
+                  <div class="status-remark">
+                    ${escapeHtml(remarks)}
+                  </div>
+                `
+                : ""
+            }
+
+          </div>
         `;
       }
 
-      return statusBadge(status);
+      return statusBadge(
+        status,
+        remarks
+      );
     }
 
 
@@ -2952,6 +2991,7 @@
             </td>
 
           `;
+
         }
 
         tbody.appendChild(tr);
@@ -3797,21 +3837,40 @@
     }
 
 
-    function statusBadge(status) {
+    function statusBadge(status, remarks) {
 
       const safeStatus =
         status || "Pending";
 
+      const safeRemarks =
+        remarks
+          ? escapeHtml(remarks)
+          : "";
+
       return `
-        <span
-          class="status status-${escapeHtml(
-            safeStatus
-          )}"
-        >
-          ${escapeHtml(
-            safeStatus
-          )}
-        </span>
+        <div class="status-wrapper">
+
+          <span
+            class="status status-${escapeHtml(
+              safeStatus
+            )}"
+          >
+            ${escapeHtml(
+              safeStatus
+            )}
+          </span>
+
+          ${
+            safeRemarks
+              ? `
+                <div class="status-remark">
+                  ${safeRemarks}
+                </div>
+              `
+              : ""
+          }
+
+        </div>
       `;
     }
 
