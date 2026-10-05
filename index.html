@@ -2598,8 +2598,7 @@ async function signInWithGoogle() {
     /* =========================================================
        CHECK EXISTING SESSION
     ========================================================= */
-
-  async function checkSession() {
+async function checkSession() {
   try {
     const {
       data: { session },
@@ -2608,20 +2607,12 @@ async function signInWithGoogle() {
 
     if (error) {
       console.error("Auth session error:", error);
-
-      currentSession = null;
-      currentProfile = null;
-
       showLogin();
       return;
     }
 
     if (!session) {
-      currentSession = null;
-      currentProfile = null;
-
       localStorage.removeItem("rml_session");
-
       showLogin();
       return;
     }
@@ -2633,31 +2624,36 @@ async function signInWithGoogle() {
       JSON.stringify(currentSession)
     );
 
+    console.log("STEP 1: Session found");
+
     await loadCurrentProfile();
+
+    console.log("STEP 2: Profile loaded");
+
     await loadInitialData();
 
+    console.log("STEP 3: Initial data loaded");
+
     showApp();
+
+    console.log("STEP 4: App shown");
+
     showPage("dashboard");
 
+    console.log("STEP 5: Dashboard shown");
+
   } catch (error) {
-    console.error(
-      "Session initialization error:",
-      error
+    console.error("CHECK SESSION CRASH:", error);
+
+    alert(
+      "Session error:\n\n" +
+      (error.message || error)
     );
 
     currentSession = null;
     currentProfile = null;
 
     localStorage.removeItem("rml_session");
-
-    try {
-      await supabaseClient.auth.signOut();
-    } catch (signOutError) {
-      console.error(
-        "Sign-out cleanup error:",
-        signOutError
-      );
-    }
 
     showLogin();
   }
