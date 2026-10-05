@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>RML Monitoring</title>
 
@@ -20,203 +23,216 @@
     }
 
     /* =========================
-   LOGIN
-========================= */
+       LOGIN
+    ========================= */
 
-.login-page {
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(
-      rgba(15, 23, 42, 0.78),
-      rgba(15, 23, 42, 0.88)
-    ),
-    url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2000&q=80")
-    center / cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5000;
-  padding: 20px;
-}
+    .login-page {
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(
+          rgba(15, 23, 42, 0.78),
+          rgba(15, 23, 42, 0.88)
+        ),
+        url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2000&q=80")
+        center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5000;
+      padding: 20px;
+    }
 
-.login-card {
-  width: 100%;
-  max-width: 420px;
-  background: rgba(255, 255, 255, 0.97);
-  border-radius: 14px;
-  padding: 32px;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-}
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 14px;
+      padding: 32px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
 
-.login-card h1 {
-  margin: 0 0 5px;
-  font-size: 27px;
-  color: #111827;
-}
+    .login-card h1 {
+      margin: 0 0 5px;
+      font-size: 25px;
+      color: #111827;
+    }
 
-.login-card > small {
-  display: block;
-  color: #6b7280;
-  margin-bottom: 25px;
-  line-height: 1.5;
-}
+    .login-card > small {
+      display: block;
+      color: #6b7280;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
 
-.login-group {
-  margin-bottom: 15px;
-}
+    .login-group {
+      margin-bottom: 15px;
+    }
 
-.login-group label {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #374151;
-}
+    .login-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #374151;
+    }
 
-.login-group input {
-  width: 100%;
-  padding: 11px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 7px;
-  font-size: 14px;
-  font-family: inherit;
-  box-sizing: border-box;
-}
+    .login-group input {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: inherit;
+    }
 
-.login-group input:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-}
+    .login-group input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
 
-.login-button {
-  width: 100%;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 7px;
-  padding: 11px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
-.login-button:hover {
-  background: #1d4ed8;
-}
-
-.login-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-.login-error {
-  display: none;
-  padding: 10px 12px;
-  border-radius: 7px;
-  margin-bottom: 15px;
-  font-size: 13px;
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-.login-error.show {
-  display: block;
-}
-.forgot-password {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.forgot-password button {
-  border: none;
-  background: none;
-  color: #2563eb;
-  font-size: 13px;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.forgot-password button:hover {
-  text-decoration: underline;
-}
     /* =========================
-   FORGOT PASSWORD MODAL
-========================= */
+       FORGOT PASSWORD
+    ========================= */
 
-.forgot-password-modal {
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(
-      rgba(15, 23, 42, 0.82),
-      rgba(15, 23, 42, 0.90)
-    );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 6000;
-  padding: 20px;
-}
+    .forgot-password {
+      text-align: center;
+      margin-top: 15px;
+      position: relative;
+      z-index: 10;
+    }
 
-.forgot-password-card {
-  width: 100%;
-  max-width: 400px;
-  background: white;
-  border-radius: 14px;
-  padding: 30px;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
-}
+    .forgot-password button {
+      border: none;
+      background: none;
+      color: #2563eb;
+      font-size: 13px;
+      cursor: pointer;
+      padding: 5px;
+      position: relative;
+      z-index: 11;
+      pointer-events: auto;
+    }
 
-.forgot-password-card h2 {
-  margin: 0 0 8px;
-  font-size: 22px;
-  color: #111827;
-}
+    .forgot-password button:hover {
+      text-decoration: underline;
+    }
 
-.forgot-password-card p {
-  color: #6b7280;
-  font-size: 13px;
-  line-height: 1.5;
-  margin: 0 0 20px;
-}
+    .forgot-password-modal {
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(
+          rgba(15, 23, 42, 0.82),
+          rgba(15, 23, 42, 0.90)
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 6000;
+      padding: 20px;
+      pointer-events: auto;
+    }
 
-.forgot-password-message {
-  display: none;
-  padding: 10px 12px;
-  border-radius: 7px;
-  margin-bottom: 15px;
-  font-size: 13px;
-}
+    .forgot-password-card {
+      width: 100%;
+      max-width: 400px;
+      background: white;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+      pointer-events: auto;
+    }
 
-.forgot-password-message.success {
-  display: block;
-  background: #dcfce7;
-  color: #166534;
-}
+    .forgot-password-card h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: #111827;
+    }
 
-.forgot-password-message.error {
-  display: block;
-  background: #fee2e2;
-  color: #991b1b;
-}
+    .forgot-password-card p {
+      color: #6b7280;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0 0 20px;
+    }
 
-.back-login-button {
-  width: 100%;
-  border: none;
-  background: transparent;
-  color: #6b7280;
-  padding: 10px;
-  margin-top: 8px;
-  cursor: pointer;
-  font-size: 13px;
-}
+    .forgot-password-message {
+      display: none;
+      padding: 10px 12px;
+      border-radius: 7px;
+      margin-bottom: 15px;
+      font-size: 13px;
+    }
 
-.back-login-button:hover {
-  color: #111827;
-}
+    .forgot-password-message.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .forgot-password-message.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .back-login-button {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: #6b7280;
+      padding: 10px;
+      margin-top: 8px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .back-login-button:hover {
+      color: #111827;
+    }
+
+    /* =========================
+       LOGIN BUTTON
+    ========================= */
+
+    .login-button {
+      width: 100%;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      padding: 11px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .login-button:hover {
+      background: #1d4ed8;
+    }
+
+    .login-button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .login-error {
+      display: none;
+      padding: 10px 12px;
+      border-radius: 7px;
+      margin-bottom: 15px;
+      font-size: 13px;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .login-error.show {
+      display: block;
+    }
+
     /* =========================
        SIDEBAR
     ========================= */
@@ -400,13 +416,18 @@
       background: white;
     }
 
+    .status-select:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+
     /* =========================
        CARDS
     ========================= */
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 15px;
       margin-bottom: 25px;
     }
@@ -456,7 +477,12 @@
 
     .filters {
       display: grid;
-      grid-template-columns: 1.2fr 1.2fr 1fr 1fr auto;
+      grid-template-columns:
+        1.2fr
+        1.2fr
+        1fr
+        1fr
+        auto;
       gap: 10px;
       margin-bottom: 25px;
     }
@@ -559,10 +585,6 @@
       background: #f3e8ff;
       color: #6b21a8;
     }
-
-    /* =========================
-       STATUS REMARK
-    ========================= */
 
     .status-wrapper {
       display: flex;
@@ -723,6 +745,7 @@
     ========================= */
 
     @media (max-width: 1200px) {
+
       .cards {
         grid-template-columns: repeat(3, 1fr);
       }
@@ -730,9 +753,11 @@
       .filters {
         grid-template-columns: repeat(2, 1fr);
       }
+
     }
 
     @media (max-width: 800px) {
+
       .sidebar {
         position: relative;
         width: 100%;
@@ -764,140 +789,168 @@
       .sidebar-account {
         margin-top: 20px;
       }
+
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- LOGIN -->
+  <!-- =========================
+       LOGIN PAGE
+  ========================= -->
 
   <div id="loginPage" class="login-page">
 
     <div class="login-card">
 
-     <h1>RML Monitoring</h1>
+      <h1>RML Monitoring</h1>
 
-<small>
-  <strong>DOST Davao Regional Metrology Laboratory</strong><br>
-  Calibration Request and Monitoring System
-</small>
-      <div id="loginError" class="login-error"></div>
+      <small>
+        <strong>DOST Davao Regional Metrology Laboratory</strong><br>
+        Calibration Request and Monitoring System
+      </small>
+
+      <div
+        id="loginError"
+        class="login-error"
+      ></div>
 
       <form id="loginForm">
 
         <div class="login-group">
-          <label>Email</label>
+
+          <label for="loginEmail">
+            Email
+          </label>
+
           <input
             type="email"
             id="loginEmail"
             autocomplete="username"
             required
           >
+
         </div>
 
         <div class="login-group">
-          <label>Password</label>
+
+          <label for="loginPassword">
+            Password
+          </label>
+
           <input
             type="password"
             id="loginPassword"
             autocomplete="current-password"
             required
           >
+
         </div>
 
-      <button
-  type="submit"
-  class="login-button"
-  id="loginButton"
->
-  Login
-</button>
+        <button
+          type="submit"
+          class="login-button"
+          id="loginButton"
+        >
+          Login
+        </button>
 
-</form>
-<div class="forgot-password">
-  <button
-    type="button"
-    onclick="showForgotPassword()"
-  >
-    Forgot Password?
-  </button>
-</div>
+      </form>
 
-</div>
+      <!-- FORGOT PASSWORD -->
 
-</div>
+      <div class="forgot-password">
 
+        <button
+          type="button"
+          id="forgotPasswordButton"
+        >
+          Forgot Password?
+        </button>
 
-<!-- =========================
-     FORGOT PASSWORD MODAL
-========================= -->
-
-<div
-  id="forgotPasswordModal"
-  class="forgot-password-modal"
-  style="display: none;"
->
-
-  <div class="forgot-password-card">
-
-    <h2>Forgot Password?</h2>
-
-    <p>
-      Enter your registered email address and
-      we'll send you a password reset link.
-    </p>
-
-    <div
-      id="forgotPasswordMessage"
-      class="forgot-password-message"
-    ></div>
-
-    <div class="login-group">
-
-      <label for="resetEmail">
-        Email Address
-      </label>
-
-      <input
-        type="email"
-        id="resetEmail"
-        placeholder="Enter your email"
-        autocomplete="email"
-      >
+      </div>
 
     </div>
 
-    <button
-      type="button"
-      class="login-button"
-      id="resetPasswordButton"
-      onclick="sendPasswordReset()"
-    >
-      Send Reset Link
-    </button>
+  </div>
 
-    <button
-      type="button"
-      class="back-login-button"
-      onclick="hideForgotPassword()"
-    >
-      ← Back to Login
-    </button>
+
+  <!-- =========================
+       FORGOT PASSWORD MODAL
+  ========================= -->
+
+  <div
+    id="forgotPasswordModal"
+    class="forgot-password-modal"
+    style="display: none;"
+  >
+
+    <div class="forgot-password-card">
+
+      <h2>
+        Forgot Password?
+      </h2>
+
+      <p>
+        Enter your registered email address and
+        we'll send you a password reset link.
+      </p>
+
+      <div
+        id="forgotPasswordMessage"
+        class="forgot-password-message"
+      ></div>
+
+      <div class="login-group">
+
+        <label for="resetEmail">
+          Email Address
+        </label>
+
+        <input
+          type="email"
+          id="resetEmail"
+          placeholder="Enter your email"
+          autocomplete="email"
+        >
+
+      </div>
+
+      <button
+        type="button"
+        class="login-button"
+        id="resetPasswordButton"
+      >
+        Send Reset Link
+      </button>
+
+      <button
+        type="button"
+        class="back-login-button"
+        id="backLoginButton"
+      >
+        ← Back to Login
+      </button>
+
+    </div>
 
   </div>
 
-</div>
 
-
-  <!-- SIDEBAR -->
+  <!-- =========================
+       SIDEBAR
+  ========================= -->
 
   <aside class="sidebar">
 
-    <h2>RML Monitoring</h2>
+    <h2>
+      RML Monitoring
+    </h2>
 
     <small>
-      DOST XI Regional Metrology Laboratory
+      DOST Davao Regional Metrology Laboratory
     </small>
 
     <button
@@ -948,22 +1001,30 @@
   </aside>
 
 
-  <!-- MAIN -->
+  <!-- =========================
+       MAIN
+  ========================= -->
 
   <main class="main">
 
-    <!-- DASHBOARD -->
+    <!-- =========================
+         DASHBOARD
+    ========================= -->
 
     <div id="dashboardPage">
 
       <div class="header">
 
         <div>
-          <h1>Dashboard</h1>
+
+          <h1>
+            Dashboard
+          </h1>
 
           <small>
             RML monitoring and personnel workload
           </small>
+
         </div>
 
         <button
@@ -981,28 +1042,78 @@
       <div class="cards">
 
         <div class="card">
-          <div class="card-title">Assigned</div>
-          <div class="card-value" id="totalAssigned">0</div>
+
+          <div class="card-title">
+            Assigned
+          </div>
+
+          <div
+            class="card-value"
+            id="totalAssigned"
+          >
+            0
+          </div>
+
         </div>
 
         <div class="card">
-          <div class="card-title">Completed</div>
-          <div class="card-value" id="totalCompleted">0</div>
+
+          <div class="card-title">
+            Completed
+          </div>
+
+          <div
+            class="card-value"
+            id="totalCompleted"
+          >
+            0
+          </div>
+
         </div>
 
         <div class="card">
-          <div class="card-title">Pending</div>
-          <div class="card-value" id="totalPending">0</div>
+
+          <div class="card-title">
+            Pending
+          </div>
+
+          <div
+            class="card-value"
+            id="totalPending"
+          >
+            0
+          </div>
+
         </div>
 
         <div class="card">
-          <div class="card-title">Cancelled</div>
-          <div class="card-value" id="totalCancelled">0</div>
+
+          <div class="card-title">
+            Cancelled
+          </div>
+
+          <div
+            class="card-value"
+            id="totalCancelled"
+          >
+            0
+          </div>
+
         </div>
 
         <div class="card">
-          <div class="card-title">Replaced</div>
-          <div class="card-value" id="totalReplaced">0</div>
+
+          <div class="card-title">
+            Replaced
+          </div>
+
+          <div
+            class="card-value"
+            id="totalReplaced"
+          >
+            0
+          </div>
+
         </div>
 
       </div>
@@ -1014,40 +1125,54 @@
 
         <select
           id="categoryFilter"
-          onchange="loadDashboard()"
         >
-          <option value="">All Categories</option>
+          <option value="">
+            All Categories
+          </option>
         </select>
 
         <select
           id="personnelFilter"
-          onchange="loadDashboard()"
         >
-          <option value="">All Personnel</option>
+          <option value="">
+            All Personnel
+          </option>
         </select>
 
         <select
           id="statusFilter"
-          onchange="loadDashboard()"
         >
-          <option value="">All Status</option>
 
-          <option value="Completed">Completed</option>
-          <option value="Pending">Pending</option>
-          <option value="Cancelled">Cancelled</option>
-          <option value="Replaced">Replaced</option>
+          <option value="">
+            All Status
+          </option>
+
+          <option value="Completed">
+            Completed
+          </option>
+
+          <option value="Pending">
+            Pending
+          </option>
+
+          <option value="Cancelled">
+            Cancelled
+          </option>
+
+          <option value="Replaced">
+            Replaced
+          </option>
 
         </select>
 
         <input
           type="month"
           id="monthFilter"
-          onchange="loadDashboard()"
         >
 
         <button
           class="primary"
-          onclick="clearFilters()"
+          id="clearFiltersButton"
         >
           Clear Filters
         </button>
@@ -1059,7 +1184,9 @@
 
       <div class="section">
 
-        <h2>Personnel Summary</h2>
+        <h2>
+          Personnel Summary
+        </h2>
 
         <div class="table-wrapper">
 
@@ -1068,19 +1195,46 @@
             <thead>
 
               <tr>
-                <th>Personnel</th>
-                <th>Assigned</th>
-                <th>Completed</th>
-                <th>Pending</th>
-                <th>Cancelled</th>
-                <th>Replaced</th>
-                <th>PCS</th>
-                <th>Amount</th>
+
+                <th>
+                  Personnel
+                </th>
+
+                <th>
+                  Assigned
+                </th>
+
+                <th>
+                  Completed
+                </th>
+
+                <th>
+                  Pending
+                </th>
+
+                <th>
+                  Cancelled
+                </th>
+
+                <th>
+                  Replaced
+                </th>
+
+                <th>
+                  PCS
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
               </tr>
 
             </thead>
 
-            <tbody id="personnelTable"></tbody>
+            <tbody
+              id="personnelTable"
+            ></tbody>
 
           </table>
 
@@ -1093,7 +1247,9 @@
 
       <div class="section">
 
-        <h2>Requests</h2>
+        <h2>
+          Requests
+        </h2>
 
         <div class="search-box">
 
@@ -1112,21 +1268,54 @@
             <thead>
 
               <tr>
-                <th>Request No.</th>
-                <th>Personnel</th>
-                <th>Category</th>
-                <th>Service / Item</th>
-                <th>Serial Number</th>
-                <th>PCS</th>
-                <th>Amount</th>
-                <th>Due</th>
-                <th>Status</th>
-                <th class="admin-edit-col">Edit</th>
+
+                <th>
+                  Request No.
+                </th>
+
+                <th>
+                  Personnel
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Service / Item
+                </th>
+
+                <th>
+                  Serial Number
+                </th>
+
+                <th>
+                  PCS
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+                <th>
+                  Due
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th class="admin-edit-col">
+                  Edit
+                </th>
+
               </tr>
 
             </thead>
 
-            <tbody id="requestsTable"></tbody>
+            <tbody
+              id="dashboardRequestsTable"
+            ></tbody>
 
           </table>
 
@@ -1137,33 +1326,42 @@
     </div>
 
 
-    <!-- ALL REQUESTS -->
+    <!-- =========================
+         ALL REQUESTS
+    ========================= -->
 
-    <div id="requestsPage" class="hidden">
+    <div
+      id="requestsPage"
+      class="hidden"
+    >
 
       <div class="header">
 
         <div>
 
-          <h1>All Requests</h1>
+          <h1>
+            All Requests
+          </h1>
 
           <small>
-            RML monitoring records
+            Complete list of calibration requests
           </small>
 
         </div>
 
-        <button
-          class="primary admin-only"
-          onclick="openAddRequest()"
-        >
-          + Add Request
-        </button>
-
       </div>
 
-
       <div class="section">
+
+        <div class="search-box">
+
+          <input
+            type="text"
+            id="allRequestsSearch"
+            placeholder="Search request no., personnel, category, service/item, serial number..."
+          >
+
+        </div>
 
         <div class="table-wrapper">
 
@@ -1172,23 +1370,62 @@
             <thead>
 
               <tr>
-                <th>Request No.</th>
-                <th>Personnel</th>
-                <th>Category</th>
-                <th>Service / Item</th>
-                <th>Serial Number</th>
-                <th>Request Date</th>
-                <th>PCS</th>
-                <th>Amount</th>
-                <th>Due</th>
-                <th>Status</th>
-                <th>Date Completed</th>
-                <th class="admin-edit-col">Edit</th>
+
+                <th>
+                  Request No.
+                </th>
+
+                <th>
+                  Personnel
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Service / Item
+                </th>
+
+                <th>
+                  Serial Number
+                </th>
+
+                <th>
+                  Request Date
+                </th>
+
+                <th>
+                  PCS
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+                <th>
+                  Due
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Date Completed
+                </th>
+
+                <th class="admin-edit-col">
+                  Edit
+                </th>
+
               </tr>
 
             </thead>
 
-            <tbody id="allRequestsTable"></tbody>
+            <tbody
+              id="allRequestsTable"
+            ></tbody>
 
           </table>
 
@@ -1199,7 +1436,9 @@
     </div>
 
 
-    <!-- PERSONNEL DETAIL -->
+    <!-- =========================
+         PERSONNEL DETAIL
+    ========================= -->
 
     <div
       id="personnelDetailPage"
@@ -1208,19 +1447,23 @@
 
       <button
         class="secondary back-btn"
-        onclick="showPage('dashboard')"
+        id="backToDashboardButton"
       >
-        ← Back to Dashboard
+        ← Back
       </button>
 
       <div class="person-header">
 
-        <h1 id="personDetailTitle">
+        <h1
+          id="personDetailName"
+        >
           Personnel
         </h1>
 
-        <small>
-          Assigned requests
+        <small
+          id="personDetailCode"
+        >
+          —
         </small>
 
       </div>
@@ -1234,19 +1477,46 @@
             <thead>
 
               <tr>
-                <th>Request No.</th>
-                <th>Personnel</th>
-                <th>Category</th>
-                <th>Service / Item</th>
-                <th>PCS</th>
-                <th>Amount</th>
-                <th>Due</th>
-                <th>Status</th>
+
+                <th>
+                  Request No.
+                </th>
+
+                <th>
+                  Personnel
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Service / Item
+                </th>
+
+                <th>
+                  PCS
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+                <th>
+                  Due
+                </th>
+
+                <th>
+                  Status
+                </th>
+
               </tr>
 
             </thead>
 
-            <tbody id="detailRequestsTable"></tbody>
+            <tbody
+              id="detailRequestsTable"
+            ></tbody>
 
           </table>
 
@@ -1259,25 +1529,27 @@
   </main>
 
 
-  <!-- ADD / EDIT MODAL -->
+  <!-- =========================
+       ADD / EDIT REQUEST MODAL
+  ========================= -->
 
   <div
     id="requestModal"
     class="modal hidden"
-    style="display: none;"
   >
 
     <div class="modal-content">
 
       <div class="modal-header">
 
-        <h2 id="modalTitle">
+        <h2 id="requestModalTitle">
           Add Request
         </h2>
 
         <button
+          type="button"
           class="close-btn"
-          onclick="closeAddRequest()"
+          id="closeRequestModalButton"
         >
           ×
         </button>
@@ -1291,107 +1563,35 @@
 
       <form id="requestForm">
 
-        <div class="form-group">
-          <label>Request No.</label>
-
-          <input
-            type="text"
-            id="requestNo"
-            required
-          >
-        </div>
-
-
-        <div class="form-group">
-          <label>Assigned Personnel</label>
-
-          <select
-            id="assignedPersonnel"
-            required
-          >
-            <option value="">
-              Select personnel
-            </option>
-          </select>
-        </div>
-
-
-        <div class="form-group">
-          <label>Monitoring Category</label>
-
-          <select
-            id="category"
-            required
-            onchange="populateServiceItems()"
-          >
-            <option value="">
-              Select category
-            </option>
-          </select>
-        </div>
-
-
-        <div class="form-group">
-          <label>Service / Item</label>
-
-          <select
-            id="serviceItem"
-            required
-            onchange="updateAmount()"
-          >
-            <option value="">
-              Select service/item
-            </option>
-          </select>
-        </div>
-
-
         <div class="form-row">
 
           <div class="form-group">
 
-            <label>PCS</label>
+            <label for="requestNo">
+              Request No.
+            </label>
 
             <input
-              type="number"
-              id="pcs"
-              min="1"
-              step="1"
-              value="1"
-              onchange="updateAmount()"
-              oninput="updateAmount()"
+              type="text"
+              id="requestNo"
               required
             >
 
           </div>
 
-
           <div class="form-group">
 
-            <label>Total Amount</label>
+            <label for="requestDate">
+              Request Date
+            </label>
 
             <input
-              type="number"
-              id="amount"
-              class="amount-display"
-              readonly
-              value="0"
-              step="0.01"
+              type="date"
+              id="requestDate"
+              required
             >
 
           </div>
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label>Serial Number</label>
-
-          <input
-            type="text"
-            id="serialNumber"
-          >
 
         </div>
 
@@ -1400,19 +1600,123 @@
 
           <div class="form-group">
 
-            <label>Request Date</label>
+            <label for="assignedPersonnel">
+              Personnel
+            </label>
+
+            <select
+              id="assignedPersonnel"
+              required
+            >
+
+              <option value="">
+                Select personnel
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="category">
+              Category
+            </label>
+
+            <select
+              id="category"
+              required
+            >
+
+              <option value="">
+                Select category
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="serviceItem">
+            Service / Item
+          </label>
+
+          <select
+            id="serviceItem"
+            required
+          >
+
+            <option value="">
+              Select service/item
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-row">
+
+          <div class="form-group">
+
+            <label for="serialNumber">
+              Serial Number
+            </label>
 
             <input
-              type="date"
-              id="requestDate"
+              type="text"
+              id="serialNumber"
             >
 
           </div>
 
+          <div class="form-group">
+
+            <label for="pcs">
+              PCS
+            </label>
+
+            <input
+              type="number"
+              id="pcs"
+              min="0"
+              step="1"
+              value="0"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="form-row">
 
           <div class="form-group">
 
-            <label>Due Date</label>
+            <label for="amount">
+              Amount
+            </label>
+
+            <input
+              type="number"
+              id="amount"
+              class="amount-display"
+              min="0"
+              step="0.01"
+              value="0"
+            >
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="dueDate">
+              Due Date
+            </label>
 
             <input
               type="date"
@@ -1424,39 +1728,57 @@
         </div>
 
 
-        <div class="form-group">
+        <div class="form-row">
 
-          <label>Status</label>
+          <div class="form-group">
 
-          <select
-            id="status"
-            required
-          >
+            <label for="status">
+              Status
+            </label>
 
-            <option value="Pending">
-              Pending
-            </option>
+            <select id="status">
 
-            <option value="Completed">
-              Completed
-            </option>
+              <option value="Pending">
+                Pending
+              </option>
 
-            <option value="Cancelled">
-              Cancelled
-            </option>
+              <option value="Completed">
+                Completed
+              </option>
 
-            <option value="Replaced">
-              Replaced
-            </option>
+              <option value="Cancelled">
+                Cancelled
+              </option>
 
-          </select>
+              <option value="Replaced">
+                Replaced
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="form-group">
+
+            <label for="dateCompleted">
+              Date Completed
+            </label>
+
+            <input
+              type="date"
+              id="dateCompleted"
+            >
+
+          </div>
 
         </div>
 
 
         <div class="form-group">
 
-          <label>Description</label>
+          <label for="description">
+            Description
+          </label>
 
           <textarea
             id="description"
@@ -1467,11 +1789,12 @@
 
         <div class="form-group">
 
-          <label>Remarks</label>
+          <label for="remarks">
+            Remarks
+          </label>
 
           <textarea
             id="remarks"
-            placeholder="For Cancelled or Replaced requests, indicate the reason."
           ></textarea>
 
         </div>
@@ -1482,7 +1805,7 @@
           <button
             type="button"
             class="secondary"
-            onclick="closeAddRequest()"
+            id="cancelRequestButton"
           >
             Cancel
           </button>
@@ -1490,7 +1813,7 @@
           <button
             type="submit"
             class="primary"
-            id="saveRequestBtn"
+            id="saveRequestButton"
           >
             Save Request
           </button>
@@ -1507,7 +1830,7 @@
   <script>
 
     /* =========================================================
-       SUPABASE CONFIGURATION
+       SUPABASE CONFIG
     ========================================================= */
 
     const SUPABASE_URL =
@@ -1518,16 +1841,23 @@
 
 
     /* =========================================================
-       GLOBAL VARIABLES
+       GLOBALS
     ========================================================= */
 
     let requests = [];
+
     let personnel = [];
+
     let categories = [];
+
     let serviceItems = [];
+
     let editingRequestId = null;
+
     let currentPersonnelId = null;
+
     let currentSession = null;
+
     let currentProfile = null;
 
 
@@ -1535,91 +1865,218 @@
        SUPABASE FETCH
     ========================================================= */
 
-    async function supabaseFetch(endpoint, options = {}) {
+    async function supabaseFetch(
+      endpoint,
+      options = {}
+    ) {
 
-      if (!currentSession?.access_token) {
-        throw new Error("You are not logged in.");
+      const headers = {
+
+        "apikey":
+          SUPABASE_KEY,
+
+        "Content-Type":
+          "application/json",
+
+        ...(options.headers || {})
+
+      };
+
+
+      if (
+        currentSession?.access_token
+      ) {
+
+        headers.Authorization =
+          `Bearer ${currentSession.access_token}`;
+
       }
 
-      const response = await fetch(
-        `${SUPABASE_URL}/rest/v1/${endpoint}`,
-        {
-          ...options,
 
-          headers: {
-            "apikey": SUPABASE_KEY,
-
-            "Authorization":
-              `Bearer ${currentSession.access_token}`,
-
-            "Content-Type":
-              "application/json",
-
-            "Prefer":
-              "return=representation",
-
-            ...(options.headers || {})
+      const response =
+        await fetch(
+          `${SUPABASE_URL}/rest/v1/${endpoint}`,
+          {
+            ...options,
+            headers
           }
-        }
-      );
-
-      if (!response.ok) {
-
-        const errorText =
-          await response.text();
-
-        throw new Error(
-          errorText ||
-          "Supabase request failed."
         );
-      }
+
 
       const text =
         await response.text();
 
-      if (!text) {
-        return [];
+
+      let data = null;
+
+
+      try {
+
+        data =
+          text
+            ? JSON.parse(text)
+            : null;
+
       }
 
-      return JSON.parse(text);
+      catch {
+
+        data = text;
+
+      }
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          data?.message ||
+          data?.hint ||
+          data?.details ||
+          "Supabase request failed."
+        );
+
+      }
+
+
+      return data;
+
     }
 
 
     /* =========================================================
-       AUTHENTICATION
+       SUPABASE RPC
     ========================================================= */
 
-    async function signIn(email, password) {
+    async function supabaseRpc(
+      functionName,
+      body
+    ) {
 
-      const response = await fetch(
-        `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
-        {
-          method: "POST",
+      const headers = {
 
-          headers: {
-            "apikey": SUPABASE_KEY,
-            "Content-Type": "application/json"
-          },
+        "apikey":
+          SUPABASE_KEY,
 
-          body: JSON.stringify({
-            email,
-            password
-          })
-        }
-      );
+        "Content-Type":
+          "application/json",
+
+        "Authorization":
+          `Bearer ${
+            currentSession?.access_token || ""
+          }`
+
+      };
+
+
+      const response =
+        await fetch(
+          `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
+          {
+            method: "POST",
+            headers,
+            body: JSON.stringify(body)
+          }
+        );
+
 
       const text =
         await response.text();
 
-      let data = {};
+
+      let data = null;
+
 
       try {
-        data = text ? JSON.parse(text) : {};
+
+        data =
+          text
+            ? JSON.parse(text)
+            : null;
+
       }
 
       catch {
-        data = {};
+
+        data = text;
+
       }
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          data?.message ||
+          data?.hint ||
+          data?.details ||
+          data?.error_description ||
+          "Supabase RPC request failed."
+        );
+
+      }
+
+
+      return data;
+
+    }
+
+
+    /* =========================================================
+       LOGIN
+    ========================================================= */
+
+    async function signIn(
+      email,
+      password
+    ) {
+
+      const response =
+        await fetch(
+          `${SUPABASE_URL}/auth/v1/token?grant_type=password`,
+          {
+            method: "POST",
+
+            headers: {
+
+              "apikey":
+                SUPABASE_KEY,
+
+              "Content-Type":
+                "application/json"
+
+            },
+
+            body:
+              JSON.stringify({
+                email,
+                password
+              })
+
+          }
+        );
+
+
+      const text =
+        await response.text();
+
+
+      let data = {};
+
+
+      try {
+
+        data =
+          text
+            ? JSON.parse(text)
+            : {};
+
+      }
+
+      catch {
+
+        data = {};
+
+      }
+
 
       if (!response.ok) {
 
@@ -1629,273 +2086,82 @@
           data.message ||
           "Invalid email or password."
         );
+
       }
 
-      currentSession = data;
+
+      currentSession =
+        data;
+
 
       localStorage.setItem(
         "rml_session",
-        JSON.stringify(currentSession)
+        JSON.stringify(
+          currentSession
+        )
       );
 
+
       await loadCurrentProfile();
-    }
 
-    /* =========================================================
-       FORGOT PASSWORD
-    ========================================================= */
-
-    function showForgotPassword() {
-
-      const modal =
-        document.getElementById(
-          "forgotPasswordModal"
-        );
-
-      const emailInput =
-        document.getElementById(
-          "resetEmail"
-        );
-
-      const message =
-        document.getElementById(
-          "forgotPasswordMessage"
-        );
-
-      message.className =
-        "forgot-password-message";
-
-      message.textContent = "";
-
-      /*
-        If the login email field already has
-        an email address, copy it here.
-      */
-   const loginEmail =
-  document.getElementById(
-    "loginEmail"
-  );
-      
-
-      if (
-        loginEmail &&
-        loginEmail.value.trim()
-      ) {
-        emailInput.value =
-          loginEmail.value.trim();
-      }
-
-      modal.style.display = "flex";
-
-      setTimeout(() => {
-        emailInput.focus();
-      }, 100);
     }
 
 
-    function hideForgotPassword() {
-
-      const modal =
-        document.getElementById(
-          "forgotPasswordModal"
-        );
-
-      modal.style.display = "none";
-
-      const message =
-        document.getElementById(
-          "forgotPasswordMessage"
-        );
-
-      message.className =
-        "forgot-password-message";
-
-      message.textContent = "";
-    }
-
-
-    async function sendPasswordReset() {
-
-      const emailInput =
-        document.getElementById(
-          "resetEmail"
-        );
-
-      const button =
-        document.getElementById(
-          "resetPasswordButton"
-        );
-
-      const message =
-        document.getElementById(
-          "forgotPasswordMessage"
-        );
-
-      const email =
-        emailInput.value.trim();
-
-      if (!email) {
-
-        message.className =
-          "forgot-password-message error";
-
-        message.textContent =
-          "Please enter your email address.";
-
-        emailInput.focus();
-
-        return;
-      }
-
-      if (!email.includes("@")) {
-
-        message.className =
-          "forgot-password-message error";
-
-        message.textContent =
-          "Please enter a valid email address.";
-
-        emailInput.focus();
-
-        return;
-      }
-
-      button.disabled = true;
-      button.textContent = "Sending...";
-
-      message.className =
-        "forgot-password-message";
-
-      message.textContent = "";
-
-      try {
-
-        const response =
-          await fetch(
-            `${SUPABASE_URL}/auth/v1/recover`,
-            {
-              method: "POST",
-
-              headers: {
-                "apikey": SUPABASE_KEY,
-                "Content-Type":
-                  "application/json"
-              },
-
-              body: JSON.stringify({
-                email: email,
-                redirect_to:
-                  "https://rmldavao.github.io/rml-monitoring/"
-              })
-            }
-          );
-
-        const text =
-          await response.text();
-
-        let data = {};
-
-        try {
-          data =
-            text
-              ? JSON.parse(text)
-              : {};
-        }
-
-        catch {
-          data = {};
-        }
-
-        if (!response.ok) {
-
-          throw new Error(
-            data.msg ||
-            data.message ||
-            data.error_description ||
-            "Unable to send the password reset email."
-          );
-        }
-
-        message.className =
-          "forgot-password-message success";
-
-        message.textContent =
-          "If an account exists for this email, " +
-          "a password reset link has been sent. " +
-          "Please check your inbox.";
-
-        emailInput.value = "";
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "Password reset error:",
-          error
-        );
-
-        message.className =
-          "forgot-password-message error";
-
-        message.textContent =
-          error.message ||
-          "Unable to send the password reset email.";
-
-      }
-
-      finally {
-
-        button.disabled = false;
-
-        button.textContent =
-          "Send Reset Link";
-      }
-    }
     /* =========================================================
        LOAD CURRENT PROFILE
     ========================================================= */
 
     async function loadCurrentProfile() {
 
-      if (!currentSession?.user?.id) {
+      if (
+        !currentSession?.user?.id
+      ) {
 
         throw new Error(
-          "User session is invalid."
+          "Unable to identify the logged-in user."
         );
+
       }
 
+
       const userId =
-        encodeURIComponent(
-          currentSession.user.id
-        );
+        currentSession.user.id;
+
 
       const profiles =
         await supabaseFetch(
           `user_profiles?select=id,personnel_id,role,active&id=eq.${userId}`
         );
 
+
       if (!profiles.length) {
 
         throw new Error(
           "Your account does not have an RML Monitoring profile."
         );
+
       }
+
 
       const profile =
         profiles[0];
+
 
       if (!profile.active) {
 
         throw new Error(
           "Your RML Monitoring account is inactive."
         );
+
       }
+
 
       currentProfile =
         profile;
 
+
       updateLoggedInUser();
+
     }
 
 
@@ -1910,16 +2176,21 @@
           "loggedUserCode"
         );
 
+
       const roleElement =
         document.getElementById(
           "loggedUserRole"
         );
 
+
       let displayCode =
         currentSession?.user?.email ||
         "User";
 
-      if (currentProfile?.personnel_id) {
+
+      if (
+        currentProfile?.personnel_id
+      ) {
 
         const person =
           personnel.find(
@@ -1930,21 +2201,29 @@
               )
           );
 
+
         if (person) {
 
           displayCode =
-            `${person.code} — ${person.name || ""}`;
+            `${person.code} — ${
+              person.name || ""
+            }`;
+
         }
 
       }
 
+
       codeElement.textContent =
         displayCode;
 
+
       roleElement.textContent =
-        currentProfile?.role === "admin"
+        currentProfile?.role ===
+        "admin"
           ? "Administrator"
           : "Viewer";
+
     }
 
 
@@ -1955,23 +2234,41 @@
     function applyPermissions() {
 
       const isAdmin =
-        currentProfile?.role === "admin";
+        currentProfile?.role ===
+        "admin";
+
 
       document
-        .querySelectorAll(".admin-only")
-        .forEach(element => {
+        .querySelectorAll(
+          ".admin-only"
+        )
+        .forEach(
+          element => {
 
-          element.style.display =
-            isAdmin ? "" : "none";
-        });
+            element.style.display =
+              isAdmin
+                ? ""
+                : "none";
+
+          }
+        );
+
 
       document
-        .querySelectorAll(".admin-edit-col")
-        .forEach(element => {
+        .querySelectorAll(
+          ".admin-edit-col"
+        )
+        .forEach(
+          element => {
 
-          element.style.display =
-            isAdmin ? "" : "none";
-        });
+            element.style.display =
+              isAdmin
+                ? ""
+                : "none";
+
+          }
+        );
+
     }
 
 
@@ -1982,10 +2279,34 @@
     function showApp() {
 
       document
-        .getElementById("loginPage")
-        .classList.add("hidden");
+        .getElementById(
+          "loginPage"
+        )
+        .classList.add(
+          "hidden"
+        );
+
+
+      document
+        .querySelector(
+          ".sidebar"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
+
+      document
+        .querySelector(
+          ".main"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
 
       applyPermissions();
+
     }
 
 
@@ -1996,8 +2317,13 @@
     function showLogin() {
 
       document
-        .getElementById("loginPage")
-        .classList.remove("hidden");
+        .getElementById(
+          "loginPage"
+        )
+        .classList.remove(
+          "hidden"
+        );
+
     }
 
 
@@ -2009,21 +2335,31 @@
 
       try {
 
-        if (currentSession?.access_token) {
+        if (
+          currentSession?.access_token
+        ) {
 
           await fetch(
             `${SUPABASE_URL}/auth/v1/logout`,
             {
+
               method: "POST",
 
               headers: {
-                "apikey": SUPABASE_KEY,
+
+                "apikey":
+                  SUPABASE_KEY,
 
                 "Authorization":
-                  `Bearer ${currentSession.access_token}`
+                  `Bearer ${
+                    currentSession.access_token
+                  }`
+
               }
+
             }
           );
+
         }
 
       }
@@ -2034,13 +2370,20 @@
           "Logout error:",
           error
         );
+
       }
 
+
       currentSession = null;
+
       currentProfile = null;
+
       requests = [];
+
       personnel = [];
+
       categories = [];
+
       serviceItems = [];
 
       localStorage.removeItem(
@@ -2048,6 +2391,7 @@
       );
 
       location.reload();
+
     }
 
 
@@ -2057,380 +2401,109 @@
 
     async function checkSession() {
 
-      const stored =
+      const savedSession =
         localStorage.getItem(
           "rml_session"
         );
 
-      if (!stored) {
+
+      if (!savedSession) {
 
         showLogin();
 
         return;
+
       }
+
 
       try {
 
         currentSession =
-          JSON.parse(stored);
+          JSON.parse(
+            savedSession
+          );
 
-        if (!currentSession?.access_token) {
+
+        if (
+          !currentSession?.access_token
+        ) {
 
           throw new Error(
             "Invalid session."
           );
+
         }
+
 
         await loadCurrentProfile();
 
-        await init();
+        await loadInitialData();
 
         showApp();
+
+        showPage(
+          "dashboard"
+        );
 
       }
 
       catch (error) {
 
-        console.error(error);
+        console.error(
+          "Session check error:",
+          error
+        );
+
 
         localStorage.removeItem(
           "rml_session"
         );
 
+
         currentSession = null;
+
         currentProfile = null;
 
+
         showLogin();
+
       }
+
     }
 
 
     /* =========================================================
-       LOGIN FORM
+       LOAD INITIAL DATA
     ========================================================= */
 
-    document
-      .getElementById("loginForm")
-      .addEventListener(
-        "submit",
-        async function(event) {
-
-          event.preventDefault();
-
-          const email =
-            document
-              .getElementById("loginEmail")
-              .value
-              .trim();
-
-          const password =
-            document
-              .getElementById("loginPassword")
-              .value;
-
-          const loginButton =
-            document.getElementById(
-              "loginButton"
-            );
-
-          const loginError =
-            document.getElementById(
-              "loginError"
-            );
-
-          loginError.textContent = "";
-
-          loginError.classList.remove(
-            "show"
-          );
-
-          loginButton.disabled = true;
-          loginButton.textContent =
-            "Logging in...";
-
-          try {
-
-            await signIn(
-              email,
-              password
-            );
-
-            await init();
-
-            showApp();
-
-          }
-
-          catch (error) {
-
-            console.error(error);
-
-            currentSession = null;
-            currentProfile = null;
-
-            localStorage.removeItem(
-              "rml_session"
-            );
-
-            loginError.textContent =
-              error.message ||
-              "Unable to log in.";
-
-            loginError.classList.add(
-              "show"
-            );
-
-          }
-
-          finally {
-
-            loginButton.disabled = false;
-            loginButton.textContent =
-              "Login";
-          }
-        }
-      );
-
-
-    /* =========================================================
-       INITIALIZATION
-    ========================================================= */
-
-    async function init() {
-
-      try {
-
-        await loadPersonnel();
-
-        updateLoggedInUser();
-
-        await loadCategories();
-
-        await loadServiceItems();
-
-        await reloadRequests();
-
-        setupSearch();
-
-        applyPermissions();
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        alert(
-          "Unable to load RML Monitoring data.\n\n" +
-          error.message
-        );
-      }
-    }
-
-
-    /* =========================================================
-       LOAD PERSONNEL
-    ========================================================= */
-
-    async function loadPersonnel() {
+    async function loadInitialData() {
 
       personnel =
         await supabaseFetch(
-          "personnel?select=*&active=eq.true&order=code.asc"
+          "personnel?select=*&order=code.asc"
         );
 
-      const personnelSelect =
-        document.getElementById(
-          "assignedPersonnel"
-        );
-
-      const personnelFilter =
-        document.getElementById(
-          "personnelFilter"
-        );
-
-      personnelSelect.innerHTML = `
-        <option value="">
-          Select personnel
-        </option>
-      `;
-
-      personnelFilter.innerHTML = `
-        <option value="">
-          All Personnel
-        </option>
-      `;
-
-      personnel.forEach(person => {
-
-        personnelSelect.innerHTML += `
-          <option value="${person.id}">
-            ${escapeHtml(person.code)}
-          </option>
-        `;
-
-        personnelFilter.innerHTML += `
-          <option value="${person.id}">
-            ${escapeHtml(person.code)}
-          </option>
-        `;
-      });
-    }
-
-
-    /* =========================================================
-       LOAD CATEGORIES
-    ========================================================= */
-
-    async function loadCategories() {
 
       categories =
         await supabaseFetch(
-          "monitoring_categories?select=*&active=eq.true&order=name.asc"
+          "categories?select=*&order=name.asc"
         );
 
-      const categorySelect =
-        document.getElementById(
-          "category"
-        );
-
-      const categoryFilter =
-        document.getElementById(
-          "categoryFilter"
-        );
-
-      categorySelect.innerHTML = `
-        <option value="">
-          Select category
-        </option>
-      `;
-
-      categoryFilter.innerHTML = `
-        <option value="">
-          All Categories
-        </option>
-      `;
-
-      categories.forEach(category => {
-
-        categorySelect.innerHTML += `
-          <option value="${category.id}">
-            ${escapeHtml(category.name)}
-          </option>
-        `;
-
-        categoryFilter.innerHTML += `
-          <option value="${category.id}">
-            ${escapeHtml(category.name)}
-          </option>
-        `;
-      });
-    }
-
-
-    /* =========================================================
-       LOAD SERVICE ITEMS
-    ========================================================= */
-
-    async function loadServiceItems() {
 
       serviceItems =
         await supabaseFetch(
-          "service_items?select=*&active=eq.true&order=item_name.asc"
-        );
-    }
-
-
-    /* =========================================================
-       POPULATE SERVICE ITEMS
-    ========================================================= */
-
-    function populateServiceItems() {
-
-      const categoryId =
-        document.getElementById(
-          "category"
-        ).value;
-
-      const serviceSelect =
-        document.getElementById(
-          "serviceItem"
+          "service_items?select=*&order=name.asc"
         );
 
-      serviceSelect.innerHTML = `
-        <option value="">
-          Select service/item
-        </option>
-      `;
 
-      if (!categoryId) {
+      await reloadRequests();
 
-        updateAmount();
+      populateFilters();
 
-        return;
-      }
+      populateFormSelects();
 
-      const filtered =
-        serviceItems.filter(
-          item =>
-            String(item.category_id) ===
-            String(categoryId)
-        );
+      updateLoggedInUser();
 
-      filtered.forEach(item => {
-
-        serviceSelect.innerHTML += `
-          <option
-            value="${item.id}"
-            data-price="${item.price || 0}"
-          >
-            ${escapeHtml(item.item_name)}
-            — ₱${formatNumber(item.price || 0)}
-          </option>
-        `;
-      });
-
-      updateAmount();
-    }
-
-
-    /* =========================================================
-       UPDATE AMOUNT
-    ========================================================= */
-
-    function updateAmount() {
-
-      const serviceItemId =
-        document.getElementById(
-          "serviceItem"
-        ).value;
-
-      const pcs =
-        Number(
-          document.getElementById(
-            "pcs"
-          ).value
-        ) || 0;
-
-      const selected =
-        serviceItems.find(
-          item =>
-            String(item.id) ===
-            String(serviceItemId)
-        );
-
-      const price =
-        selected
-          ? Number(selected.price || 0)
-          : 0;
-
-      const total =
-        price * pcs;
-
-      document.getElementById(
-        "amount"
-      ).value =
-        total.toFixed(2);
     }
 
 
@@ -2440,315 +2513,299 @@
 
     async function reloadRequests() {
 
+      let endpoint =
+        "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name),service_item:service_item_id(id,name)&order=request_date.desc";
+
+
       requests =
         await supabaseFetch(
-          "requests?select=*,personnel:assigned_personnel_id(id,code,name),category:category_id(id,name),serviceItem:service_item_id(id,item_name,details,price)&order=created_at.desc"
+          endpoint
         );
 
-      loadDashboard();
+
+      refreshCurrentPage();
+
     }
 
 
     /* =========================================================
-       FILTER REQUESTS
+       FILTER OPTIONS
     ========================================================= */
 
-    function getFilteredRequests() {
+    function populateFilters() {
 
-      const category =
+      const categoryFilter =
         document.getElementById(
           "categoryFilter"
-        ).value;
-
-      const person =
-        document.getElementById(
-          "personnelFilter"
-        ).value;
-
-      const status =
-        document.getElementById(
-          "statusFilter"
-        ).value;
-
-      const month =
-        document.getElementById(
-          "monthFilter"
-        )?.value;
-
-      const search =
-        document.getElementById(
-          "requestSearch"
-        )?.value
-          .trim()
-          .toLowerCase();
-
-      return requests.filter(r => {
-
-        if (
-          category &&
-          String(r.category_id) !==
-            String(category)
-        ) {
-          return false;
-        }
-
-        if (
-          person &&
-          String(r.assigned_personnel_id) !==
-            String(person)
-        ) {
-          return false;
-        }
-
-        if (
-          status &&
-          r.status !== status
-        ) {
-          return false;
-        }
-
-        if (
-          month &&
-          !r.due_date?.startsWith(month)
-        ) {
-          return false;
-        }
-
-        if (search) {
-
-          const searchableText = [
-
-            r.request_no,
-            r.personnel?.code,
-            r.personnel?.name,
-            r.category?.name,
-            r.serviceItem?.item_name,
-            r.serviceItem?.details,
-            r.serial_number,
-            r.description,
-            r.remarks
-
-          ]
-            .filter(Boolean)
-            .join(" ")
-            .toLowerCase();
-
-          if (
-            !searchableText.includes(search)
-          ) {
-            return false;
-          }
-        }
-
-        return true;
-      });
-    }
-
-
-    /* =========================================================
-       LOAD DASHBOARD
-    ========================================================= */
-
-    function loadDashboard() {
-
-      const filtered =
-        getFilteredRequests();
-
-      document.getElementById(
-        "totalAssigned"
-      ).textContent =
-        filtered.length;
-
-      document.getElementById(
-        "totalCompleted"
-      ).textContent =
-        filtered.filter(
-          r => r.status === "Completed"
-        ).length;
-
-      document.getElementById(
-        "totalPending"
-      ).textContent =
-        filtered.filter(
-          r => r.status === "Pending"
-        ).length;
-
-      document.getElementById(
-        "totalCancelled"
-      ).textContent =
-        filtered.filter(
-          r => r.status === "Cancelled"
-        ).length;
-
-      document.getElementById(
-        "totalReplaced"
-      ).textContent =
-        filtered.filter(
-          r => r.status === "Replaced"
-        ).length;
-
-      renderPersonnelSummary(filtered);
-
-      renderRequests(
-        filtered,
-        "requestsTable"
-      );
-    }
-
-
-    /* =========================================================
-       PERSONNEL SUMMARY
-    ========================================================= */
-
-    function renderPersonnelSummary(data) {
-
-      const tbody =
-        document.getElementById(
-          "personnelTable"
         );
 
-      tbody.innerHTML = "";
 
-      if (!personnel.length) {
+      const personnelFilter =
+        document.getElementById(
+          "personnelFilter"
+        );
 
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="8" class="empty">
-              No personnel found.
-            </td>
-          </tr>
-        `;
 
-        return;
-      }
+      categoryFilter.innerHTML =
+        `<option value="">
+          All Categories
+        </option>`;
 
-      personnel.forEach(person => {
 
-        const personRequests =
-          data.filter(
-            r =>
-              String(
-                r.assigned_personnel_id
-              ) ===
-              String(person.id)
-          );
+      categories.forEach(
+        category => {
 
-        const completed =
-          personRequests.filter(
-            r => r.status === "Completed"
-          ).length;
+          categoryFilter.innerHTML +=
+            `
+              <option value="${
+                category.id
+              }">
+                ${
+                  escapeHtml(
+                    category.name
+                  )
+                }
+              </option>
+            `;
 
-        const pending =
-          personRequests.filter(
-            r => r.status === "Pending"
-          ).length;
+        }
+      );
 
-        const cancelled =
-          personRequests.filter(
-            r => r.status === "Cancelled"
-          ).length;
 
-        const replaced =
-          personRequests.filter(
-            r => r.status === "Replaced"
-          ).length;
+      personnelFilter.innerHTML =
+        `<option value="">
+          All Personnel
+        </option>`;
 
-        const pcs =
-          personRequests.reduce(
-            (sum, r) =>
-              sum + Number(r.pcs || 0),
-            0
-          );
 
-        const amount =
-          personRequests.reduce(
-            (sum, r) =>
-              sum + Number(r.amount || 0),
-            0
-          );
+      personnel.forEach(
+        person => {
 
-        const tr =
-          document.createElement("tr");
+          personnelFilter.innerHTML +=
+            `
+              <option value="${
+                person.id
+              }">
+                ${
+                  escapeHtml(
+                    person.code
+                  )
+                }
+                —
+                ${
+                  escapeHtml(
+                    person.name || ""
+                  )
+                }
+              </option>
+            `;
 
-        tr.innerHTML = `
+        }
+      );
 
-          <td>
-
-            <button
-              class="edit-btn"
-              onclick="openPersonnelDetail(${person.id})"
-            >
-              ${escapeHtml(person.code)}
-            </button>
-
-          </td>
-
-          <td>${personRequests.length}</td>
-
-          <td>${completed}</td>
-
-          <td>${pending}</td>
-
-          <td>${cancelled}</td>
-
-          <td>${replaced}</td>
-
-          <td>${formatNumber(pcs)}</td>
-
-          <td>${formatCurrency(amount)}</td>
-
-        `;
-
-        tbody.appendChild(tr);
-      });
     }
 
 
     /* =========================================================
-       CHECK IF CURRENT USER OWNS REQUEST
+       FORM SELECTS
     ========================================================= */
 
-    function isAssignedToCurrentUser(request) {
+    function populateFormSelects() {
+
+      const personnelSelect =
+        document.getElementById(
+          "assignedPersonnel"
+        );
+
+
+      const categorySelect =
+        document.getElementById(
+          "category"
+        );
+
+
+      personnelSelect.innerHTML =
+        `
+          <option value="">
+            Select personnel
+          </option>
+        `;
+
+
+      personnel.forEach(
+        person => {
+
+          personnelSelect.innerHTML +=
+            `
+              <option value="${
+                person.id
+              }">
+                ${
+                  escapeHtml(
+                    person.code
+                  )
+                }
+                —
+                ${
+                  escapeHtml(
+                    person.name || ""
+                  )
+                }
+              </option>
+            `;
+
+        }
+      );
+
+
+      categorySelect.innerHTML =
+        `
+          <option value="">
+            Select category
+          </option>
+        `;
+
+
+      categories.forEach(
+        category => {
+
+          categorySelect.innerHTML +=
+            `
+              <option value="${
+                category.id
+              }">
+                ${
+                  escapeHtml(
+                    category.name
+                  )
+                }
+              </option>
+            `;
+
+        }
+      );
+
+
+      updateServiceItems();
+
+    }
+
+
+    /* =========================================================
+       SERVICE ITEMS
+    ========================================================= */
+
+    function updateServiceItems() {
+
+      const categoryId =
+        document.getElementById(
+          "category"
+        ).value;
+
+
+      const serviceSelect =
+        document.getElementById(
+          "serviceItem"
+        );
+
+
+      serviceSelect.innerHTML =
+        `
+          <option value="">
+            Select service/item
+          </option>
+        `;
+
+
+      const filtered =
+        serviceItems.filter(
+          item =>
+            !categoryId ||
+            String(
+              item.category_id
+            ) ===
+            String(categoryId)
+        );
+
+
+      filtered.forEach(
+        item => {
+
+          serviceSelect.innerHTML +=
+            `
+              <option value="${
+                item.id
+              }">
+                ${
+                  escapeHtml(
+                    item.name
+                  )
+                }
+              </option>
+            `;
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       STATUS / OWNERSHIP
+    ========================================================= */
+
+    function isAssignedToCurrentUser(
+      request
+    ) {
 
       return (
-        currentProfile?.role === "viewer" &&
-        currentProfile?.personnel_id &&
+
+        currentProfile?.role ===
+          "viewer"
+
+        &&
+
+        currentProfile?.personnel_id
+
+        &&
+
         String(
           currentProfile.personnel_id
         ) ===
         String(
           request.assigned_personnel_id
         )
+
       );
+
     }
 
 
-    /* =========================================================
-       STATUS DISPLAY
-    ========================================================= */
-
-    function renderStatus(request) {
+    function renderStatus(
+      request
+    ) {
 
       const status =
-        request.status || "Pending";
+        request.status ||
+        "Pending";
+
 
       const remarks =
-        request.remarks || "";
+        request.remarks ||
+        "";
 
-      /*
-        Assigned personnel can manage
-        their own Pending requests.
-
-        Available choices:
-        Pending
-        Completed
-        Cancelled
-        Replaced
-      */
 
       if (
-        isAssignedToCurrentUser(request) &&
-        status === "Pending"
+
+        isAssignedToCurrentUser(
+          request
+        )
+
+        &&
+
+        status ===
+          "Pending"
+
       ) {
 
         return `
@@ -2756,7 +2813,9 @@
 
             <select
               class="status-select"
-              onchange="handleAnalystStatusChange(${request.id}, this.value)"
+              data-request-id="${
+                request.id
+              }"
             >
 
               <option
@@ -2784,7 +2843,11 @@
               remarks
                 ? `
                   <div class="status-remark">
-                    ${escapeHtml(remarks)}
+                    ${
+                      escapeHtml(
+                        remarks
+                      )
+                    }
                   </div>
                 `
                 : ""
@@ -2792,12 +2855,15 @@
 
           </div>
         `;
+
       }
+
 
       return statusBadge(
         status,
         remarks
       );
+
     }
 
 
@@ -2817,6 +2883,7 @@
             String(requestId)
         );
 
+
       if (!request) {
 
         alert(
@@ -2826,10 +2893,14 @@
         await reloadRequests();
 
         return;
+
       }
 
+
       if (
-        !isAssignedToCurrentUser(request)
+        !isAssignedToCurrentUser(
+          request
+        )
       ) {
 
         alert(
@@ -2839,7 +2910,9 @@
         await reloadRequests();
 
         return;
+
       }
+
 
       if (
         ![
@@ -2847,7 +2920,9 @@
           "Completed",
           "Cancelled",
           "Replaced"
-        ].includes(newStatus)
+        ].includes(
+          newStatus
+        )
       ) {
 
         alert(
@@ -2857,48 +2932,58 @@
         await reloadRequests();
 
         return;
+
       }
 
-      /*
-        Selecting the current status
-        does nothing.
-      */
 
       if (
-        newStatus === request.status
+        newStatus ===
+        request.status
       ) {
 
         loadDashboard();
 
         return;
+
       }
 
 
-      /* =========================
-         CANCELLED / REPLACED
-      ========================= */
-
       if (
-        newStatus === "Cancelled" ||
-        newStatus === "Replaced"
+        newStatus ===
+          "Cancelled"
+
+        ||
+
+        newStatus ===
+          "Replaced"
       ) {
 
         const reason =
           prompt(
-            `Please enter the reason for marking ${request.request_no || "this request"} as ${newStatus}:`
+            `Please enter the reason for marking ${
+              request.request_no ||
+              "this request"
+            } as ${
+              newStatus
+            }:`
           );
 
+
         if (
-          reason === null
+          reason ===
+          null
         ) {
 
           loadDashboard();
 
           return;
+
         }
+
 
         const remarks =
           reason.trim();
+
 
         if (!remarks) {
 
@@ -2909,92 +2994,136 @@
           loadDashboard();
 
           return;
+
         }
+
 
         const confirmed =
           confirm(
-            `Mark ${request.request_no || "this request"} as ${newStatus}?\n\nReason:\n${remarks}`
+            `Mark ${
+              request.request_no ||
+              "this request"
+            } as ${
+              newStatus
+            }?\n\nReason:\n${
+              remarks
+            }`
           );
+
 
         if (!confirmed) {
 
           loadDashboard();
 
           return;
+
         }
+
 
         try {
 
           await supabaseRpc(
             "mark_request_status",
             {
-              request_id: requestId,
-              new_status: newStatus,
-              new_remarks: remarks
+
+              request_id:
+                requestId,
+
+              new_status:
+                newStatus,
+
+              new_remarks:
+                remarks
+
             }
           );
+
 
           await reloadRequests();
 
           refreshCurrentPage();
 
+
           alert(
-            `Request marked as ${newStatus}.`
+            `Request marked as ${
+              newStatus
+            }.`
           );
 
         }
 
         catch (error) {
 
-          console.error(error);
+          console.error(
+            error
+          );
+
 
           alert(
-            `Unable to mark the request as ${newStatus}.\n\n` +
+            `Unable to mark the request as ${
+              newStatus
+            }.\n\n` +
             error.message
           );
 
+
           await reloadRequests();
+
         }
 
+
         return;
+
       }
 
 
-      /* =========================
-         COMPLETED
-      ========================= */
-
       if (
-        newStatus === "Completed"
+        newStatus ===
+        "Completed"
       ) {
 
         const confirmed =
           confirm(
-            `Mark ${request.request_no || "this request"} as Completed?`
+            `Mark ${
+              request.request_no ||
+              "this request"
+            } as Completed?`
           );
+
 
         if (!confirmed) {
 
           loadDashboard();
 
           return;
+
         }
+
 
         try {
 
           await supabaseRpc(
             "mark_request_status",
             {
-              request_id: requestId,
-              new_status: "Completed",
+
+              request_id:
+                requestId,
+
+              new_status:
+                "Completed",
+
               new_remarks:
-                request.remarks || null
+                request.remarks ||
+                null
+
             }
           );
+
 
           await reloadRequests();
 
           refreshCurrentPage();
+
 
           alert(
             "Request marked as completed."
@@ -3004,18 +3133,1158 @@
 
         catch (error) {
 
-          console.error(error);
+          console.error(
+            error
+          );
+
 
           alert(
             "Unable to mark the request as completed.\n\n" +
             error.message
           );
 
+
           await reloadRequests();
+
         }
 
-        return;
       }
+
+    }
+
+
+    /* =========================================================
+       STATUS BADGE
+    ========================================================= */
+
+    function statusBadge(
+      status,
+      remarks = ""
+    ) {
+
+      const safeStatus =
+        status ||
+        "Pending";
+
+
+      return `
+        <div class="status-wrapper">
+
+          <span
+            class="status status-${
+              escapeHtml(
+                safeStatus
+              )
+            }"
+          >
+            ${
+              escapeHtml(
+                safeStatus
+              )
+            }
+          </span>
+
+          ${
+            remarks
+              ? `
+                <div class="status-remark">
+                  ${
+                    escapeHtml(
+                      remarks
+                    )
+                  }
+                </div>
+              `
+              : ""
+          }
+
+        </div>
+      `;
+
+    }
+
+
+    /* =========================================================
+       REQUEST DISPLAY HELPERS
+    ========================================================= */
+
+    function getPersonnelName(
+      request
+    ) {
+
+      return (
+        request.personnel?.name ||
+        personnel.find(
+          p =>
+            String(p.id) ===
+            String(
+              request.assigned_personnel_id
+            )
+        )?.name ||
+        "—"
+      );
+
+    }
+
+
+    function getPersonnelCode(
+      request
+    ) {
+
+      return (
+        request.personnel?.code ||
+        personnel.find(
+          p =>
+            String(p.id) ===
+            String(
+              request.assigned_personnel_id
+            )
+        )?.code ||
+        "—"
+      );
+
+    }
+
+
+    function getCategoryName(
+      request
+    ) {
+
+      return (
+        request.category?.name ||
+        categories.find(
+          c =>
+            String(c.id) ===
+            String(
+              request.category_id
+            )
+        )?.name ||
+        "—"
+      );
+
+    }
+
+
+    function getServiceItemName(
+      request
+    ) {
+
+      return (
+        request.service_item?.name ||
+        serviceItems.find(
+          s =>
+            String(s.id) ===
+            String(
+              request.service_item_id
+            )
+        )?.name ||
+        "—"
+      );
+
+    }
+
+
+    /* =========================================================
+       FILTER REQUESTS
+    ========================================================= */
+
+    function filterRequests(
+      sourceRequests
+    ) {
+
+      let filtered =
+        [...sourceRequests];
+
+
+      const category =
+        document.getElementById(
+          "categoryFilter"
+        )?.value ||
+        "";
+
+
+      const person =
+        document.getElementById(
+          "personnelFilter"
+        )?.value ||
+        "";
+
+
+      const status =
+        document.getElementById(
+          "statusFilter"
+        )?.value ||
+        "";
+
+
+      const month =
+        document.getElementById(
+          "monthFilter"
+        )?.value ||
+        "";
+
+
+      const search =
+        (
+          document.getElementById(
+            "requestSearch"
+          )?.value ||
+          ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+      if (category) {
+
+        filtered =
+          filtered.filter(
+            request =>
+              String(
+                request.category_id
+              ) ===
+              String(category)
+          );
+
+      }
+
+
+      if (person) {
+
+        filtered =
+          filtered.filter(
+            request =>
+              String(
+                request.assigned_personnel_id
+              ) ===
+              String(person)
+          );
+
+      }
+
+
+      if (status) {
+
+        filtered =
+          filtered.filter(
+            request =>
+              (
+                request.status ||
+                "Pending"
+              ) ===
+              status
+          );
+
+      }
+
+
+      if (month) {
+
+        filtered =
+          filtered.filter(
+            request => {
+
+              const date =
+                request.request_date ||
+                "";
+
+              return date.startsWith(
+                month
+              );
+
+            }
+          );
+
+      }
+
+
+      if (search) {
+
+        filtered =
+          filtered.filter(
+            request => {
+
+              const values = [
+
+                request.request_no,
+
+                getPersonnelCode(
+                  request
+                ),
+
+                getPersonnelName(
+                  request
+                ),
+
+                getCategoryName(
+                  request
+                ),
+
+                getServiceItemName(
+                  request
+                ),
+
+                request.serial_number,
+
+                request.description,
+
+                request.remarks
+
+              ];
+
+
+              return values.some(
+                value =>
+                  String(
+                    value ||
+                    ""
+                  )
+                  .toLowerCase()
+                  .includes(
+                    search
+                  )
+              );
+
+            }
+          );
+
+      }
+
+
+      return filtered;
+
+    }
+
+
+    /* =========================================================
+       DASHBOARD
+    ========================================================= */
+
+    function loadDashboard() {
+
+      const filtered =
+        filterRequests(
+          requests
+        );
+
+
+      updateDashboardCards(
+        filtered
+      );
+
+
+      renderPersonnelSummary(
+        filtered
+      );
+
+
+      renderRequests(
+        filtered,
+        "dashboardRequestsTable",
+        false
+      );
+
+    }
+
+
+    /* =========================================================
+       DASHBOARD CARDS
+    ========================================================= */
+
+    function updateDashboardCards(
+      filtered
+    ) {
+
+      const assigned =
+        filtered.length;
+
+
+      const completed =
+        filtered.filter(
+          r =>
+            r.status ===
+            "Completed"
+        ).length;
+
+
+      const pending =
+        filtered.filter(
+          r =>
+            (
+              r.status ||
+              "Pending"
+            ) ===
+            "Pending"
+        ).length;
+
+
+      const cancelled =
+        filtered.filter(
+          r =>
+            r.status ===
+            "Cancelled"
+        ).length;
+
+
+      const replaced =
+        filtered.filter(
+          r =>
+            r.status ===
+            "Replaced"
+        ).length;
+
+
+      document.getElementById(
+        "totalAssigned"
+      ).textContent =
+        assigned;
+
+
+      document.getElementById(
+        "totalCompleted"
+      ).textContent =
+        completed;
+
+
+      document.getElementById(
+        "totalPending"
+      ).textContent =
+        pending;
+
+
+      document.getElementById(
+        "totalCancelled"
+      ).textContent =
+        cancelled;
+
+
+      document.getElementById(
+        "totalReplaced"
+      ).textContent =
+        replaced;
+
+    }
+
+
+    /* =========================================================
+       PERSONNEL SUMMARY
+    ========================================================= */
+
+    function renderPersonnelSummary(
+      filtered
+    ) {
+
+      const table =
+        document.getElementById(
+          "personnelTable"
+        );
+
+
+      if (!personnel.length) {
+
+        table.innerHTML =
+          `
+            <tr>
+              <td
+                colspan="8"
+                class="empty"
+              >
+                No personnel found.
+              </td>
+            </tr>
+          `;
+
+        return;
+
+      }
+
+
+      table.innerHTML =
+        personnel.map(
+          person => {
+
+            const personRequests =
+              filtered.filter(
+                request =>
+                  String(
+                    request.assigned_personnel_id
+                  ) ===
+                  String(
+                    person.id
+                  )
+              );
+
+
+            const assigned =
+              personRequests.length;
+
+
+            const completed =
+              personRequests.filter(
+                r =>
+                  r.status ===
+                  "Completed"
+              ).length;
+
+
+            const pending =
+              personRequests.filter(
+                r =>
+                  (
+                    r.status ||
+                    "Pending"
+                  ) ===
+                  "Pending"
+              ).length;
+
+
+            const cancelled =
+              personRequests.filter(
+                r =>
+                  r.status ===
+                  "Cancelled"
+              ).length;
+
+
+            const replaced =
+              personRequests.filter(
+                r =>
+                  r.status ===
+                  "Replaced"
+              ).length;
+
+
+            const pcs =
+              personRequests.reduce(
+                (
+                  total,
+                  r
+                ) =>
+                  total +
+                  Number(
+                    r.pcs ||
+                    0
+                  ),
+                0
+              );
+
+
+            const amount =
+              personRequests.reduce(
+                (
+                  total,
+                  r
+                ) =>
+                  total +
+                  Number(
+                    r.amount ||
+                    0
+                  ),
+                0
+              );
+
+
+            return `
+              <tr
+                class="person-summary-row"
+                data-personnel-id="${
+                  person.id
+                }"
+              >
+
+                <td>
+
+                  <strong>
+                    ${
+                      escapeHtml(
+                        person.code
+                      )
+                    }
+                  </strong>
+
+                  —
+                  ${
+                    escapeHtml(
+                      person.name ||
+                      ""
+                    )
+                  }
+
+                </td>
+
+                <td>
+                  ${assigned}
+                </td>
+
+                <td>
+                  ${completed}
+                </td>
+
+                <td>
+                  ${pending}
+                </td>
+
+                <td>
+                  ${cancelled}
+                </td>
+
+                <td>
+                  ${replaced}
+                </td>
+
+                <td>
+                  ${
+                    formatNumber(
+                      pcs
+                    )
+                  }
+                </td>
+
+                <td>
+                  ${
+                    formatCurrency(
+                      amount
+                    )
+                  }
+                </td>
+
+              </tr>
+            `;
+
+          }
+        ).join("");
+
+    }
+
+
+    /* =========================================================
+       RENDER REQUESTS
+    ========================================================= */
+
+    function renderRequests(
+      list,
+      tableId,
+      includeAllColumns = false
+    ) {
+
+      const table =
+        document.getElementById(
+          tableId
+        );
+
+
+      if (!table) {
+
+        return;
+
+      }
+
+
+      if (!list.length) {
+
+        table.innerHTML =
+          `
+            <tr>
+              <td
+                colspan="${
+                  includeAllColumns
+                    ? 12
+                    : 10
+                }"
+                class="empty"
+              >
+                No requests found.
+              </td>
+            </tr>
+          `;
+
+        return;
+
+      }
+
+
+      const isAdmin =
+        currentProfile?.role ===
+        "admin";
+
+
+      table.innerHTML =
+        list.map(
+          request => {
+
+            const editColumn =
+              isAdmin
+                ? `
+                  <td>
+                    <button
+                      class="edit-btn"
+                      data-edit-id="${
+                        request.id
+                      }"
+                    >
+                      Edit
+                    </button>
+                  </td>
+                `
+                : "";
+
+
+            if (
+              includeAllColumns
+            ) {
+
+              return `
+                <tr>
+
+                  <td>
+                    ${
+                      escapeHtml(
+                        request.request_no
+                      )
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      escapeHtml(
+                        getPersonnelCode(
+                          request
+                        )
+                      )
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      escapeHtml(
+                        getCategoryName(
+                          request
+                        )
+                      )
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      escapeHtml(
+                        getServiceItemName(
+                          request
+                        )
+                      )
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      escapeHtml(
+                        request.serial_number ||
+                        "—"
+                      )
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      formatDate(
+                        request.request_date
+                      )
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      formatNumber(
+                        request.pcs
+                      )
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      formatCurrency(
+                        request.amount
+                      )
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      formatDate(
+                        request.due_date
+                      )
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      renderStatus(
+                        request
+                      )
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      formatDate(
+                        request.date_completed
+                      )
+                    }
+                  </td>
+
+                  ${
+                    isAdmin
+                      ? editColumn
+                      : ""
+                  }
+
+                </tr>
+              `;
+
+            }
+
+
+            return `
+              <tr>
+
+                <td>
+                  ${
+                    escapeHtml(
+                      request.request_no
+                    )
+                  }
+                </td>
+
+                <td>
+                  ${
+                    escapeHtml(
+                      getPersonnelCode(
+                        request
+                      )
+                    )
+                  }
+                </td>
+
+                <td>
+                  ${
+                    escapeHtml(
+                      getCategoryName(
+                        request
+                      )
+                    )
+                  }
+                </td>
+
+                <td>
+                  ${
+                    escapeHtml(
+                      getServiceItemName(
+                        request
+                      )
+                    )
+                  }
+                </td>
+
+                <td>
+                  ${
+                    escapeHtml(
+                      request.serial_number ||
+                      "—"
+                    )
+                  }
+                </td>
+
+                <td>
+                  ${
+                    formatNumber(
+                      request.pcs
+                    )
+                  }
+                </td>
+
+                <td>
+                  ${
+                    formatCurrency(
+                      request.amount
+                    )
+                  }
+                </td>
+
+                <td>
+                  ${
+                    formatDate(
+                      request.due_date
+                    )
+                  }
+                </td>
+
+                <td>
+                  ${
+                    renderStatus(
+                      request
+                    )
+                  }
+                </td>
+
+                ${
+                  isAdmin
+                    ? editColumn
+                    : ""
+                }
+
+              </tr>
+            `;
+
+          }
+        ).join("");
+
+
+      attachRequestTableEvents();
+
+    }
+
+
+    /* =========================================================
+       TABLE EVENTS
+    ========================================================= */
+
+    function attachRequestTableEvents() {
+
+      document
+        .querySelectorAll(
+          "[data-edit-id]"
+        )
+        .forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              function() {
+
+                openEditRequest(
+                  this.dataset.editId
+                );
+
+              }
+            );
+
+          }
+        );
+
+
+      document
+        .querySelectorAll(
+          ".status-select"
+        )
+        .forEach(
+          select => {
+
+            select.addEventListener(
+              "change",
+              function() {
+
+                handleAnalystStatusChange(
+                  this.dataset.requestId,
+                  this.value
+                );
+
+              }
+            );
+
+          }
+        );
+
+    }
+
+
+    /* =========================================================
+       ALL REQUESTS
+    ========================================================= */
+
+    function renderAllRequests() {
+
+      const search =
+        (
+          document.getElementById(
+            "allRequestsSearch"
+          )?.value ||
+          ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+      let filtered =
+        [...requests];
+
+
+      if (search) {
+
+        filtered =
+          filtered.filter(
+            request => {
+
+              const values = [
+
+                request.request_no,
+
+                getPersonnelCode(
+                  request
+                ),
+
+                getPersonnelName(
+                  request
+                ),
+
+                getCategoryName(
+                  request
+                ),
+
+                getServiceItemName(
+                  request
+                ),
+
+                request.serial_number,
+
+                request.description,
+
+                request.remarks
+
+              ];
+
+
+              return values.some(
+                value =>
+                  String(
+                    value ||
+                    ""
+                  )
+                  .toLowerCase()
+                  .includes(
+                    search
+                  )
+              );
+
+            }
+          );
+
+      }
+
+
+      renderRequests(
+        filtered,
+        "allRequestsTable",
+        true
+      );
+
+    }
+
+
+    /* =========================================================
+       SHOW PAGE
+    ========================================================= */
+
+    function showPage(
+      page
+    ) {
+
+      const dashboard =
+        document.getElementById(
+          "dashboardPage"
+        );
+
+
+      const requestsPage =
+        document.getElementById(
+          "requestsPage"
+        );
+
+
+      const detailPage =
+        document.getElementById(
+          "personnelDetailPage"
+        );
+
+
+      dashboard.classList.add(
+        "hidden"
+      );
+
+
+      requestsPage.classList.add(
+        "hidden"
+      );
+
+
+      detailPage.classList.add(
+        "hidden"
+      );
+
+
+      document
+        .getElementById(
+          "dashboardNav"
+        )
+        .classList.remove(
+          "active"
+        );
+
+
+      document
+        .getElementById(
+          "requestsNav"
+        )
+        .classList.remove(
+          "active"
+        );
+
+
+      if (
+        page ===
+        "dashboard"
+      ) {
+
+        dashboard.classList.remove(
+          "hidden"
+        );
+
+
+        document
+          .getElementById(
+            "dashboardNav"
+          )
+          .classList.add(
+            "active"
+          );
+
+
+        loadDashboard();
+
+      }
+
+
+      else if (
+        page ===
+        "requests"
+      ) {
+
+        requestsPage.classList.remove(
+          "hidden"
+        );
+
+
+        document
+          .getElementById(
+            "requestsNav"
+          )
+          .classList.add(
+            "active"
+          );
+
+
+        renderAllRequests();
+
+      }
+
     }
 
 
@@ -3025,432 +4294,39 @@
 
     function refreshCurrentPage() {
 
-      if (
+      const dashboardVisible =
         !document
-          .getElementById("requestsPage")
-          .classList.contains("hidden")
-      ) {
-
-        renderRequests(
-          requests,
-          "allRequestsTable"
-        );
-      }
-
-      if (
-        currentPersonnelId &&
-        !document
-          .getElementById("personnelDetailPage")
-          .classList.contains("hidden")
-      ) {
-
-        const personRequests =
-          requests.filter(
-            r =>
-              String(
-                r.assigned_personnel_id
-              ) ===
-              String(currentPersonnelId)
+          .getElementById(
+            "dashboardPage"
+          )
+          .classList.contains(
+            "hidden"
           );
 
-        renderRequests(
-          personRequests,
-          "detailRequestsTable"
-        );
-      }
-    }
 
+      const requestsVisible =
+        !document
+          .getElementById(
+            "requestsPage"
+          )
+          .classList.contains(
+            "hidden"
+          );
 
-    /* =========================================================
-       ADMIN EDIT BUTTON
-    ========================================================= */
 
-    function renderEditButton(request) {
+      if (dashboardVisible) {
 
-      if (
-        currentProfile?.role !== "admin"
-      ) {
-        return "";
-      }
-
-      return `
-        <td class="admin-edit-cell">
-
-          <button
-            type="button"
-            class="edit-btn"
-            onclick="editRequest(${request.id})"
-          >
-            Edit
-          </button>
-
-        </td>
-      `;
-    }
-
-
-    /* =========================================================
-       RENDER REQUESTS
-    ========================================================= */
-
-    function renderRequests(
-      data,
-      elementId
-    ) {
-
-      const tbody =
-        document.getElementById(
-          elementId
-        );
-
-      if (!tbody) {
-        return;
-      }
-
-      tbody.innerHTML = "";
-
-      if (!data.length) {
-
-        let colspan = 8;
-
-        if (
-          elementId === "requestsTable"
-        ) {
-
-          colspan =
-            currentProfile?.role === "admin"
-              ? 10
-              : 9;
-        }
-
-        else if (
-          elementId === "allRequestsTable"
-        ) {
-
-          colspan =
-            currentProfile?.role === "admin"
-              ? 12
-              : 11;
-        }
-
-        else if (
-          elementId === "detailRequestsTable"
-        ) {
-
-          colspan = 8;
-        }
-
-        tbody.innerHTML = `
-          <tr>
-            <td
-              colspan="${colspan}"
-              class="empty"
-            >
-              No requests found.
-            </td>
-          </tr>
-        `;
-
-        return;
-      }
-
-      data.forEach(r => {
-
-        const tr =
-          document.createElement("tr");
-
-        const serviceName =
-          r.serviceItem?.item_name || "—";
-
-        const personnelCode =
-          r.personnel?.code || "—";
-
-        const categoryName =
-          r.category?.name || "—";
-
-
-        /* =========================
-           DASHBOARD
-        ========================= */
-
-        if (
-          elementId === "requestsTable"
-        ) {
-
-          tr.innerHTML = `
-
-            <td>
-              ${escapeHtml(
-                r.request_no || "—"
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                personnelCode
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                categoryName
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                serviceName
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                r.serial_number || "—"
-              )}
-            </td>
-
-            <td>
-              ${formatNumber(
-                r.pcs || 0
-              )}
-            </td>
-
-            <td>
-              ${formatCurrency(
-                r.amount || 0
-              )}
-            </td>
-
-            <td>
-              ${formatDate(
-                r.due_date
-              )}
-            </td>
-
-            <td>
-              ${renderStatus(r)}
-            </td>
-
-            ${renderEditButton(r)}
-
-          `;
-        }
-
-
-        /* =========================
-           ALL REQUESTS
-        ========================= */
-
-        else if (
-          elementId === "allRequestsTable"
-        ) {
-
-          tr.innerHTML = `
-
-            <td>
-              ${escapeHtml(
-                r.request_no || "—"
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                personnelCode
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                categoryName
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                serviceName
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                r.serial_number || "—"
-              )}
-            </td>
-
-            <td>
-              ${formatDate(
-                r.request_date
-              )}
-            </td>
-
-            <td>
-              ${formatNumber(
-                r.pcs || 0
-              )}
-            </td>
-
-            <td>
-              ${formatCurrency(
-                r.amount || 0
-              )}
-            </td>
-
-            <td>
-              ${formatDate(
-                r.due_date
-              )}
-            </td>
-
-            <td>
-              ${renderStatus(r)}
-            </td>
-
-            <td>
-              ${formatDate(
-                r.date_completed
-              )}
-            </td>
-
-            ${renderEditButton(r)}
-
-          `;
-        }
-
-
-        /* =========================
-           PERSONNEL DETAIL
-        ========================= */
-
-        else if (
-          elementId === "detailRequestsTable"
-        ) {
-
-          tr.innerHTML = `
-
-            <td>
-              ${escapeHtml(
-                r.request_no || "—"
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                personnelCode
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                categoryName
-              )}
-            </td>
-
-            <td>
-              ${escapeHtml(
-                serviceName
-              )}
-            </td>
-
-            <td>
-              ${formatNumber(
-                r.pcs || 0
-              )}
-            </td>
-
-            <td>
-              ${formatCurrency(
-                r.amount || 0
-              )}
-            </td>
-
-            <td>
-              ${formatDate(
-                r.due_date
-              )}
-            </td>
-
-            <td>
-              ${renderStatus(r)}
-            </td>
-
-          `;
-
-        }
-
-        tbody.appendChild(tr);
-      });
-
-      applyPermissions();
-    }
-
-
-    /* =========================================================
-       SUPABASE RPC
-    ========================================================= */
-
-    async function supabaseRpc(
-      functionName,
-      body
-    ) {
-
-      if (
-        !currentSession?.access_token
-      ) {
-
-        throw new Error(
-          "You are not logged in."
-        );
-      }
-
-      const response =
-        await fetch(
-          `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
-          {
-            method: "POST",
-
-            headers: {
-
-              "apikey":
-                SUPABASE_KEY,
-
-              "Authorization":
-                `Bearer ${currentSession.access_token}`,
-
-              "Content-Type":
-                "application/json"
-
-            },
-
-            body:
-              JSON.stringify(body)
-          }
-        );
-
-      const text =
-        await response.text();
-
-      if (!response.ok) {
-
-        throw new Error(
-          text ||
-          "Supabase function failed."
-        );
-      }
-
-      if (!text) {
-        return null;
-      }
-
-      try {
-
-        return JSON.parse(text);
+        loadDashboard();
 
       }
 
-      catch {
 
-        return text;
+      if (requestsVisible) {
+
+        renderAllRequests();
+
       }
+
     }
 
 
@@ -3465,189 +4341,173 @@
       currentPersonnelId =
         personnelId;
 
+
       const person =
         personnel.find(
           p =>
             String(p.id) ===
-            String(personnelId)
+            String(
+              personnelId
+            )
         );
 
+
       if (!person) {
+
         return;
+
       }
 
+
       document.getElementById(
-        "personDetailTitle"
+        "personDetailName"
       ).textContent =
-        `${person.code} — ${person.name || ""}`;
+        person.name ||
+        "Personnel";
+
+
+      document.getElementById(
+        "personDetailCode"
+      ).textContent =
+        person.code ||
+        "—";
+
 
       document
-        .getElementById("dashboardPage")
-        .classList.add("hidden");
+        .getElementById(
+          "dashboardPage"
+        )
+        .classList.add(
+          "hidden"
+        );
+
 
       document
-        .getElementById("requestsPage")
-        .classList.add("hidden");
+        .getElementById(
+          "requestsPage"
+        )
+        .classList.add(
+          "hidden"
+        );
+
 
       document
-        .getElementById("personnelDetailPage")
-        .classList.remove("hidden");
+        .getElementById(
+          "personnelDetailPage"
+        )
+        .classList.remove(
+          "hidden"
+        );
 
-      document
-        .getElementById("dashboardNav")
-        .classList.remove("active");
-
-      document
-        .getElementById("requestsNav")
-        .classList.remove("active");
 
       const personRequests =
         requests.filter(
-          r =>
+          request =>
             String(
-              r.assigned_personnel_id
+              request.assigned_personnel_id
             ) ===
-            String(personnelId)
+            String(
+              personnelId
+            )
         );
+
+
+      renderPersonnelDetail(
+        personRequests
+      );
+
+    }
+
+
+    function renderPersonnelDetail(
+      list
+    ) {
 
       renderRequests(
-        personRequests,
-        "detailRequestsTable"
+        list,
+        "detailRequestsTable",
+        false
       );
+
     }
 
 
     /* =========================================================
-       NAVIGATION
-    ========================================================= */
-
-    function showPage(page) {
-
-      document
-        .getElementById("dashboardPage")
-        .classList.add("hidden");
-
-      document
-        .getElementById("requestsPage")
-        .classList.add("hidden");
-
-      document
-        .getElementById("personnelDetailPage")
-        .classList.add("hidden");
-
-      document
-        .getElementById("dashboardNav")
-        .classList.remove("active");
-
-      document
-        .getElementById("requestsNav")
-        .classList.remove("active");
-
-
-      if (page === "dashboard") {
-
-        document
-          .getElementById("dashboardPage")
-          .classList.remove("hidden");
-
-        document
-          .getElementById("dashboardNav")
-          .classList.add("active");
-
-        loadDashboard();
-      }
-
-
-      else if (page === "requests") {
-
-        document
-          .getElementById("requestsPage")
-          .classList.remove("hidden");
-
-        document
-          .getElementById("requestsNav")
-          .classList.add("active");
-
-        renderRequests(
-          requests,
-          "allRequestsTable"
-        );
-      }
-    }
-
-
-    /* =========================================================
-       OPEN ADD REQUEST
+       ADD REQUEST
     ========================================================= */
 
     function openAddRequest() {
 
       if (
-        currentProfile?.role !== "admin"
+        currentProfile?.role !==
+        "admin"
       ) {
 
-        alert(
-          "Only an administrator can add requests."
-        );
-
         return;
+
       }
 
-      editingRequestId = null;
+
+      editingRequestId =
+        null;
+
 
       document.getElementById(
-        "modalTitle"
+        "requestModalTitle"
       ).textContent =
         "Add Request";
 
-      document.getElementById(
-        "saveRequestBtn"
-      ).textContent =
-        "Save Request";
 
-      document
-        .getElementById("requestForm")
-        .reset();
+      document.getElementById(
+        "requestForm"
+      ).reset();
+
+
+      document.getElementById(
+        "requestDate"
+      ).value =
+        getTodayLocalDate();
+
+
+      document.getElementById(
+        "status"
+      ).value =
+        "Pending";
+
+
+      document.getElementById(
+        "dateCompleted"
+      ).value =
+        "";
+
 
       document.getElementById(
         "serviceItem"
-      ).innerHTML = `
-        <option value="">
-          Select service/item
-        </option>
-      `;
+      ).innerHTML =
+        `
+          <option value="">
+            Select service/item
+          </option>
+        `;
+
 
       document.getElementById(
         "amount"
-      ).value = "0";
+      ).value =
+        "0";
+
 
       clearFormMessage();
 
-      const modal =
-        document.getElementById(
+
+      document
+        .getElementById(
           "requestModal"
+        )
+        .classList.remove(
+          "hidden"
         );
 
-      modal.classList.remove("hidden");
-      modal.style.display = "flex";
-    }
-
-
-    /* =========================================================
-       CLOSE MODAL
-    ========================================================= */
-
-    function closeAddRequest() {
-
-      const modal =
-        document.getElementById(
-          "requestModal"
-        );
-
-      modal.classList.add("hidden");
-      modal.style.display = "none";
-
-      clearFormMessage();
     }
 
 
@@ -3655,18 +4515,19 @@
        EDIT REQUEST
     ========================================================= */
 
-    function editRequest(requestId) {
+    function openEditRequest(
+      requestId
+    ) {
 
       if (
-        currentProfile?.role !== "admin"
+        currentProfile?.role !==
+        "admin"
       ) {
 
-        alert(
-          "Only an administrator can edit requests."
-        );
-
         return;
+
       }
+
 
       const request =
         requests.find(
@@ -3675,6 +4536,7 @@
             String(requestId)
         );
 
+
       if (!request) {
 
         alert(
@@ -3682,373 +4544,447 @@
         );
 
         return;
+
       }
 
+
       editingRequestId =
-        request.id;
+        requestId;
+
 
       document.getElementById(
-        "modalTitle"
+        "requestModalTitle"
       ).textContent =
         "Edit Request";
 
-      document.getElementById(
-        "saveRequestBtn"
-      ).textContent =
-        "Update Request";
 
       document.getElementById(
         "requestNo"
       ).value =
-        request.request_no || "";
+        request.request_no ||
+        "";
 
-      document.getElementById(
-        "assignedPersonnel"
-      ).value =
-        request.assigned_personnel_id || "";
-
-      document.getElementById(
-        "category"
-      ).value =
-        request.category_id || "";
-
-      populateServiceItems();
-
-      document.getElementById(
-        "serviceItem"
-      ).value =
-        request.service_item_id || "";
-
-      document.getElementById(
-        "pcs"
-      ).value =
-        request.pcs || 1;
-
-      document.getElementById(
-        "amount"
-      ).value =
-        Number(
-          request.amount || 0
-        ).toFixed(2);
-
-      document.getElementById(
-        "serialNumber"
-      ).value =
-        request.serial_number || "";
 
       document.getElementById(
         "requestDate"
       ).value =
-        request.request_date || "";
+        request.request_date ||
+        "";
+
+
+      document.getElementById(
+        "assignedPersonnel"
+      ).value =
+        request.assigned_personnel_id ||
+        "";
+
+
+      document.getElementById(
+        "category"
+      ).value =
+        request.category_id ||
+        "";
+
+
+      updateServiceItems();
+
+
+      document.getElementById(
+        "serviceItem"
+      ).value =
+        request.service_item_id ||
+        "";
+
+
+      document.getElementById(
+        "serialNumber"
+      ).value =
+        request.serial_number ||
+        "";
+
+
+      document.getElementById(
+        "pcs"
+      ).value =
+        request.pcs ||
+        0;
+
+
+      document.getElementById(
+        "amount"
+      ).value =
+        request.amount ||
+        0;
+
 
       document.getElementById(
         "dueDate"
       ).value =
-        request.due_date || "";
+        request.due_date ||
+        "";
+
 
       document.getElementById(
         "status"
       ).value =
-        request.status || "Pending";
+        request.status ||
+        "Pending";
+
+
+      document.getElementById(
+        "dateCompleted"
+      ).value =
+        request.date_completed ||
+        "";
+
 
       document.getElementById(
         "description"
       ).value =
-        request.description || "";
+        request.description ||
+        "";
+
 
       document.getElementById(
         "remarks"
       ).value =
-        request.remarks || "";
+        request.remarks ||
+        "";
+
 
       clearFormMessage();
 
-      const modal =
-        document.getElementById(
+
+      document
+        .getElementById(
           "requestModal"
+        )
+        .classList.remove(
+          "hidden"
         );
 
-      modal.classList.remove("hidden");
-      modal.style.display = "flex";
     }
 
 
     /* =========================================================
-       SAVE / UPDATE REQUEST
+       CLOSE REQUEST MODAL
     ========================================================= */
 
-    document
-      .getElementById("requestForm")
-      .addEventListener(
-        "submit",
-        async function(event) {
+    function closeAddRequest() {
 
-          event.preventDefault();
+      document
+        .getElementById(
+          "requestModal"
+        )
+        .classList.add(
+          "hidden"
+        );
+
+
+      editingRequestId =
+        null;
+
+    }
+
+
+    /* =========================================================
+       SAVE REQUEST
+    ========================================================= */
+
+    async function saveRequest(
+      event
+    ) {
+
+      event.preventDefault();
+
+
+      if (
+        currentProfile?.role !==
+        "admin"
+      ) {
+
+        return;
+
+      }
+
+
+      const saveButton =
+        document.getElementById(
+          "saveRequestButton"
+        );
+
+
+      saveButton.disabled =
+        true;
+
+
+      saveButton.textContent =
+        "Saving...";
+
+
+      clearFormMessage();
+
+
+      try {
+
+        const status =
+          document.getElementById(
+            "status"
+          ).value ||
+          "Pending";
+
+
+        let dateCompleted =
+          document.getElementById(
+            "dateCompleted"
+          ).value ||
+          null;
+
+
+        if (
+          status ===
+          "Completed"
+        ) {
 
           if (
-            currentProfile?.role !== "admin"
+            !dateCompleted
           ) {
 
-            showFormMessage(
-              "Only an administrator can save or update requests.",
-              "error"
-            );
+            dateCompleted =
+              getTodayLocalDate();
 
-            return;
           }
 
-          const saveButton =
-            document.getElementById(
-              "saveRequestBtn"
-            );
+        }
 
-          saveButton.disabled = true;
+        else {
 
-          saveButton.textContent =
-            editingRequestId
-              ? "Updating..."
-              : "Saving...";
+          dateCompleted =
+            null;
 
-          try {
-
-            const status =
-              document.getElementById(
-                "status"
-              ).value;
-
-            const remarks =
-              document.getElementById(
-                "remarks"
-              ).value
-                .trim();
-
-            /*
-              Admin must also provide a
-              reason for Cancelled/Replaced.
-            */
-
-            if (
-              (
-                status === "Cancelled" ||
-                status === "Replaced"
-              ) &&
-              !remarks
-            ) {
-
-              throw new Error(
-                `${status} requires a remark explaining the reason.`
-              );
-            }
-
-            let dateCompleted = null;
-
-            if (
-              status === "Completed"
-            ) {
-
-              if (editingRequestId) {
-
-                const existingRequest =
-                  requests.find(
-                    r =>
-                      String(r.id) ===
-                      String(
-                        editingRequestId
-                      )
-                  );
-
-                dateCompleted =
-                  existingRequest
-                    ?.date_completed ||
-                  getTodayLocalDate();
-
-              }
-
-              else {
-
-                dateCompleted =
-                  getTodayLocalDate();
-              }
-            }
-
-            const data = {
-
-              request_no:
-                document
-                  .getElementById(
-                    "requestNo"
-                  )
-                  .value
-                  .trim(),
-
-              assigned_personnel_id:
-                document
-                  .getElementById(
-                    "assignedPersonnel"
-                  )
-                  .value ||
-                null,
-
-              category_id:
-                document
-                  .getElementById(
-                    "category"
-                  )
-                  .value ||
-                null,
-
-              service_item_id:
-                document
-                  .getElementById(
-                    "serviceItem"
-                  )
-                  .value ||
-                null,
-
-              pcs:
-                Number(
-                  document
-                    .getElementById(
-                      "pcs"
-                    )
-                    .value
-                ) || 0,
-
-              amount:
-                Number(
-                  document
-                    .getElementById(
-                      "amount"
-                    )
-                    .value
-                ) || 0,
-
-              serial_number:
-                document
-                  .getElementById(
-                    "serialNumber"
-                  )
-                  .value
-                  .trim() ||
-                null,
-
-              request_date:
-                document
-                  .getElementById(
-                    "requestDate"
-                  )
-                  .value ||
-                null,
-
-              due_date:
-                document
-                  .getElementById(
-                    "dueDate"
-                  )
-                  .value ||
-                null,
-
-              date_completed:
-                dateCompleted,
-
-              status:
-                status,
-
-              description:
-                document
-                  .getElementById(
-                    "description"
-                  )
-                  .value
-                  .trim() ||
-                null,
-
-              remarks:
-                remarks ||
-                null
-            };
+        }
 
 
-            /* UPDATE */
+        const data = {
 
-            if (editingRequestId) {
-
-              await supabaseFetch(
-                `requests?id=eq.${editingRequestId}`,
-                {
-                  method: "PATCH",
-
-                  body:
-                    JSON.stringify(data)
-                }
-              );
-            }
-
-
-            /* INSERT */
-
-            else {
-
-              await supabaseFetch(
-                "requests",
-                {
-                  method: "POST",
-
-                  body:
-                    JSON.stringify(data)
-                }
-              );
-            }
-
-            editingRequestId = null;
-
+          request_no:
             document
               .getElementById(
-                "requestForm"
+                "requestNo"
               )
-              .reset();
+              .value
+              .trim(),
 
-            document.getElementById(
-              "serviceItem"
-            ).innerHTML = `
-              <option value="">
-                Select service/item
-              </option>
-            `;
 
-            document.getElementById(
-              "amount"
-            ).value = "0";
+          assigned_personnel_id:
+            document
+              .getElementById(
+                "assignedPersonnel"
+              )
+              .value ||
+            null,
 
-            closeAddRequest();
 
-            await reloadRequests();
+          category_id:
+            document
+              .getElementById(
+                "category"
+              )
+              .value ||
+            null,
 
-            refreshCurrentPage();
 
-          }
+          service_item_id:
+            document
+              .getElementById(
+                "serviceItem"
+              )
+              .value ||
+            null,
 
-          catch (error) {
 
-            console.error(error);
+          pcs:
+            Number(
+              document
+                .getElementById(
+                  "pcs"
+                )
+                .value
+            ) || 0,
 
-            showFormMessage(
-              error.message ||
-              "Unable to save request.",
-              "error"
-            );
 
-          }
+          amount:
+            Number(
+              document
+                .getElementById(
+                  "amount"
+                )
+                .value
+            ) || 0,
 
-          finally {
 
-            saveButton.disabled = false;
+          serial_number:
+            document
+              .getElementById(
+                "serialNumber"
+              )
+              .value
+              .trim() ||
+            null,
 
-            saveButton.textContent =
-              "Save Request";
-          }
+
+          request_date:
+            document
+              .getElementById(
+                "requestDate"
+              )
+              .value ||
+            null,
+
+
+          due_date:
+            document
+              .getElementById(
+                "dueDate"
+              )
+              .value ||
+            null,
+
+
+          date_completed:
+            dateCompleted,
+
+
+          status:
+            status,
+
+
+          description:
+            document
+              .getElementById(
+                "description"
+              )
+              .value
+              .trim() ||
+            null,
+
+
+          remarks:
+            document
+              .getElementById(
+                "remarks"
+              )
+              .value
+              .trim() ||
+            null
+
+        };
+
+
+        if (
+          editingRequestId
+        ) {
+
+          await supabaseFetch(
+            `requests?id=eq.${editingRequestId}`,
+            {
+              method:
+                "PATCH",
+
+              body:
+                JSON.stringify(
+                  data
+                )
+            }
+          );
+
         }
-      );
+
+
+        else {
+
+          await supabaseFetch(
+            "requests",
+            {
+              method:
+                "POST",
+
+              body:
+                JSON.stringify(
+                  data
+                )
+            }
+          );
+
+        }
+
+
+        editingRequestId =
+          null;
+
+
+        document
+          .getElementById(
+            "requestForm"
+          )
+          .reset();
+
+
+        document.getElementById(
+          "serviceItem"
+        ).innerHTML =
+          `
+            <option value="">
+              Select service/item
+            </option>
+          `;
+
+
+        document.getElementById(
+          "amount"
+        ).value =
+          "0";
+
+
+        closeAddRequest();
+
+
+        await reloadRequests();
+
+
+        refreshCurrentPage();
+
+      }
+
+
+      catch (error) {
+
+        console.error(
+          error
+        );
+
+
+        showFormMessage(
+          error.message ||
+          "Unable to save request.",
+          "error"
+        );
+
+      }
+
+
+      finally {
+
+        saveButton.disabled =
+          false;
+
+
+        saveButton.textContent =
+          "Save Request";
+
+      }
+
+    }
 
 
     /* =========================================================
@@ -4062,6 +4998,7 @@
           "requestSearch"
         );
 
+
       if (searchBox) {
 
         searchBox.addEventListener(
@@ -4069,9 +5006,83 @@
           function() {
 
             loadDashboard();
+
           }
         );
+
       }
+
+
+      const allSearchBox =
+        document.getElementById(
+          "allRequestsSearch"
+        );
+
+
+      if (allSearchBox) {
+
+        allSearchBox.addEventListener(
+          "input",
+          function() {
+
+            renderAllRequests();
+
+          }
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       FILTER EVENTS
+    ========================================================= */
+
+    function setupFilters() {
+
+      [
+        "categoryFilter",
+        "personnelFilter",
+        "statusFilter",
+        "monthFilter"
+      ].forEach(
+        id => {
+
+          const element =
+            document.getElementById(
+              id
+            );
+
+
+          if (element) {
+
+            element.addEventListener(
+              "change",
+              loadDashboard
+            );
+
+          }
+
+        }
+      );
+
+
+      const clearButton =
+        document.getElementById(
+          "clearFiltersButton"
+        );
+
+
+      if (clearButton) {
+
+        clearButton.addEventListener(
+          "click",
+          clearFilters
+        );
+
+      }
+
     }
 
 
@@ -4083,25 +5094,36 @@
 
       document.getElementById(
         "categoryFilter"
-      ).value = "";
+      ).value =
+        "";
+
 
       document.getElementById(
         "personnelFilter"
-      ).value = "";
+      ).value =
+        "";
+
 
       document.getElementById(
         "statusFilter"
-      ).value = "";
+      ).value =
+        "";
+
 
       document.getElementById(
         "requestSearch"
-      ).value = "";
+      ).value =
+        "";
+
 
       document.getElementById(
         "monthFilter"
-      ).value = "";
+      ).value =
+        "";
+
 
       loadDashboard();
+
     }
 
 
@@ -4119,11 +5141,14 @@
           "formMessage"
         );
 
+
       box.textContent =
         message;
 
+
       box.className =
         `message ${type}`;
+
     }
 
 
@@ -4134,10 +5159,14 @@
           "formMessage"
         );
 
-      box.textContent = "";
+
+      box.textContent =
+        "";
+
 
       box.className =
         "message";
+
     }
 
 
@@ -4150,20 +5179,31 @@
       const now =
         new Date();
 
+
       const year =
         now.getFullYear();
+
 
       const month =
         String(
           now.getMonth() + 1
-        ).padStart(2, "0");
+        ).padStart(
+          2,
+          "0"
+        );
+
 
       const day =
         String(
           now.getDate()
-        ).padStart(2, "0");
+        ).padStart(
+          2,
+          "0"
+        );
+
 
       return `${year}-${month}-${day}`;
+
     }
 
 
@@ -4171,90 +5211,75 @@
        FORMATTERS
     ========================================================= */
 
-    function formatCurrency(value) {
+    function formatCurrency(
+      value
+    ) {
 
       return (
         "₱" +
-        Number(value || 0)
-          .toLocaleString(
-            "en-PH",
-            {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2
-            }
-          )
-      );
-    }
-
-
-    function formatNumber(value) {
-
-      return Number(value || 0)
-        .toLocaleString(
+        Number(
+          value || 0
+        ).toLocaleString(
           "en-PH",
           {
-            maximumFractionDigits: 2
+            minimumFractionDigits:
+              2,
+
+            maximumFractionDigits:
+              2
           }
-        );
+        )
+      );
+
     }
 
 
-    function formatDate(date) {
+    function formatNumber(
+      value
+    ) {
+
+      return Number(
+        value || 0
+      ).toLocaleString(
+        "en-PH",
+        {
+          maximumFractionDigits:
+            2
+        }
+      );
+
+    }
+
+
+    function formatDate(
+      date
+    ) {
 
       if (!date) {
+
         return "—";
+
       }
+
 
       const parts =
         date.split("-");
 
+
       if (
-        parts.length !== 3
+        parts.length !==
+        3
       ) {
+
         return date;
+
       }
+
 
       return (
         `${parts[1]}/${parts[2]}/${parts[0]}`
       );
-    }
 
-
-    function statusBadge(status, remarks) {
-
-      const safeStatus =
-        status || "Pending";
-
-      const safeRemarks =
-        remarks
-          ? escapeHtml(remarks)
-          : "";
-
-      return `
-        <div class="status-wrapper">
-
-          <span
-            class="status status-${escapeHtml(
-              safeStatus
-            )}"
-          >
-            ${escapeHtml(
-              safeStatus
-            )}
-          </span>
-
-          ${
-            safeRemarks
-              ? `
-                <div class="status-remark">
-                  ${safeRemarks}
-                </div>
-              `
-              : ""
-          }
-
-        </div>
-      `;
     }
 
 
@@ -4262,21 +5287,721 @@
        HTML ESCAPE
     ========================================================= */
 
-    function escapeHtml(value) {
+    function escapeHtml(
+      value
+    ) {
 
       if (
         value === null ||
         value === undefined
       ) {
+
         return "";
+
       }
 
+
       return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* =========================================================
+       FORGOT PASSWORD
+    ========================================================= */
+
+    function showForgotPassword() {
+
+      const modal =
+        document.getElementById(
+          "forgotPasswordModal"
+        );
+
+
+      const emailInput =
+        document.getElementById(
+          "resetEmail"
+        );
+
+
+      const message =
+        document.getElementById(
+          "forgotPasswordMessage"
+        );
+
+
+      message.className =
+        "forgot-password-message";
+
+
+      message.textContent =
+        "";
+
+
+      const loginEmail =
+        document.getElementById(
+          "loginEmail"
+        );
+
+
+      if (
+        loginEmail &&
+        loginEmail.value.trim()
+      ) {
+
+        emailInput.value =
+          loginEmail.value.trim();
+
+      }
+
+
+      modal.style.display =
+        "flex";
+
+
+      setTimeout(
+        () => {
+
+          emailInput.focus();
+
+        },
+        100
+      );
+
+    }
+
+
+    function hideForgotPassword() {
+
+      const modal =
+        document.getElementById(
+          "forgotPasswordModal"
+        );
+
+
+      modal.style.display =
+        "none";
+
+
+      const message =
+        document.getElementById(
+          "forgotPasswordMessage"
+        );
+
+
+      message.className =
+        "forgot-password-message";
+
+
+      message.textContent =
+        "";
+
+    }
+
+
+    async function sendPasswordReset() {
+
+      const emailInput =
+        document.getElementById(
+          "resetEmail"
+        );
+
+
+      const button =
+        document.getElementById(
+          "resetPasswordButton"
+        );
+
+
+      const message =
+        document.getElementById(
+          "forgotPasswordMessage"
+        );
+
+
+      const email =
+        emailInput.value.trim();
+
+
+      if (!email) {
+
+        message.className =
+          "forgot-password-message error";
+
+
+        message.textContent =
+          "Please enter your email address.";
+
+
+        emailInput.focus();
+
+        return;
+
+      }
+
+
+      if (!email.includes("@")) {
+
+        message.className =
+          "forgot-password-message error";
+
+
+        message.textContent =
+          "Please enter a valid email address.";
+
+
+        emailInput.focus();
+
+        return;
+
+      }
+
+
+      button.disabled =
+        true;
+
+
+      button.textContent =
+        "Sending...";
+
+
+      message.className =
+        "forgot-password-message";
+
+
+      message.textContent =
+        "";
+
+
+      try {
+
+        const response =
+          await fetch(
+            `${SUPABASE_URL}/auth/v1/recover`,
+            {
+
+              method: "POST",
+
+              headers: {
+
+                "apikey":
+                  SUPABASE_KEY,
+
+                "Content-Type":
+                  "application/json"
+
+              },
+
+              body:
+                JSON.stringify({
+
+                  email:
+                    email,
+
+                  redirect_to:
+                    "https://rmldavao.github.io/rml-monitoring/"
+
+                })
+
+            }
+          );
+
+
+        const text =
+          await response.text();
+
+
+        let data = {};
+
+
+        try {
+
+          data =
+            text
+              ? JSON.parse(text)
+              : {};
+
+        }
+
+        catch {
+
+          data = {};
+
+        }
+
+
+        if (!response.ok) {
+
+          throw new Error(
+
+            data.msg ||
+
+            data.message ||
+
+            data.error_description ||
+
+            "Unable to send the password reset email."
+
+          );
+
+        }
+
+
+        message.className =
+          "forgot-password-message success";
+
+
+        message.textContent =
+          "If an account exists for this email, " +
+          "a password reset link has been sent. " +
+          "Please check your inbox.";
+
+
+        emailInput.value =
+          "";
+
+      }
+
+
+      catch (error) {
+
+        console.error(
+          "Password reset error:",
+          error
+        );
+
+
+        message.className =
+          "forgot-password-message error";
+
+
+        message.textContent =
+          error.message ||
+          "Unable to send the password reset email.";
+
+      }
+
+
+      finally {
+
+        button.disabled =
+          false;
+
+
+        button.textContent =
+          "Send Reset Link";
+
+      }
+
+    }
+
+
+    /* =========================================================
+       SETUP FORGOT PASSWORD
+    ========================================================= */
+
+    function setupForgotPassword() {
+
+      const forgotButton =
+        document.getElementById(
+          "forgotPasswordButton"
+        );
+
+
+      const backButton =
+        document.getElementById(
+          "backLoginButton"
+        );
+
+
+      const resetButton =
+        document.getElementById(
+          "resetPasswordButton"
+        );
+
+
+      if (forgotButton) {
+
+        forgotButton.addEventListener(
+          "click",
+          showForgotPassword
+        );
+
+      }
+
+
+      if (backButton) {
+
+        backButton.addEventListener(
+          "click",
+          hideForgotPassword
+        );
+
+      }
+
+
+      if (resetButton) {
+
+        resetButton.addEventListener(
+          "click",
+          sendPasswordReset
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       SETUP MODALS
+    ========================================================= */
+
+    function setupModals() {
+
+      const closeButton =
+        document.getElementById(
+          "closeRequestModalButton"
+        );
+
+
+      const cancelButton =
+        document.getElementById(
+          "cancelRequestButton"
+        );
+
+
+      const requestModal =
+        document.getElementById(
+          "requestModal"
+        );
+
+
+      if (closeButton) {
+
+        closeButton.addEventListener(
+          "click",
+          closeAddRequest
+        );
+
+      }
+
+
+      if (cancelButton) {
+
+        cancelButton.addEventListener(
+          "click",
+          closeAddRequest
+        );
+
+      }
+
+
+      if (requestModal) {
+
+        requestModal.addEventListener(
+          "click",
+          function(event) {
+
+            if (
+              event.target ===
+              requestModal
+            ) {
+
+              closeAddRequest();
+
+            }
+
+          }
+        );
+
+      }
+
+
+      const categorySelect =
+        document.getElementById(
+          "category"
+        );
+
+
+      if (categorySelect) {
+
+        categorySelect.addEventListener(
+          "change",
+          updateServiceItems
+        );
+
+      }
+
+
+      const form =
+        document.getElementById(
+          "requestForm"
+        );
+
+
+      if (form) {
+
+        form.addEventListener(
+          "submit",
+          saveRequest
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       SETUP PERSONNEL ROWS
+    ========================================================= */
+
+    function setupPersonnelTable() {
+
+      const table =
+        document.getElementById(
+          "personnelTable"
+        );
+
+
+      if (!table) {
+
+        return;
+
+      }
+
+
+      table.addEventListener(
+        "click",
+        function(event) {
+
+          const row =
+            event.target.closest(
+              ".person-summary-row"
+            );
+
+
+          if (!row) {
+
+            return;
+
+          }
+
+
+          openPersonnelDetail(
+            row.dataset.personnelId
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       BACK TO DASHBOARD
+    ========================================================= */
+
+    function setupBackButton() {
+
+      const button =
+        document.getElementById(
+          "backToDashboardButton"
+        );
+
+
+      if (button) {
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            currentPersonnelId =
+              null;
+
+
+            showPage(
+              "dashboard"
+            );
+
+          }
+        );
+
+      }
+
+    }
+
+
+    /* =========================================================
+       LOGIN FORM
+    ========================================================= */
+
+    function setupLoginForm() {
+
+      const form =
+        document.getElementById(
+          "loginForm"
+        );
+
+
+      if (!form) {
+
+        return;
+
+      }
+
+
+      form.addEventListener(
+        "submit",
+        async function(event) {
+
+          event.preventDefault();
+
+
+          const email =
+            document
+              .getElementById(
+                "loginEmail"
+              )
+              .value
+              .trim();
+
+
+          const password =
+            document
+              .getElementById(
+                "loginPassword"
+              )
+              .value;
+
+
+          const button =
+            document.getElementById(
+              "loginButton"
+            );
+
+
+          const errorBox =
+            document.getElementById(
+              "loginError"
+            );
+
+
+          errorBox.className =
+            "login-error";
+
+
+          errorBox.textContent =
+            "";
+
+
+          button.disabled =
+            true;
+
+
+          button.textContent =
+            "Logging in...";
+
+
+          try {
+
+            await signIn(
+              email,
+              password
+            );
+
+
+            await loadInitialData();
+
+            showApp();
+
+            showPage(
+              "dashboard"
+            );
+
+          }
+
+
+          catch (error) {
+
+            console.error(
+              "Login error:",
+              error
+            );
+
+
+            errorBox.className =
+              "login-error show";
+
+
+            errorBox.textContent =
+              error.message ||
+              "Unable to log in.";
+
+          }
+
+
+          finally {
+
+            button.disabled =
+              false;
+
+
+            button.textContent =
+              "Login";
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       SETUP ALL EVENTS
+    ========================================================= */
+
+    function setupEvents() {
+
+      setupForgotPassword();
+
+      setupModals();
+
+      setupSearch();
+
+      setupFilters();
+
+      setupPersonnelTable();
+
+      setupBackButton();
+
+      setupLoginForm();
+
     }
 
 
@@ -4286,7 +6011,13 @@
 
     document.addEventListener(
       "DOMContentLoaded",
-      checkSession
+      function() {
+
+        setupEvents();
+
+        checkSession();
+
+      }
     );
 
   </script>
