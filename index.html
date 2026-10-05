@@ -835,29 +835,23 @@ body {
 .google-login-button {
   width: 100%;
   height: 44px;
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 5px;
 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-
-  background: #ffffff;
-  color: #374151;
-  border: 1px solid #d1d5db;
-  border-radius: 7px;
-
-  padding: 0;
-  margin-top: 5px;
-
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 .google-login-button:hover {
   background: #f9fafb;
-  border-color: #9ca3af;
 }
 
 .google-login-button:disabled {
@@ -866,10 +860,11 @@ body {
 }
 
 .google-icon {
-  width: 18px;
-  height: 18px;
-  display: block;
-  flex: 0 0 18px;
+  width: 18px !important;
+  height: 18px !important;
+  position: static !important;
+  transform: none !important;
+  margin: 0 !important;
 }
 .login-divider {
   display: flex;
@@ -912,11 +907,11 @@ body {
         <strong>DOST Davao Regional Metrology Laboratory</strong><br>
         Calibration Request and Monitoring System
       </small>
-    <button type="button" id="googleLoginButton" class="google-login-button">
+   <button type="button" id="googleLoginButton" class="google-login-button">
   <img
     src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
     class="google-icon"
-    alt=""
+    alt="Google"
   >
   <span>Continue with Google</span>
 </button>
