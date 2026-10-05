@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <head>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <meta charset="UTF-8">
 
   <meta
@@ -759,16 +761,39 @@
 
     @media (max-width: 800px) {
 
-      .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-      }
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
 
-      .main {
-        margin-left: 0;
-        padding: 20px;
-      }
+  .main {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sidebar-account {
+    margin-top: 20px;
+  }
+
+}
 
       .cards {
         grid-template-columns: repeat(2, 1fr);
@@ -846,10 +871,7 @@
 </head>
 
 <body>
-  </style>
-</head>
 
-<body>
 
   <!-- =========================
        LOGIN PAGE
@@ -2439,75 +2461,37 @@ async function signInWithGoogle() {
        LOGOUT
     ========================================================= */
 
-    async function logout() {
+   async function logout() {
+  try {
+    await supabaseClient.auth.signOut();
+  } catch (error) {
+    console.error("Supabase sign-out error:", error);
+  }
 
-      try {
+  currentSession = null;
+  currentProfile = null;
 
-        if (
-          currentSession?.access_token
-        ) {
+  requests = [];
+  personnel = [];
+  categories = [];
+  serviceItems = [];
 
-          await fetch(
-            `${SUPABASE_URL}/auth/v1/logout`,
-            {
+  localStorage.removeItem("rml_session");
 
-              method: "POST",
+  // Clear any old Supabase auth session as well
+  Object.keys(localStorage)
+    .filter(key => key.startsWith("sb-"))
+    .forEach(key => localStorage.removeItem(key));
 
-              headers: {
-
-                "apikey":
-                  SUPABASE_KEY,
-
-                "Authorization":
-                  `Bearer ${
-                    currentSession.access_token
-                  }`
-
-              }
-
-            }
-          );
-
-        }
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "Logout error:",
-          error
-        );
-
-      }
-
-
-      currentSession = null;
-
-      currentProfile = null;
-
-      requests = [];
-
-      personnel = [];
-
-      categories = [];
-
-      serviceItems = [];
-
-      localStorage.removeItem(
-        "rml_session"
-      );
-
-      location.reload();
-
-    }
+  showLogin();
+}
 
 
     /* =========================================================
        CHECK EXISTING SESSION
     ========================================================= */
 
-   async function checkSession() {
+  async function checkSession() {
   try {
     const {
       data: { session },
@@ -2516,6 +2500,10 @@ async function signInWithGoogle() {
 
     if (error) {
       console.error("Auth session error:", error);
+
+      currentSession = null;
+      currentProfile = null;
+
       showLogin();
       return;
     }
@@ -2523,7 +2511,9 @@ async function signInWithGoogle() {
     if (!session) {
       currentSession = null;
       currentProfile = null;
+
       localStorage.removeItem("rml_session");
+
       showLogin();
       return;
     }
@@ -2542,16 +2532,23 @@ async function signInWithGoogle() {
     showPage("dashboard");
 
   } catch (error) {
-    console.error("Session initialization error:", error);
+    console.error(
+      "Session initialization error:",
+      error
+    );
 
     currentSession = null;
     currentProfile = null;
+
     localStorage.removeItem("rml_session");
 
     try {
       await supabaseClient.auth.signOut();
     } catch (signOutError) {
-      console.error("Sign-out cleanup error:", signOutError);
+      console.error(
+        "Sign-out cleanup error:",
+        signOutError
+      );
     }
 
     showLogin();
