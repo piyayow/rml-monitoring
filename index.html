@@ -262,37 +262,16 @@ body {
       flex-direction: column;
     }
 
-  .sidebar-brand {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 25px;
-}
+    .sidebar h2 {
+      margin: 0 0 5px;
+      font-size: 20px;
+    }
 
-.dost-logo {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.sidebar-brand-text {
-  flex: 1;
-}
-
-.sidebar-brand-text h2 {
-  margin: 0 0 5px 0;
-  font-size: 20px;
-  line-height: 1.2;
-}
-
-.sidebar-brand-text small {
-  color: #9ca3af;
-  display: block;
-  margin: 0;
-  font-size: 11px;
-  line-height: 1.4;
-}
+    .sidebar small {
+      color: #9ca3af;
+      display: block;
+      margin-bottom: 30px;
+    }
 
     .nav-btn {
       width: 100%;
@@ -1128,15 +1107,8 @@ body {
        SIDEBAR
   ========================= -->
 
- <div class="sidebar-brand">
+  <aside class="sidebar">
 
-  <img
-    src="dost-logo.png"
-    alt="DOST Logo"
-    class="dost-logo"
-  >
-
-  <div class="sidebar-brand-text">
     <h2>
       RML Monitoring
     </h2>
@@ -1144,9 +1116,6 @@ body {
     <small>
       DOST Davao Regional Metrology Laboratory
     </small>
-  </div>
-
-</div>
 
     <button
       class="nav-btn active"
@@ -2598,7 +2567,8 @@ async function signInWithGoogle() {
     /* =========================================================
        CHECK EXISTING SESSION
     ========================================================= */
-async function checkSession() {
+
+  async function checkSession() {
   try {
     const {
       data: { session },
@@ -2607,12 +2577,20 @@ async function checkSession() {
 
     if (error) {
       console.error("Auth session error:", error);
+
+      currentSession = null;
+      currentProfile = null;
+
       showLogin();
       return;
     }
 
     if (!session) {
+      currentSession = null;
+      currentProfile = null;
+
       localStorage.removeItem("rml_session");
+
       showLogin();
       return;
     }
@@ -2624,36 +2602,31 @@ async function checkSession() {
       JSON.stringify(currentSession)
     );
 
-    console.log("STEP 1: Session found");
-
     await loadCurrentProfile();
-
-    console.log("STEP 2: Profile loaded");
-
     await loadInitialData();
 
-    console.log("STEP 3: Initial data loaded");
-
     showApp();
-
-    console.log("STEP 4: App shown");
-
     showPage("dashboard");
 
-    console.log("STEP 5: Dashboard shown");
-
   } catch (error) {
-    console.error("CHECK SESSION CRASH:", error);
-
-    alert(
-      "Session error:\n\n" +
-      (error.message || error)
+    console.error(
+      "Session initialization error:",
+      error
     );
 
     currentSession = null;
     currentProfile = null;
 
     localStorage.removeItem("rml_session");
+
+    try {
+      await supabaseClient.auth.signOut();
+    } catch (signOutError) {
+      console.error(
+        "Sign-out cleanup error:",
+        signOutError
+      );
+    }
 
     showLogin();
   }
