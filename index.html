@@ -2507,79 +2507,121 @@ async function signInWithGoogle() {
        CHECK EXISTING SESSION
     ========================================================= */
 
-    async function checkSession() {
+   async function checkSession() {
 
-      const savedSession =
-        localStorage.getItem(
-          "rml_session"
-        );
+  // Check Google / Supabase session first
+  try {
 
-
-      if (!savedSession) {
-
-        showLogin();
-
-        return;
-
+    const {
+      data: {
+        session
       }
+    } =
+      await supabaseClient.auth.getSession();
+
+    if (session) {
+
+      currentSession = session;
+
+      localStorage.setItem(
+        "rml_session",
+        JSON.stringify(
+          currentSession
+        )
+      );
+
+      await loadCurrentProfile();
+
+      await loadInitialData();
+
+      showApp();
+
+      showPage(
+        "dashboard"
+      );
+
+      return;
+    }
+
+  } catch (error) {
+
+    console.error(
+      "Supabase session check error:",
+      error
+    );
+
+  }
 
 
-      try {
-
-        currentSession =
-          JSON.parse(
-            savedSession
-          );
-
-
-        if (
-          !currentSession?.access_token
-        ) {
-
-          throw new Error(
-            "Invalid session."
-          );
-
-        }
+  // Check existing email/password session
+  const savedSession =
+    localStorage.getItem(
+      "rml_session"
+    );
 
 
-        await loadCurrentProfile();
+  if (!savedSession) {
 
-        await loadInitialData();
+    showLogin();
 
-        showApp();
+    return;
 
-        showPage(
-          "dashboard"
-        );
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "Session check error:",
-          error
-        );
+  }
 
 
-        localStorage.removeItem(
-          "rml_session"
-        );
+  try {
+
+    currentSession =
+      JSON.parse(
+        savedSession
+      );
 
 
-        currentSession = null;
+    if (
+      !currentSession?.access_token
+    ) {
 
-        currentProfile = null;
-
-
-        showLogin();
-
-      }
+      throw new Error(
+        "Invalid session."
+      );
 
     }
 
 
+    await loadCurrentProfile();
+
+    await loadInitialData();
+
+    showApp();
+
+    showPage(
+      "dashboard"
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Session check error:",
+      error
+    );
+
+
+    localStorage.removeItem(
+      "rml_session"
+    );
+
+    currentSession = null;
+
+    currentProfile = null;
+
+
+    showLogin();
+
+  }
+
+}
     /* =========================================================
        LOAD INITIAL DATA
     ========================================================= */
