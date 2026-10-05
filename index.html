@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <head>
   <meta charset="UTF-8">
 
@@ -791,7 +792,60 @@
       }
 
     }
+.sidebar-account {
+  margin-top: 20px;
+}
 
+}
+
+/* Google Login Button */
+.google-login-button {
+  width: 100%;
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.google-login-button:hover {
+  background: #f9fafb;
+}
+
+.google-login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.login-divider span {
+  flex-shrink: 0;
+}
+
+</style>
+</head>
+
+<body>
   </style>
 </head>
 
@@ -811,6 +865,17 @@
         <strong>DOST Davao Regional Metrology Laboratory</strong><br>
         Calibration Request and Monitoring System
       </small>
+      <button
+  type="button"
+  id="googleLoginButton"
+  class="google-login-button"
+>
+  Continue with Google
+</button>
+
+<div class="login-divider">
+  <span>or</span>
+</div>
 
       <div
         id="loginError"
@@ -1838,7 +1903,11 @@
 
     const SUPABASE_KEY =
       "sb_publishable_616pyky7S6t2xj_qB_I6wA_x2q8EDZi";
-
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
     /* =========================================================
        GLOBALS
@@ -2105,7 +2174,46 @@
       await loadCurrentProfile();
 
     }
+async function signInWithGoogle() {
+  const button =
+    document.getElementById(
+      "googleLoginButton"
+    );
 
+  try {
+    button.disabled = true;
+    button.textContent =
+      "Connecting...";
+
+    const { error } =
+      await supabaseClient.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo:
+            "https://rmldavao.github.io/rml-monitoring/"
+        }
+      });
+
+    if (error) {
+      throw error;
+    }
+
+  } catch (error) {
+    console.error(
+      "Google login error:",
+      error
+    );
+
+    alert(
+      "Unable to sign in with Google.\n\n" +
+      error.message
+    );
+
+    button.disabled = false;
+    button.textContent =
+      "Continue with Google";
+  }
+}
 
     /* =========================================================
        LOAD CURRENT PROFILE
@@ -6009,17 +6117,26 @@
        START APP
     ========================================================= */
 
-    document.addEventListener(
-      "DOMContentLoaded",
-      function() {
+  document.addEventListener(
+  "DOMContentLoaded",
+  function() {
+    setupForgotPassword();
 
-        setupEvents();
+    const googleButton =
+      document.getElementById(
+        "googleLoginButton"
+      );
 
-        checkSession();
+    if (googleButton) {
+      googleButton.addEventListener(
+        "click",
+        signInWithGoogle
+      );
+    }
 
-      }
-    );
-
+    checkSession();
+  }
+);
   </script>
 
 </body>
