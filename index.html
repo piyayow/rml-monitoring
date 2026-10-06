@@ -6109,10 +6109,10 @@ try {
        START APP
     ========================================================= */
 
-  document.addEventListener(
+document.addEventListener(
   "DOMContentLoaded",
   function() {
-    setupForgotPassword();
+    setupEvents();
 
     const googleButton =
       document.getElementById(
@@ -6128,6 +6128,7 @@ try {
 
     checkSession();
   }
+);
 );
     async function updateUserPassword() {
 
