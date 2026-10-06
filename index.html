@@ -3757,13 +3757,12 @@ serviceSelect.onchange = function () {
       ).textContent =
         replaced;
 
-      const totalIncome =
-        filteredRequests.reduce(
+           const totalIncome =
+        filtered.reduce(
           (sum, request) =>
             sum + (Number(request.amount) || 0),
           0
         );
-
       document.getElementById(
         "totalIncome"
       ).textContent =
