@@ -1838,36 +1838,48 @@ body {
           </label>
 <div id="serviceItemsContainer">
 
-  <div class="service-item-row">
+<div class="service-item-row">
 
-    <select
-  id="serviceItem"
-  class="serviceItem"
-  required
->
+  <select
+    id="serviceItem"
+    class="serviceItem"
+    required
+  >
+    <option value="">
+      Select service/item
+    </option>
+  </select>
 
-      <option value="">
-        Select service/item
-      </option>
+  <input
+    type="number"
+    class="serviceItemPcs"
+    min="1"
+    value="1"
+    placeholder="PCS"
+  />
 
-    </select>
+  <input
+    type="text"
+    class="serviceItemPrice"
+    placeholder="Price"
+    readonly
+  />
 
-    <input
-      type="number"
-      class="serviceItemPcs"
-      min="1"
-      value="1"
-      placeholder="PCS"
-    />
+  <input
+    type="text"
+    class="serviceItemSubtotal"
+    placeholder="Subtotal"
+    readonly
+  />
 
-    <button
-      type="button"
-      class="removeServiceItem"
-    >
-      ×
-    </button>
+  <button
+    type="button"
+    class="removeServiceItem"
+  >
+    ×
+  </button>
 
-  </div>
+</div>
 
 </div>
 
@@ -6069,8 +6081,7 @@ if (pcsInput) {
     "input",
     updateAmount
   );
-}
-      const addServiceItemButton =
+}const addServiceItemButton =
   document.getElementById(
     "addServiceItem"
   );
@@ -6080,17 +6091,153 @@ const serviceItemsContainer =
     "serviceItemsContainer"
   );
 
-if (
-  addServiceItemButton &&
-  serviceItemsContainer
-) {
+function setupServiceItemRow(row) {
+
+  const select =
+    row.querySelector(
+      ".serviceItem"
+    );
+
+  const pcs =
+    row.querySelector(
+      ".serviceItemPcs"
+    );
+
+  const price =
+    row.querySelector(
+      ".serviceItemPrice"
+    );
+
+  const subtotal =
+    row.querySelector(
+      ".serviceItemSubtotal"
+    );
+
+  serviceItems.forEach(
+    item => {
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+      option.value =
+        item.id;
+
+      option.textContent =
+        item.item_name;
+
+      select.appendChild(
+        option
+      );
+
+    }
+  );
+
+  function updateRow() {
+
+    const selectedItem =
+      serviceItems.find(
+        item =>
+          String(item.id) ===
+          String(select.value)
+      );
+
+    const itemPrice =
+      Number(
+        selectedItem?.price
+      ) || 0;
+
+    const itemPcs =
+      Number(pcs.value) || 0;
+
+    price.value =
+      "₱" +
+      itemPrice.toLocaleString(
+        "en-PH",
+        {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      );
+
+    subtotal.value =
+      "₱" +
+      (
+        itemPrice *
+        itemPcs
+      ).toLocaleString(
+        "en-PH",
+        {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      );
+
+  }
+
+  select.addEventListener(
+    "change",
+    updateRow
+  );
+
+  pcs.addEventListener(
+    "input",
+    updateRow
+  );
+
+  const removeButton =
+    row.querySelector(
+      ".removeServiceItem"
+    );
+
+  removeButton.addEventListener(
+    "click",
+    () => {
+
+      if (
+        serviceItemsContainer
+          .querySelectorAll(
+            ".service-item-row"
+          ).length > 1
+      ) {
+
+        row.remove();
+
+      }
+
+    }
+  );
+
+}
+
+if (serviceItemsContainer) {
+
+  const firstRow =
+    serviceItemsContainer.querySelector(
+      ".service-item-row"
+    );
+
+  if (firstRow) {
+
+    setupServiceItemRow(
+      firstRow
+    );
+
+  }
+
+}
+
+if (addServiceItemButton) {
 
   addServiceItemButton.addEventListener(
     "click",
     () => {
 
       const row =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
       row.className =
         "service-item-row";
@@ -6113,6 +6260,20 @@ if (
           placeholder="PCS"
         />
 
+        <input
+          type="text"
+          class="serviceItemPrice"
+          placeholder="Price"
+          readonly
+        />
+
+        <input
+          type="text"
+          class="serviceItemSubtotal"
+          placeholder="Subtotal"
+          readonly
+        />
+
         <button
           type="button"
           class="removeServiceItem"
@@ -6125,48 +6286,14 @@ if (
         row
       );
 
-      const select =
-        row.querySelector(
-          ".serviceItem"
-        );
-
-      serviceItems.forEach(
-        item => {
-
-          const option =
-            document.createElement(
-              "option"
-            );
-
-          option.value =
-            item.id;
-
-          option.textContent =
-            item.item_name;
-
-          select.appendChild(
-            option
-          );
-
-        }
+      setupServiceItemRow(
+        row
       );
-
-      row
-        .querySelector(
-          ".removeServiceItem"
-        )
-        .addEventListener(
-          "click",
-          () => {
-            row.remove();
-          }
-        );
 
     }
   );
 
 }
-      
       const form =
         document.getElementById(
           "requestForm"
