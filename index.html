@@ -6239,7 +6239,6 @@ if (serviceItemsContainer) {
   }
 
 }
-
 if (addServiceItemButton) {
 
   addServiceItemButton.addEventListener(
@@ -6297,6 +6296,45 @@ if (addServiceItemButton) {
       serviceItemsContainer.appendChild(
         row
       );
+
+      const categoryId =
+        document.getElementById(
+          "category"
+        ).value;
+
+      const select =
+        row.querySelector(
+          ".serviceItem"
+        );
+
+      serviceItems
+        .filter(
+          item =>
+            String(
+              item.category_id
+            ) ===
+            String(categoryId)
+        )
+        .forEach(
+          item => {
+
+            const option =
+              document.createElement(
+                "option"
+              );
+
+            option.value =
+              item.id;
+
+            option.textContent =
+              item.item_name;
+
+            select.appendChild(
+              option
+            );
+
+          }
+        );
 
       setupServiceItemRow(
         row
