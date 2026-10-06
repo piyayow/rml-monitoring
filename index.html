@@ -6112,28 +6112,40 @@ function setupServiceItemRow(row) {
     row.querySelector(
       ".serviceItemSubtotal"
     );
+const selectedCategoryId =
+  document.getElementById(
+    "category"
+  )?.value;
 
-  serviceItems.forEach(
-    item => {
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-      option.value =
-        item.id;
-
-      option.textContent =
-        item.item_name;
-
-      select.appendChild(
-        option
-      );
-
-    }
+const filteredItems =
+  serviceItems.filter(
+    item =>
+      !selectedCategoryId ||
+      String(item.category_id) ===
+      String(selectedCategoryId)
   );
 
+filteredItems.forEach(
+  item => {
+
+    const option =
+      document.createElement(
+        "option"
+      );
+
+    option.value =
+      item.id;
+
+    option.textContent =
+      item.item_name;
+
+    select.appendChild(
+      option
+    );
+
+  }
+);
+  
   function updateRow() {
 
     const selectedItem =
