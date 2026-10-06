@@ -3752,10 +3752,29 @@ serviceSelect.onchange = function () {
         cancelled;
 
 
-      document.getElementById(
+            document.getElementById(
         "totalReplaced"
       ).textContent =
         replaced;
+
+      const totalIncome =
+        filteredRequests.reduce(
+          (sum, request) =>
+            sum + (Number(request.amount) || 0),
+          0
+        );
+
+      document.getElementById(
+        "totalIncome"
+      ).textContent =
+        "₱" +
+        totalIncome.toLocaleString(
+          "en-PH",
+          {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          }
+        );
 
     }
 
