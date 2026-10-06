@@ -2912,7 +2912,7 @@ serviceItems =
               }">
                 ${
                   escapeHtml(
-                    item.name
+                    item.item_name
                   )
                 }
               </option>
@@ -3444,14 +3444,14 @@ serviceItems =
     ) {
 
       return (
-        request.service_item?.name ||
+        request.service_item?.item_name ||
         serviceItems.find(
           s =>
             String(s.id) ===
             String(
               request.service_item_id
             )
-        )?.name ||
+        )?.item_name ||
         "—"
       );
 
