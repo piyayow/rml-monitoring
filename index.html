@@ -5971,11 +5971,14 @@ try {
 
       }
 const serviceItemSelect =
-  document.getElementById(
-    "serviceItem"
-  );
+  document.getElementById("serviceItem");
 
-if (serviceItemSelect) {
+const pcsInput =
+  document.getElementById("pcs");
+
+const amountInput =
+  document.getElementById("amount");
+
 function updateAmount() {
   const selectedItem =
     serviceItems.find(
@@ -5984,28 +5987,29 @@ function updateAmount() {
         String(serviceItemSelect.value)
     );
 
+  const price =
+    Number(selectedItem?.price) || 0;
+
   const pcs =
-    Number(
-      document.getElementById("pcs").value
-    ) || 1;
+    Number(pcsInput.value) || 0;
 
-  document.getElementById("amount").value =
-    (Number(selectedItem?.price) || 0) * pcs;
+  amountInput.value =
+    price * pcs;
 }
 
-serviceItemSelect.addEventListener(
-  "change",
-  updateAmount
-);
-
-document.getElementById(
-  "pcs"
-).addEventListener(
-  "input",
-  updateAmount
-);
+if (serviceItemSelect) {
+  serviceItemSelect.addEventListener(
+    "change",
+    updateAmount
+  );
 }
 
+if (pcsInput) {
+  pcsInput.addEventListener(
+    "input",
+    updateAmount
+  );
+}
       const form =
         document.getElementById(
           "requestForm"
