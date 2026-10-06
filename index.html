@@ -1836,18 +1836,47 @@ body {
           <label for="serviceItem">
             Service / Item
           </label>
+<div id="serviceItemsContainer">
 
-          <select
-            id="serviceItem"
-            required
-          >
+  <div class="service-item-row">
 
-            <option value="">
-              Select service/item
-            </option>
+    <select
+  id="serviceItem"
+  class="serviceItem"
+  required
+>
 
-          </select>
+      <option value="">
+        Select service/item
+      </option>
 
+    </select>
+
+    <input
+      type="number"
+      class="serviceItemPcs"
+      min="1"
+      value="1"
+      placeholder="PCS"
+    />
+
+    <button
+      type="button"
+      class="removeServiceItem"
+    >
+      ×
+    </button>
+
+  </div>
+
+</div>
+
+<button
+  type="button"
+  id="addServiceItem"
+>
+  + Add Service Item
+</button>
         </div>
 
 
@@ -6041,6 +6070,103 @@ if (pcsInput) {
     updateAmount
   );
 }
+      const addServiceItemButton =
+  document.getElementById(
+    "addServiceItem"
+  );
+
+const serviceItemsContainer =
+  document.getElementById(
+    "serviceItemsContainer"
+  );
+
+if (
+  addServiceItemButton &&
+  serviceItemsContainer
+) {
+
+  addServiceItemButton.addEventListener(
+    "click",
+    () => {
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "service-item-row";
+
+      row.innerHTML = `
+        <select
+          class="serviceItem"
+          required
+        >
+          <option value="">
+            Select service/item
+          </option>
+        </select>
+
+        <input
+          type="number"
+          class="serviceItemPcs"
+          min="1"
+          value="1"
+          placeholder="PCS"
+        />
+
+        <button
+          type="button"
+          class="removeServiceItem"
+        >
+          ×
+        </button>
+      `;
+
+      serviceItemsContainer.appendChild(
+        row
+      );
+
+      const select =
+        row.querySelector(
+          ".serviceItem"
+        );
+
+      serviceItems.forEach(
+        item => {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+          option.value =
+            item.id;
+
+          option.textContent =
+            item.item_name;
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
+
+      row
+        .querySelector(
+          ".removeServiceItem"
+        )
+        .addEventListener(
+          "click",
+          () => {
+            row.remove();
+          }
+        );
+
+    }
+  );
+
+}
+      
       const form =
         document.getElementById(
           "requestForm"
