@@ -411,6 +411,21 @@ body {
     .edit-btn:hover {
       background: #e5e7eb;
     }
+    .delete-btn {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  border-radius: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+  margin-left: 5px;
+}
+
+.delete-btn:hover {
+  background: #fecaca;
+}
 
     /* =========================
        STATUS SELECT
@@ -3971,21 +3986,26 @@ serviceItems =
         list.map(
           request => {
 
-            const editColumn =
-              isAdmin
-                ? `
-                  <td>
-                    <button
-                      class="edit-btn"
-                      data-edit-id="${
-                        request.id
-                      }"
-                    >
-                      Edit
-                    </button>
-                  </td>
-                `
-                : "";
+           const editColumn =
+  isAdmin
+    ? `
+      <td>
+        <button
+          class="edit-btn"
+          data-edit-id="${request.id}"
+        >
+          Edit
+        </button>
+
+        <button
+          class="delete-btn"
+          data-delete-id="${request.id}"
+        >
+          Delete
+        </button>
+      </td>
+    `
+    : "";
 
 
             if (
@@ -4228,7 +4248,26 @@ serviceItems =
 
           }
         );
+document
+  .querySelectorAll(
+    "[data-delete-id]"
+  )
+  .forEach(
+    button => {
 
+      button.addEventListener(
+        "click",
+        function() {
+
+          deleteRequest(
+            this.dataset.deleteId
+          );
+
+        }
+      );
+
+    }
+  );
 
       document
         .querySelectorAll(
@@ -4823,7 +4862,74 @@ serviceItems =
         );
 
     }
+/* =========================================================
+   DELETE REQUEST
+========================================================= */
 
+async function deleteRequest(requestId) {
+
+  if (
+    currentProfile?.role !==
+    "admin"
+  ) {
+    return;
+  }
+
+  const request =
+    requests.find(
+      r =>
+        String(r.id) ===
+        String(requestId)
+    );
+
+  if (!request) {
+
+    alert(
+      "Request could not be found."
+    );
+
+    return;
+  }
+
+  const confirmed =
+    confirm(
+      `Are you sure you want to delete request ${request.request_no}?`
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  try {
+
+    await supabaseFetch(
+      `requests?id=eq.${requestId}`,
+      {
+        method: "DELETE"
+      }
+    );
+
+    await reloadRequests();
+
+    refreshCurrentPage();
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "Delete request error:",
+      error
+    );
+
+    alert(
+      error.message ||
+      "Unable to delete request."
+    );
+
+  }
+
+}
 
     /* =========================================================
        CLOSE REQUEST MODAL
