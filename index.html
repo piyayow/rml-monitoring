@@ -6042,49 +6042,73 @@ try {
         );
 
       }
-const serviceItemSelect =
-  document.getElementById("serviceItem");
-
 const pcsInput =
-  document.getElementById("pcs");
+  document.getElementById(
+    "pcs"
+  );
 
 const amountInput =
-  document.getElementById("amount");
+  document.getElementById(
+    "amount"
+  );
 
-function updateAmount() {
-  const selectedItem =
-    serviceItems.find(
-      item =>
-        String(item.id) ===
-        String(serviceItemSelect.value)
+function updateRequestTotals() {
+
+  const rows =
+    document.querySelectorAll(
+      ".service-item-row"
     );
 
-  const price =
-    Number(selectedItem?.price) || 0;
+  let totalPcs = 0;
+  let totalAmount = 0;
 
-  const pcs =
-    Number(pcsInput.value) || 0;
+  rows.forEach(
+    row => {
 
-  amountInput.value =
-    price * pcs;
+      const pcs =
+        Number(
+          row.querySelector(
+            ".serviceItemPcs"
+          )?.value
+        ) || 0;
+
+      const subtotalText =
+        row.querySelector(
+          ".serviceItemSubtotal"
+        )?.value || "";
+
+      const subtotal =
+        Number(
+          subtotalText.replace(
+            /[₱,]/g,
+            ""
+          )
+        ) || 0;
+
+      totalPcs +=
+        pcs;
+
+      totalAmount +=
+        subtotal;
+
+    }
+  );
+
+  if (pcsInput) {
+
+    pcsInput.value =
+      totalPcs;
+
+  }
+
+  if (amountInput) {
+
+    amountInput.value =
+      totalAmount;
+
+  }
+
 }
-
-if (serviceItemSelect) {
-  serviceItemSelect.addEventListener(
-    "change",
-    updateAmount
-  );
-}
-
-if (pcsInput) {
-  pcsInput.addEventListener(
-    "input",
-    updateAmount
-  );
-}const addServiceItemButton =
-  document.getElementById(
-    "addServiceItem"
-  );
 
 const serviceItemsContainer =
   document.getElementById(
@@ -6174,20 +6198,21 @@ filteredItems.forEach(
       );
 
     subtotal.value =
-      "₱" +
-      (
-        itemPrice *
-        itemPcs
-      ).toLocaleString(
-        "en-PH",
-        {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }
-      );
+  "₱" +
+  (
+    itemPrice *
+    itemPcs
+  ).toLocaleString(
+    "en-PH",
+    {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }
+  );
 
-  }
+updateRequestTotals();
 
+}
   select.addEventListener(
     "change",
     updateRow
