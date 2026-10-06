@@ -1709,14 +1709,14 @@ body {
         <h2 id="requestModalTitle">
           Add Request
         </h2>
-
-        <button
-          type="button"
-          class="close-btn"
-          id="closeRequestModalButton"
-        >
-          ×
-        </button>
+<button
+  type="button"
+  class="close-btn"
+  id="closeRequestModalButton"
+  onclick="closeAddRequest()"
+>
+  ×
+</button>
 
       </div>
 
@@ -1966,13 +1966,14 @@ body {
 
         <div class="modal-actions">
 
-          <button
-            type="button"
-            class="secondary"
-            id="cancelRequestButton"
-          >
-            Cancel
-          </button>
+       <button
+  type="button"
+  class="secondary"
+  id="cancelRequestButton"
+  onclick="closeAddRequest()"
+>
+  Cancel
+</button>
 
           <button
             type="submit"
