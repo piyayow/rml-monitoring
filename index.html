@@ -5970,7 +5970,33 @@ try {
         );
 
       }
+const serviceItemSelect =
+  document.getElementById(
+    "serviceItem"
+  );
 
+if (serviceItemSelect) {
+
+  serviceItemSelect.addEventListener(
+    "change",
+    function() {
+
+      const selectedItem =
+        serviceItems.find(
+          item =>
+            String(item.id) ===
+            String(this.value)
+        );
+
+      document.getElementById(
+        "amount"
+      ).value =
+        selectedItem?.price || 0;
+
+    }
+  );
+
+}
 
       const form =
         document.getElementById(
