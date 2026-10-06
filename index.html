@@ -5976,26 +5976,34 @@ const serviceItemSelect =
   );
 
 if (serviceItemSelect) {
+function updateAmount() {
+  const selectedItem =
+    serviceItems.find(
+      item =>
+        String(item.id) ===
+        String(serviceItemSelect.value)
+    );
 
-  serviceItemSelect.addEventListener(
-    "change",
-    function() {
+  const pcs =
+    Number(
+      document.getElementById("pcs").value
+    ) || 1;
 
-      const selectedItem =
-        serviceItems.find(
-          item =>
-            String(item.id) ===
-            String(this.value)
-        );
+  document.getElementById("amount").value =
+    (Number(selectedItem?.price) || 0) * pcs;
+}
 
-      document.getElementById(
-        "amount"
-      ).value =
-        selectedItem?.price || 0;
+serviceItemSelect.addEventListener(
+  "change",
+  updateAmount
+);
 
-    }
-  );
-
+document.getElementById(
+  "pcs"
+).addEventListener(
+  "input",
+  updateAmount
+);
 }
 
       const form =
